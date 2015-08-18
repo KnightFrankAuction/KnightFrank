@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">KnightFrankAcution</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_view_pager_fragment">ViewPagerFragment</string>
+    <string name="title_activity_splash_screen">SplashScreenActivity</string>
+    <string name="title_activity_filter">FilterActivity</string>
+    <string name="title_activity_property_list">PropertyListActivity</string>
+    <string name="title_activity_enquiry">EnquiryActivity</string>
+    <string name="title_activity_facebook_share_content_fragment">FacebookShareContentActivity</string>
+    
+    
+    <string name="app_id">416251588499772</string>
+    <string name="map_key">AIzaSyCcyW5Ab9Mx_jKyD3G5c0uPBeuVTmw7wqk</string>
+    
+    <string name="text_terms">        Lorem ipsum dolor sit amet, consectetur
+		adipiscing elit. Integer dictum orci sem, ac
+		hendrerit dolor vestibulum ac. Aliquam
+		volutpat dolor at elementum volutpat.
+		Vestibulum leo neque, consectetur in ex a,
+		semper pellentesque orci. Nullam luctus
+		suscipit massa in tempus. Aliquam
+		vestibulum, nulla in finibus gravida, diam ex
+		sagittis eros, ut eleifend nulla diam non elit.	</string>
+	
+    <string name="check_box_tems">I agree to the terms and conditions of Use, Privacy Policy and Mobile Terms.</string>
+    <string name="check_box_news_letter">Sign me up for Newsletter</string>
+    <string name="title_activity_sign_up">SignUpActivity</string>
+    <string name="title_activity_menu">MenuActivity</string>
+    <string name="title_activity_advertisements">AdvertisementsActivity</string>
+    <string name="title_activity_auction_listings">AuctionListingsActivity</string>
+    <string name="title_activity_private_listings">PrivateListingsActivity</string>
+    <string name="title_activity_project_listings">ProjectListingsActivity</string>
+    <string name="title_activity_starbuys">StarbuysActivity</string>
+    <string name="title_activity_info_news">InfoNewsActivity</string>
+    <string name="title_activity_tools">ToolsActivity</string>
+    <string name="title_activity_documents">DocumentsActivity</string>
+    <string name="title_activity_base">BaseActivity</string>
+    <string name="title_activity_property_detail">PropertyDetailActivity</string>
+
+</resources>

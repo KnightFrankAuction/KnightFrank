@@ -1,0 +1,103 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray"
+    tools:context=".AuctionListingsActivity" >
+    
+    <include 
+        android:id="@+id/title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        layout="@layout/title_layout"/>
+    
+    <RelativeLayout
+        android:id="@+id/layout_auction_month" 
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/title_layout"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@color/pink">
+        
+        <ImageView 
+            android:id="@+id/auction_left"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/left_arrow"/>
+        
+        <TextView 
+            android:id="@+id/auctiion_month"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/auction_left"
+            android:layout_toLeftOf="@+id/auction_right"
+            style="@style/TitleStyle"
+            android:text="August 2015"/>
+        
+        <ImageView 
+            android:id="@+id/auction_right"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/right_arrow"/>
+        
+    </RelativeLayout>
+    
+    <ListView 
+        android:id="@+id/auction_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="15dp"
+        android:layout_above="@+id/auction_venue"
+        android:background="@color/white"
+        android:layout_below="@+id/layout_auction_month" />
+    
+    <ProgressBar 
+        android:id="@+id/progress_date_list"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:visibility="gone"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/layout_auction_month"/>
+    
+    <TextView 
+        android:id="@+id/auction_venue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginBottom="20dp"
+        android:textColor="@color/black1"
+        android:textSize="24sp"
+        android:text="Auction Venue:"/>
+    
+    <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_above="@+id/auction_listing_footer"
+        android:layout_marginLeft="15dp"
+        android:layout_marginBottom="20dp"
+        android:textColor="@color/black1"
+        android:textSize="24sp"
+        android:text="Amara Hotel, Connection Room 1, Level 3"/>
+    
+    <!-- Footer -->
+    <FrameLayout 
+        android:id="@+id/auction_listing_footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>

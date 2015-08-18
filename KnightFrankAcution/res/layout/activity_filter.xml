@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray" >
+    
+    <include 
+        android:id="@+id/title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        layout="@layout/title_layout"/>
+    
+    <ScrollView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title_layout"
+        android:layout_above="@+id/filter_footer">
+        
+        <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            
+            <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:textSize="24sp"
+                android:textColor="@color/black1"
+                android:text="BUILDING TYPE"/>
+            
+            <RelativeLayout 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white">
+                
+                			<!-- Any -->
+                
+                <TextView 
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/any"
+                    style="@style/FilterTextviewStyle"
+                    android:text="Any"/>
+                
+                <RadioButton 
+                    android:id="@+id/any"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"/>
+                
+                <View 
+                    android:id="@+id/any_view"
+			        android:layout_width="match_parent"
+			        android:layout_height="2dp"
+			        android:layout_margin="5dp"
+			        android:layout_below="@+id/any"
+			        android:background="@color/gray"/>
+                
+                			<!-- Building -->
+                
+                <TextView 
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/any"
+                    style="@style/FilterTextviewStyle"
+                    android:layout_below="@+id/any_view"
+                    android:text="Building"/>
+                
+                <RadioButton 
+                    android:id="@+id/Building"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/any_view"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"/>
+                
+                <View 
+                    android:id="@+id/building_view"
+			        android:layout_width="match_parent"
+			        android:layout_height="2dp"
+			        android:layout_margin="5dp"
+			        android:layout_below="@+id/Building"
+			        android:background="@color/gray"/>
+                
+                
+                		<!-- Condo / Apartment -->
+                
+                <TextView 
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/any"
+                    style="@style/FilterTextviewStyle"
+                    android:layout_below="@+id/building_view"
+                    android:text="Condo / Apartment"/>
+                
+                <RadioButton 
+                    android:id="@+id/Condo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/building_view"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"/>
+                
+                <View 
+                    android:id="@+id/Condo_view"
+			        android:layout_width="match_parent"
+			        android:layout_height="2dp"
+			        android:layout_margin="5dp"
+			        android:layout_below="@+id/Condo"
+			        android:background="@color/gray"/>
+                
+                
+                		<!-- HDB -->
+                
+                <TextView 
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/any"
+                    style="@style/FilterTextviewStyle"
+                    android:layout_below="@+id/Condo_view"
+                    android:text="HDB"/>
+                
+                <RadioButton 
+                    android:id="@+id/hdb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/Condo_view"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"/>
+                
+                <View 
+                    android:id="@+id/hdb_view"
+			        android:layout_width="match_parent"
+			        android:layout_height="2dp"
+			        android:layout_margin="5dp"
+			        android:layout_below="@+id/hdb"
+			        android:background="@color/gray"/>
+                
+                
+                			<!-- Landed -->
+                
+                <TextView 
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/any"
+                    style="@style/FilterTextviewStyle"
+                    android:layout_below="@+id/hdb_view"
+                    android:text="Landed"/>
+                
+                <RadioButton 
+                    android:id="@+id/Landed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/hdb_view"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"/>
+                
+                <View 
+                    android:id="@+id/Landed_view"
+			        android:layout_width="match_parent"
+			        android:layout_height="2dp"
+			        android:layout_margin="5dp"
+			        android:layout_below="@+id/Landed"
+			        android:background="@color/gray"/>
+                
+                
+                		<!-- Offices -->
+                
+                <TextView 
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/any"
+                    style="@style/FilterTextviewStyle"
+                    android:layout_below="@+id/Landed_view"
+                    android:text="Offices"/>
+                
+                <RadioButton 
+                    android:id="@+id/Offices"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/Landed_view"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"/>
+                
+                <View 
+                    android:id="@+id/Offices_view"
+			        android:layout_width="match_parent"
+			        android:layout_height="2dp"
+			        android:layout_margin="5dp"
+			        android:layout_below="@+id/Offices"
+			        android:background="@color/gray"/>
+                
+            </RelativeLayout> <!-- Building Type -->
+            
+            		<!-- FLOOR AREA -->
+            
+            <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:textSize="24sp"
+                android:textColor="@color/black1"
+                android:text="FLOOR AREA"/>
+            
+            <LinearLayout 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:paddingBottom="5dp"
+                android:weightSum="2">
+                
+                 <TextView 
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    style="@style/FilterTextviewStyle"
+                    android:layout_weight="1"
+                    android:text="Min. Size"/>
+                 
+                 <EditText 
+                     android:id="@+id/edit_min_size"
+                     android:layout_width="0dp"
+                     android:layout_height="50dp"
+                     android:layout_weight="1"
+                     android:layout_marginTop="15dp"
+                     android:layout_marginRight="15dp"
+                     android:hint="Not Set" />
+                
+            </LinearLayout>
+            
+            <LinearLayout 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:paddingBottom="5dp"
+                android:weightSum="2">
+                
+                 <TextView 
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    style="@style/FilterTextviewStyle"
+                    android:layout_weight="1"
+                    android:text="Max. Size"/>
+                 
+                 <EditText 
+                     android:id="@+id/edit_max_size"
+                     android:layout_width="0dp"
+                     android:layout_height="50dp"
+                     android:layout_weight="1"
+                     android:layout_marginTop="15dp"
+                     android:layout_marginRight="15dp"
+                     android:hint="Not Set" />
+                
+            </LinearLayout>
+            
+        </LinearLayout>
+        
+    </ScrollView>
+    
+    
+    <FrameLayout 
+        android:id="@+id/filter_footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>

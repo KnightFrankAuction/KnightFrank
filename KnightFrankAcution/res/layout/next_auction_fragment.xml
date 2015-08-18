@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent" >
+    
+	<TextView 
+	    android:id="@+id/next_auction_title"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_centerHorizontal="true"
+	    android:textColor="@color/white"
+	    android:textSize="22sp"
+	    android:text="Next Upcoming Auction"/>
+	
+	<RelativeLayout 
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_below="@+id/next_auction_title"
+	    android:layout_margin="15dp">
+	    
+	    <TextView 
+	        android:id="@+id/Date"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_margin="5dp"
+		    android:textColor="@color/white"
+		    android:textSize="18sp"
+		    android:text="Date :"/>
+	    
+	    <TextView 
+	        android:id="@+id/next_auction_date"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_toRightOf="@+id/Date"
+		    android:layout_marginLeft="10dp"
+		    android:textColor="@color/white"
+		    android:textSize="18sp"
+		    android:text=""/>
+	    
+	    <TextView 
+	        android:id="@+id/Time"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_below="@+id/Date"
+		    android:layout_margin="5dp"
+		    android:textColor="@color/white"
+		    android:textSize="18sp"
+		    android:text="Time :"/>
+	    
+	    <TextView 
+	        android:id="@+id/next_auction_time"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_below="@+id/Date"
+		    android:layout_toRightOf="@+id/Time"
+		    android:layout_marginLeft="10dp"
+		    android:textColor="@color/white"
+		    android:textSize="18sp"
+		    android:text=""/>
+	    
+	    <TextView 
+	        android:id="@+id/Venue"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_below="@+id/Time"
+		    android:layout_margin="5dp"
+		    android:textColor="@color/white"
+		    android:textSize="18sp"
+		    android:text="Venue :"/>
+	    
+	    <TextView 
+	        android:id="@+id/next_auction_venue"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_below="@+id/Time"
+		    android:layout_toRightOf="@+id/Venue"
+		    android:layout_marginLeft="10dp"
+		    android:textColor="@color/white"
+		    android:textSize="18sp"
+		    android:text=""/>
+	    
+	</RelativeLayout>
+	
+	
+    
+</RelativeLayout>

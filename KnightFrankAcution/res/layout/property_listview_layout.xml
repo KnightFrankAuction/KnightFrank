@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="3"
+    android:background="@color/white"
+    android:orientation="horizontal" >
+    
+    <ImageView 
+        android:id="@+id/listview_image"
+        android:layout_width="0dp"
+        android:layout_height="250dp"
+        android:layout_weight="1"
+        android:src="@drawable/detail_phone" />
+    
+    <RelativeLayout 
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:layout_weight="2">
+        
+        <TextView 
+            android:id="@+id/listview_building_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:text="14 Beng Wan Road"/>
+        
+        <ImageView 
+            android:id="@+id/listview_shortlist"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="5dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/shortlist_check"/>
+        
+        <TextView 
+            android:id="@+id/listview_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_below="@+id/listview_building_name"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:text="$100, 000"/>
+        
+        <TextView 
+            android:id="@+id/listview_district"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="5dp"
+            android:layout_below="@+id/listview_price"
+            android:textColor="@color/black1"
+            android:textSize="20sp"
+            android:text="District 12"/>
+        
+        <TextView 
+            android:id="@+id/listview_auction_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_below="@+id/listview_district"
+            android:textColor="@color/pink"
+            android:textSize="20sp"
+            android:text="Owner's sale"/>
+        
+        <TextView 
+            android:id="@+id/listview_building_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_below="@+id/listview_auction_type"
+            android:textColor="@color/black1"
+            android:textSize="20sp"
+            android:text="Condo"/>
+        
+        <TextView 
+            android:id="@+id/listview_floor_area"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_below="@+id/listview_building_type"
+            android:textColor="@color/black1"
+            android:textSize="20sp"
+            android:text="1701 sqft"/>
+        
+         <TextView 
+            android:id="@+id/listview_bed_bath"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_below="@+id/listview_floor_area"
+            android:textColor="@color/black1"
+            android:textSize="20sp"
+            android:text="5 bedroom, 4 bathroom"/>
+         
+         <TextView 
+            android:id="@+id/listview_tenure"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_below="@+id/listview_bed_bath"
+            android:textColor="@color/black1"
+            android:textSize="20sp"
+            android:text="99 Tenure from May 1991"/>
+         
+         <TextView 
+            android:id="@+id/listview_price2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_below="@+id/listview_tenure"
+            android:textColor="@color/black1"
+            android:textSize="20sp"
+            android:text="$100,000"/>
+         
+         <TextView 
+            android:id="@+id/listview_psf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_below="@+id/listview_price2"
+            android:textColor="@color/black1"
+            android:textSize="20sp"
+            android:text="$59 psft"/>
+        
+    </RelativeLayout>
+
+</LinearLayout>

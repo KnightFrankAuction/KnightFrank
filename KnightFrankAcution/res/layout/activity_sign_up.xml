@@ -1,0 +1,467 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:whatever="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".LoginFragment" xmlns:app="http://schemas.android.com/apk/res/com.novitee.knightfrankacution">
+    
+    <RelativeLayout 
+        android:id="@+id/login_action_bar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/pink"
+        android:layout_alignParentTop="true">
+        
+        <ImageView 
+            android:id="@+id/signup_back"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/back_arrow"/>
+        
+        <TextView 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:text="Signup"
+            />
+        
+    </RelativeLayout>//tool bar
+    
+    <ScrollView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/login_action_bar"
+        android:paddingBottom="40dp">
+    
+	    <LinearLayout 
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_margin="20dp"
+	        android:orientation="vertical"
+	        android:paddingBottom="20dp">
+	
+	        <FrameLayout 
+	            android:id="@+id/login_frame"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content">
+	        </FrameLayout>
+	        
+	        <LinearLayout 
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:orientation="horizontal"
+	            android:layout_marginTop="10dp"
+	            android:weightSum="3">
+	            
+	            <View 
+	                android:layout_width="0dp"
+	                android:layout_height="1dp"
+	                android:layout_marginRight="5dp"
+	                android:layout_weight="0.9"
+	                android:layout_gravity="center_vertical"
+	                android:background="@color/black"/>
+	            
+	            <TextView 
+	                android:layout_width="0dp"
+	                android:layout_height="wrap_content"
+	                android:layout_weight="1.2"
+	                android:gravity="center_horizontal"
+	                android:textColor="@color/black"
+	                android:textSize="18sp"
+	                android:text="or with email"/>
+	            
+	            <View 
+	                android:layout_width="0dp"
+	                android:layout_height="1dp"
+	                android:layout_marginLeft="5dp"
+	                android:layout_weight="0.9"
+	                android:layout_gravity="center_vertical"
+	                android:background="@color/black"/>
+	            
+	        </LinearLayout>
+		
+		    <LinearLayout 
+		        android:id="@+id/first_box"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:orientation="vertical"
+		        android:background="@color/white"
+		        android:layout_margin="15dp">
+		        
+		        <LinearLayout 
+		            android:layout_width="match_parent"
+		            android:layout_height="50dp"
+		            android:orientation="horizontal">
+		            
+		            <TextView 
+		                android:layout_width="150dp"
+		                android:layout_height="wrap_content"
+		                android:layout_margin="5dp"
+		                style="@style/TextviewStyle"
+		                android:text="Email: "/>
+		            
+		            <com.andreabaccega.widget.FormEditText
+		                android:id="@+id/edit_email"
+		                android:layout_width="match_parent"
+		                android:layout_height="match_parent"
+		                android:layout_margin="5dp"
+		                whatever:testType="email"
+		                whatever:emptyErrorString="Email is empty"
+		                whatever:testErrorString="Email is not valid"
+		                android:inputType="textEmailAddress" />
+		            
+		        </LinearLayout>
+		        
+		        <LinearLayout 
+		            android:layout_width="match_parent"
+		            android:layout_height="50dp"
+		            android:layout_marginTop="5dp"
+		            android:orientation="horizontal">
+		            
+		            <TextView 
+		                android:layout_width="150dp"
+		                android:layout_height="wrap_content"
+		                android:layout_margin="5dp"
+		                style="@style/TextviewStyle"
+		                android:text="Username: "/>
+		            
+		            <com.andreabaccega.widget.FormEditText
+		                android:id="@+id/edit_username"
+		                android:layout_width="match_parent"
+		                android:layout_height="match_parent"
+		                android:layout_margin="5dp"
+		                android:inputType="text"/>
+		            
+		        </LinearLayout>
+		        
+		        <LinearLayout 
+		            android:layout_width="match_parent"
+		            android:layout_height="50dp"
+		            android:layout_marginTop="5dp"
+		            android:orientation="horizontal">
+		            
+		            <TextView 
+		                android:layout_width="150dp"
+		                android:layout_height="wrap_content"
+		                android:layout_margin="5dp"
+		                style="@style/TextviewStyle"
+		                android:text="Password: "/>
+		            
+		            <com.andreabaccega.widget.FormEditText
+		                android:id="@+id/edit_password"
+		                android:layout_width="match_parent"
+		                android:layout_height="match_parent"
+		                android:layout_margin="5dp"
+		                android:inputType="textPassword"/>
+		            
+		        </LinearLayout>
+		        
+		        <LinearLayout 
+		            android:layout_width="match_parent"
+		            android:layout_height="50dp"
+		            android:layout_marginTop="5dp"
+		            android:orientation="horizontal">
+		            
+		            <TextView 
+		                android:layout_width="150dp"
+		                android:layout_height="wrap_content"
+		                android:layout_margin="5dp"
+		                style="@style/TextviewStyle"
+		                android:text="Mobile number: "/>
+		            
+		            <com.andreabaccega.widget.FormEditText
+		                android:id="@+id/edit_phone"
+		                android:layout_width="match_parent"
+		                android:layout_height="match_parent"
+		                android:layout_margin="5dp"
+		                android:inputType="phone"/>
+		            
+		        </LinearLayout>
+		        
+		    </LinearLayout>//first box
+		    
+		    <LinearLayout 
+		        android:id="@+id/second_box"
+		        android:layout_width="match_parent"
+		        android:layout_height="50dp"
+		        android:orientation="horizontal"
+		        android:background="@color/white"
+		        android:layout_margin="15dp">
+		            
+	            <TextView 
+	                android:layout_width="150dp"
+	                android:layout_height="wrap_content"
+	                android:layout_margin="5dp"
+	                style="@style/TextviewStyle"
+	                android:text="User Type: "/>
+	
+	            <Spinner
+	                android:id="@+id/spinner_user_type"
+	                android:layout_width="wrap_content"
+	                android:layout_height="match_parent"
+	                android:spinnerMode="dropdown"
+	                android:entries="@array/user_type" />
+		        
+		    </LinearLayout>//second box
+		    
+		    <LinearLayout
+		        android:id="@+id/agent_box"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_margin="15dp"
+		        android:background="@color/white"
+		        android:visibility="gone"
+		        android:orientation="vertical" >
+	
+		        <LinearLayout 
+		            android:layout_width="match_parent"
+		            android:layout_height="50dp"
+		            android:layout_marginTop="5dp"
+		            android:orientation="horizontal">
+		            
+		            <TextView 
+		                android:layout_width="150dp"
+		                android:layout_height="wrap_content"
+		                android:layout_margin="5dp"
+		                style="@style/TextviewStyle"
+		                android:text="CEA No: "/>
+		            
+		            <com.andreabaccega.widget.FormEditText
+		                android:id="@+id/edit_cea_no"
+		                android:layout_width="match_parent"
+		                android:layout_height="match_parent"
+		                android:layout_margin="5dp"
+		                android:inputType="text"/>
+		            
+		        </LinearLayout>
+		        
+		        <LinearLayout 
+		            android:layout_width="match_parent"
+		            android:layout_height="50dp"
+		            android:layout_marginTop="5dp"
+		            android:orientation="horizontal">
+		            
+		            <TextView 
+		                android:layout_width="150dp"
+		                android:layout_height="wrap_content"
+		                android:layout_margin="5dp"
+		                style="@style/TextviewStyle"
+		                android:text="Company: "/>
+		            
+		            <com.andreabaccega.widget.FormEditText
+		                android:id="@+id/edit_company"
+		                android:layout_width="match_parent"
+		                android:layout_height="match_parent"
+		                android:layout_margin="5dp"
+		                android:inputType="text"/>
+		            
+		        </LinearLayout>     
+		       
+		    </LinearLayout>//agent box
+		    
+		    <LinearLayout 
+		        android:id="@+id/user_box"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:orientation="vertical">
+		    
+			    <TextView 
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:textSize="22sp"
+			        android:layout_marginTop="15dp"
+			        android:layout_marginLeft="15dp"
+			        android:textColor="@color/black"
+			        android:text="MAILING ADDRESS"/>
+			    
+			    <LinearLayout 
+			        android:id="@+id/mailing_address"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:orientation="vertical"
+			        android:background="@color/white"
+			        android:layout_margin="15dp">
+			        
+			        <LinearLayout 
+			            android:layout_width="match_parent"
+			            android:layout_height="50dp"
+			            android:orientation="horizontal">
+			            
+			            <TextView 
+			                android:layout_width="150dp"
+			                android:layout_height="wrap_content"
+			                android:layout_margin="5dp"
+			                style="@style/TextviewStyle"
+			                android:text="Building No.: "/>
+			            
+			            <com.andreabaccega.widget.FormEditText
+			                android:id="@+id/edit_building_no"
+			                android:layout_width="match_parent"
+			                android:layout_height="match_parent"
+			                android:layout_margin="5dp"
+			                android:inputType="text"/>
+			            
+			        </LinearLayout>
+			        
+			        <LinearLayout 
+			            android:layout_width="match_parent"
+			            android:layout_height="50dp"
+			            android:layout_marginTop="5dp"
+			            android:orientation="horizontal">
+			            
+			            <TextView 
+			                android:layout_width="150dp"
+			                android:layout_height="wrap_content"
+			                android:layout_margin="5dp"
+			                style="@style/TextviewStyle"
+			                android:text="Building Name: "/>
+			            
+			            <com.andreabaccega.widget.FormEditText
+			                android:id="@+id/edit_building_name"
+			                android:layout_width="match_parent"
+			                android:layout_height="match_parent"
+			                android:layout_margin="5dp"
+			                android:inputType="text"/>
+			            
+			        </LinearLayout>
+			        
+			        <LinearLayout 
+			            android:layout_width="match_parent"
+			            android:layout_height="50dp"
+			            android:layout_marginTop="5dp"
+			            android:orientation="horizontal">
+			            
+			            <TextView 
+			                android:layout_width="150dp"
+			                android:layout_height="wrap_content"
+			                android:layout_margin="5dp"
+			                style="@style/TextviewStyle"
+			                android:text="Street: "/>
+			            
+			            <com.andreabaccega.widget.FormEditText
+			                android:id="@+id/edit_street"
+			                android:layout_width="match_parent"
+			                android:layout_height="match_parent"
+			                android:layout_margin="5dp"
+			                android:inputType="text"/>
+			            
+			        </LinearLayout>
+			        
+			        <LinearLayout 
+			            android:layout_width="match_parent"
+			            android:layout_height="50dp"
+			            android:layout_marginTop="5dp"
+			            android:orientation="horizontal">
+			            
+			            <TextView 
+			                android:layout_width="150dp"
+			                android:layout_height="wrap_content"
+			                android:layout_margin="5dp"
+			                style="@style/TextviewStyle"
+			                android:text="Unit No.: "/>
+			            
+			            <com.andreabaccega.widget.FormEditText
+			                android:id="@+id/edit_unit_no"
+			                android:layout_width="match_parent"
+			                android:layout_height="match_parent"
+			                android:layout_margin="5dp"
+			                android:inputType="text"/>
+			            
+			        </LinearLayout>
+			        
+			        <LinearLayout 
+			            android:layout_width="match_parent"
+			            android:layout_height="50dp"
+			            android:layout_marginTop="5dp"
+			            android:orientation="horizontal">
+			            
+			            <TextView 
+			                android:layout_width="150dp"
+			                android:layout_height="wrap_content"
+			                android:layout_margin="5dp"
+			                style="@style/TextviewStyle"
+			                android:text="Postal Code: "/>
+			            
+			            <com.andreabaccega.widget.FormEditText
+			                android:id="@+id/edit_postal_code"
+			                android:layout_width="match_parent"
+			                android:layout_height="match_parent"
+			                android:layout_margin="5dp"
+			                android:inputType="number"/>
+			            
+			        </LinearLayout>
+			        
+			    </LinearLayout>
+			    
+			    <TextView 
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:textSize="22sp"
+			        android:layout_marginTop="15dp"
+			        android:layout_marginLeft="15dp"
+			        android:textColor="@color/black"
+			        android:text="TERMS AND CONDITIONS"/>
+			    
+			    <LinearLayout 
+			        android:id="@+id/terms_and_conds"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:orientation="vertical"
+			        android:background="@color/white"
+			        android:layout_margin="15dp">
+			        
+			        <ScrollView 
+			            android:layout_width="match_parent"
+			            android:layout_height="100dp"
+			            android:layout_margin="10dp">
+			            
+			            <TextView 
+			                android:id="@+id/txtTerms"
+			                android:layout_width="match_parent"
+			                android:layout_height="wrap_content"
+			                android:textColor="@color/black"
+			                android:text="@string/text_terms"/>
+			            
+			        </ScrollView>
+			        
+			        <CheckBox 
+			            android:layout_width="match_parent"
+			            android:layout_height="wrap_content"
+			            android:layout_margin="7dp"
+			            android:textColor="#000"
+			            android:text="@string/check_box_tems"/>
+			        
+			        <CheckBox 
+			            android:layout_width="match_parent"
+			            android:layout_height="wrap_content"
+			            android:layout_margin="7dp"
+			            android:textColor="#000"
+			            android:text="@string/check_box_news_letter"/>
+			        
+				</LinearLayout>	
+				
+			</LinearLayout>//user box	        
+		    
+		    <Button 
+		        android:id="@+id/btnSignUp"
+		        android:layout_width="match_parent"
+		        android:layout_height="50dp"
+		        android:layout_marginTop="20dp"
+		        android:layout_marginLeft="30dp"
+		        android:layout_marginRight="30dp"
+		        android:layout_gravity="center"
+		        android:background="@color/pink"
+		        android:textColor="@color/white"
+		        android:text="Sign Up"/>
+	        
+	    </LinearLayout>//boxes layout
+	    
+	</ScrollView>
+
+</RelativeLayout>

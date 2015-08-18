@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+    
+    <include 
+        android:id="@+id/title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        layout="@layout/title_layout"/>
+    
+    <ScrollView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title_layout">
+        
+        <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="vertical">
+            
+            <!-- Email -->
+            <LinearLayout 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="horizontal"
+                android:weightSum="3">
+                
+                <TextView 
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    style="@style/EnquiryTextviewStyle"
+                    android:text="Email"/>
+                
+                <EditText 
+                    android:id="@+id/enquiry_email"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="2"
+                    android:inputType="textEmailAddress"/>
+                
+            </LinearLayout>
+            
+            <!-- Contact No. -->
+            <LinearLayout 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="horizontal"
+                android:weightSum="3">
+                
+                <TextView 
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    style="@style/EnquiryTextviewStyle"
+                    android:text="Contact No."/>
+                
+                <EditText 
+                    android:id="@+id/enquiry_contact"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="2"
+                    android:inputType="phone"/>
+                
+            </LinearLayout>
+            
+            <!-- Name -->
+            <LinearLayout 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="horizontal"
+                android:weightSum="3">
+                
+                <TextView 
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    style="@style/EnquiryTextviewStyle"
+                    android:text="Name"/>
+                
+                <EditText 
+                    android:id="@+id/enquiry_name"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="2"
+                    android:inputType="text"/>
+                
+            </LinearLayout>
+            
+             <!-- Remark -->
+            <LinearLayout 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="horizontal"
+                android:weightSum="3">
+                
+                <TextView 
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="top|left"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    android:text="Remark"/>
+                
+                <EditText 
+                    android:id="@+id/enquiry_remark"
+                    android:layout_width="0dp"
+                    android:layout_height="150dp"
+                    android:layout_weight="2"
+                    android:minLines="5"
+                    android:inputType="text"/>
+                
+            </LinearLayout>
+            
+            <!-- Attachment -->
+            <LinearLayout 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="horizontal"
+                android:weightSum="3">
+                
+                <TextView 
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    style="@style/EnquiryTextviewStyle"
+                    android:text="Attachment"/>
+                
+                <TextView 
+                    android:id="@+id/enquiry_attachment"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/browse_border"
+                    android:layout_weight="2"
+                    android:padding="10dp"
+                    android:gravity="center_vertical"
+                    android:textSize="20sp"
+                    android:textColor="@color/black2"
+                    android:text="browse . . ." />
+                
+            </LinearLayout>
+            
+            <Button 
+                android:id="@+id/enquiry_submit"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/pink"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="20dp"
+                style="@style/TitleStyle"
+                android:text="Submit"/>
+            
+        </LinearLayout>
+        
+    </ScrollView>
+    
+    <!-- Footer -->
+    <FrameLayout 
+        android:id="@+id/enquiry_footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>
