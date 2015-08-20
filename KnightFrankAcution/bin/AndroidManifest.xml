@@ -36,7 +36,7 @@
         android:label="@string/app_name"
         android:theme="@android:style/Theme.NoTitleBar" >
         <activity
-            android:name="com.novitee.knightfrankacution.SplashScreenActivity"
+            android:name="com.novitee.knightfrankacution.ToolsActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -92,7 +92,7 @@
             android:label="@string/title_activity_info_news" >
         </activity>
         <activity
-            android:name="com.novitee.knightfrankacution.ToolsActivity"
+            android:name="com.novitee.knightfrankacution.SplashScreenActivity"
             android:label="@string/title_activity_tools" >
         </activity>
         <activity
@@ -110,7 +110,7 @@
             <!--
             <intent-filter>
                 <action android:name="android.intent.action.DIAL" />
-            </intent-filter>
+            </intent-filter>
             -->
 
         </activity>
@@ -146,6 +146,18 @@
         <activity
             android:name="com.novitee.knightfrankacution.FacebookShareContentFragment"
             android:label="@string/title_activity_facebook_share_content_fragment" >
+        </activity>
+        <activity
+            android:name="com.novitee.knightfrankacution.ToolsFragmentActivity"
+            android:label="@string/title_activity_loan" >
+        </activity>
+        <activity
+            android:name="com.novitee.knightfrankacution.GrossYieldFragment"
+            android:label="@string/title_activity_gross_yield" >
+        </activity>
+        <activity
+            android:name="com.novitee.knightfrankacution.AreaConverterFragment"
+            android:label="@string/title_activity_area_converter" >
         </activity>
     </application>
 

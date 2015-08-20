@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <RelativeLayout 
+        android:id="@+id/layout_area_converter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="15dp"
+        android:layout_alignParentTop="true"
+        android:background="@color/white">
+        
+        <TextView 
+            android:id="@+id/txt_area"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/FilterTextviewStyle"
+            android:gravity="center_vertical"
+            android:drawableRight="@drawable/down_arrow_gray"
+            android:text="Square Feet (SQF)"/>
+        
+        <TextView 
+            android:id="@+id/area"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/FilterTextviewStyle"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
+            android:text="523,123.21"/>
+        
+    </RelativeLayout>
+    
+    <Button 
+        android:id="@+id/area_calculate"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/pink"
+        android:layout_margin="30dp"
+        android:layout_below="@+id/layout_area_converter"
+        style="@style/TitleStyle"
+        android:text="Calculate"/>
+    
+     <LinearLayout 
+        android:id="@+id/layout_select"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_below="@+id/layout_area_converter"
+	    android:background="@drawable/browse_border"
+	    android:layout_marginLeft="1dp"
+	    android:visibility="gone"
+	    android:orientation="vertical">
+            
+            <TextView 
+                android:id="@+id/sqf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/FilterTextviewStyle"
+                android:layout_marginRight="15dp"
+                android:text="Square Feet (SQF)"/>
+            
+            <View 
+		        android:layout_width="match_parent"
+		        android:layout_height="2dp"
+		        android:layout_marginLeft="10dp"
+		        android:layout_marginRight="10dp"
+		        android:layout_marginTop="15dp"
+		        android:background="@color/gray"/>
+            
+            <TextView 
+                android:id="@+id/sqm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/FilterTextviewStyle"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="15dp"
+                android:text="Square Meter (SQM)"/>
+            
+        </LinearLayout>
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="20dp"
+        android:layout_below="@+id/area_calculate"
+        android:orientation="vertical"
+        android:gravity="right">
+        
+        <TextView 
+            android:id="@+id/txt_ans_area"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textColor="@color/black1"
+            android:text="Square Meter (SQM)"/>
+        
+        <TextView 
+            android:id="@+id/ans_area"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/FilterTextviewStyle"
+            android:text="23,123"/>
+        
+    </LinearLayout>
+   
+
+</RelativeLayout>

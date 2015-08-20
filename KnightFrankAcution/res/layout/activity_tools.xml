@@ -11,6 +11,46 @@
         android:layout_height="50dp"
         layout="@layout/title_layout"/>
      
+     <TextView 
+         android:id="@+id/Loan"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_below="@+id/title_layout"
+         style="@style/FilterTextviewStyle"
+         android:text="Loan Calculator"/>
+     
+     <View 
+         android:id="@+id/Loan_view"
+         android:layout_width="match_parent"
+         android:layout_height="1dp"
+         android:layout_below="@+id/Loan"
+         android:background="@color/gray"
+         android:layout_margin="10dp"/>
+     
+     <TextView 
+         android:id="@+id/GrossYield"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_below="@+id/Loan_view"
+         style="@style/FilterTextviewStyle"
+         android:text="Gross Yield Calculator"/>
+     
+     <View 
+         android:id="@+id/GrossYield_view"
+         android:layout_width="match_parent"
+         android:layout_height="1dp"
+         android:layout_below="@+id/GrossYield"
+         android:background="@color/gray"
+         android:layout_margin="10dp"/>
+     
+     <TextView 
+         android:id="@+id/Area"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_below="@+id/GrossYield_view"
+         style="@style/FilterTextviewStyle"
+         android:text="Area Converter"/>
+     
     <!-- Footer -->
     <FrameLayout 
         android:id="@+id/tools_footer"

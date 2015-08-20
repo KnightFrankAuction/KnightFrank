@@ -5,22 +5,18 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
+import com.facebook.login.LoginManager;
 import com.facebook.share.ShareApi;
 import com.facebook.share.Sharer;
-import com.facebook.share.model.ShareContent;
-import com.facebook.share.model.ShareContent.Builder;
-import com.facebook.share.model.ShareLinkContent;
-import com.facebook.share.model.ShareModel;
-import com.facebook.share.model.ShareModelBuilder;
 import com.facebook.share.model.ShareOpenGraphAction;
 import com.facebook.share.model.ShareOpenGraphContent;
 import com.facebook.share.model.ShareOpenGraphObject;
 import com.facebook.share.widget.ShareDialog;
 
-import android.net.Uri;
+import java.util.Arrays;
+import java.util.Set;
+
 import android.os.Bundle;
-import android.os.Parcel;
-import android.util.Log;
 import android.widget.Toast;
 import android.app.Activity;
 import android.content.Context;
@@ -43,7 +39,8 @@ public class FacebookShareContentFragment extends Activity {
         callbackManager = CallbackManager.Factory.create();
         shareDialog = new ShareDialog((Activity) context);
 		
-        AccessToken.getCurrentAccessToken().getPermissions();
+        LoginManager.getInstance().logInWithPublishPermissions((Activity) context, Arrays.asList("publish_actions"));
+        Set<String> accessToken = AccessToken.getCurrentAccessToken().getPermissions();
 		ShareOpenGraphObject object = new ShareOpenGraphObject.Builder()
 				.putString("og:type", "books.book")
 				.putString("og:title", "Check the following property from Knight Frank Auction App Out:")
@@ -59,6 +56,8 @@ public class FacebookShareContentFragment extends Activity {
 		        .setPreviewPropertyName("book")
 		        .setAction(action)
 		        .build();
+		
+//		LoginManager.getInstance().logInWithPublishPermissions((Activity) context, Arrays.asList("publish_actions"));
         
         ShareApi.share(content,new FacebookCallback<Sharer.Result>() {
             @Override
@@ -69,7 +68,6 @@ public class FacebookShareContentFragment extends Activity {
 
             @Override
             public void onCancel() {
-
 //                Log.d(Check.TAG, "canceled");
 
             }
@@ -77,6 +75,7 @@ public class FacebookShareContentFragment extends Activity {
             @Override
             public void onError(FacebookException e) {
 //                Log.d(Check.TAG, "error posting: "+e.getMessage() );
+            	Toast.makeText(context, e.getMessage().toString(), Toast.LENGTH_LONG).show();
             	e.printStackTrace();
             }
         });

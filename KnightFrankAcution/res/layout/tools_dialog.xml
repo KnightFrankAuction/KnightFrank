@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical" >
+    
+	<TextView 
+        android:id="@+id/tools_dialog_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/FilterTextviewStyle"
+        android:gravity="center_vertical"
+        android:text="Property Price (S$)"/>
+	
+	<EditText 
+	    android:id="@+id/tools_dialog_value"
+	    android:layout_width="match_parent"
+	    android:layout_height="40dp"
+	    android:layout_marginLeft="15dp"
+	    android:layout_marginRight="15dp"
+	    android:layout_marginTop="15dp"
+	    android:inputType="numberDecimal"
+	   	android:text="523,123.21"/>
+	
+	<Button 
+	    android:id="@+id/tools_dialog_button"
+	    android:layout_width="match_parent"
+	    android:layout_height="40dp"
+	    android:layout_margin="20dp"
+	    android:background="@color/pink"
+	    style="@style/TitleStyle"
+	    android:text="OK"/>
+	
+</LinearLayout>

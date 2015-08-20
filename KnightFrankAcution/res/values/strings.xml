@@ -12,11 +12,8 @@
     <string name="title_activity_property_list">PropertyListActivity</string>
     <string name="title_activity_enquiry">EnquiryActivity</string>
     <string name="title_activity_facebook_share_content_fragment">FacebookShareContentActivity</string>
-    
-    
     <string name="app_id">416251588499772</string>
     <string name="map_key">AIzaSyCcyW5Ab9Mx_jKyD3G5c0uPBeuVTmw7wqk</string>
-    
     <string name="text_terms">        Lorem ipsum dolor sit amet, consectetur
 		adipiscing elit. Integer dictum orci sem, ac
 		hendrerit dolor vestibulum ac. Aliquam
@@ -26,7 +23,6 @@
 		suscipit massa in tempus. Aliquam
 		vestibulum, nulla in finibus gravida, diam ex
 		sagittis eros, ut eleifend nulla diam non elit.	</string>
-	
     <string name="check_box_tems">I agree to the terms and conditions of Use, Privacy Policy and Mobile Terms.</string>
     <string name="check_box_news_letter">Sign me up for Newsletter</string>
     <string name="title_activity_sign_up">SignUpActivity</string>
@@ -41,5 +37,8 @@
     <string name="title_activity_documents">DocumentsActivity</string>
     <string name="title_activity_base">BaseActivity</string>
     <string name="title_activity_property_detail">PropertyDetailActivity</string>
+    <string name="title_activity_loan">LoanActivity</string>
+    <string name="title_activity_gross_yield">GrossYieldActivity</string>
+    <string name="title_activity_area_converter">AreaConverterActivity</string>
 
 </resources>
