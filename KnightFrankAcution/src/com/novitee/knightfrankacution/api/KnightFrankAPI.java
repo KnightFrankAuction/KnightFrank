@@ -24,6 +24,9 @@ public class KnightFrankAPI {
 	public static String ENQUIRY = CommonConstants.HOST + CommonConstants.ENQUIRY_URL;
 	public static String SAVE_SHORTLIST = CommonConstants.HOST + CommonConstants.SAVE_SHORTLIST_URL;
 	public static String GET_ALL_SHORTLIST = CommonConstants.HOST + CommonConstants.GET_ALL_SHORTLIST_URL;
+	public static String STARBUY = CommonConstants.HOST + CommonConstants.STARBUY_URL;
+	public static String NEWS = CommonConstants.HOST + CommonConstants.NEWS_URL;
+	public static String INFO = CommonConstants.HOST + CommonConstants.INFO_URL;
 	
 	public JSONObject generateKey(String clientPlatform, String clientToken) throws JSONException {
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
@@ -130,4 +133,21 @@ public class KnightFrankAPI {
 //		return new JSONParser().getJSONFromUrl(GET_ALL_SHORTLIST, params, CommonConstants.POST);
 		return new JSONParser().getJSONFromUrl("https://api.myjson.com/bins/1395g", null, CommonConstants.GET);
 	}
+	
+	public JSONObject getAllList(String session_key, String type) throws JSONException {
+		return new JSONParser().getJSONFromUrl("https://api.myjson.com/bins/1395g", null, CommonConstants.GET);
+	}
+	
+	public JSONObject getNews(String session_key) throws JSONException {
+		NEWS = NEWS.replace("{session_token}", session_key);
+//		https://api.myjson.com/bins/1hdc6
+		return new JSONParser().getJSONFromUrl(NEWS, null, CommonConstants.GET);
+	}
+	
+	public JSONObject getInfo(String session_key) throws JSONException {
+		NEWS = NEWS.replace("{session_token}", session_key);
+//		https://api.myjson.com/bins/1hdc6
+		return new JSONParser().getJSONFromUrl("https://api.myjson.com/bins/22ea6", null, CommonConstants.GET);
+	}
+	
 }

@@ -40,5 +40,6 @@
     <string name="title_activity_loan">LoanActivity</string>
     <string name="title_activity_gross_yield">GrossYieldActivity</string>
     <string name="title_activity_area_converter">AreaConverterActivity</string>
+    <string name="title_activity_news">NewsActivity</string>
 
 </resources>

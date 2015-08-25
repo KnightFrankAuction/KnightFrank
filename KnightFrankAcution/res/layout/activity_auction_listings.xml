@@ -57,7 +57,6 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="15dp"
-        android:layout_above="@+id/auction_venue"
         android:background="@color/white"
         android:layout_below="@+id/layout_auction_month" />
     

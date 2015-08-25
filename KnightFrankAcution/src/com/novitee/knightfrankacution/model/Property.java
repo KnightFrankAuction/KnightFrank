@@ -49,7 +49,7 @@ public class Property implements Serializable {
 	public Property(JSONObject j) {
 		
 		try {
-			property_id = j.getString("property_id");
+			/*property_id = j.getString("property_id");
 			phone = j.getString("phone");
 			building_name = j.getString("building_name");
 			district = j.getString("district");
@@ -73,6 +73,38 @@ public class Property implements Serializable {
 			high_floor = j.getString("High Floor");
 			balcony = j.getString("Balcony");
 			highlights = j.getString("Highlights");
+			postal_code = j.getString("postal_code");
+			seller_name = j.getString("seller_name");
+			cea_no = j.getString("cea_no");
+			company_name = j.getString("company_name");
+			phone = j.getString("phone");
+			email = j.getString("email");
+			date = j.getString("start_date");*/
+			
+			property_id = j.getString("property_id");
+			phone = j.getString("phone");
+			building_name = j.getString("building_name");
+			district = j.getString("district");
+			auction_type = j.getString("auction_type");
+			building_type = j.getString("building_type");
+			floor_area = j.getString("floor_area");
+			price = j.getString("price");
+			bedroom = j.getString("bedroom");
+			bath = j.getString("bath");
+			tenure = j.getString("tenure");
+			psf = j.getString("psf");
+			starbuy_flag = j.getString("starbuy_flag");
+			shortlist_flag = j.getString("shortlist_flag");
+			gym = j.getString("gym");
+			playground = j.getString("playground");
+			swimming_pool = j.getString("swimming_pool");
+			tennis_court = j.getString("tennis_court");
+			function_room = j.getString("function_room");
+			penthouse = j.getString("penthouse");
+			city_view = j.getString("city_view");
+			high_floor = j.getString("high_floor");
+			balcony = j.getString("balcony");
+			highlights = j.getString("highlights");
 			postal_code = j.getString("postal_code");
 			seller_name = j.getString("seller_name");
 			cea_no = j.getString("cea_no");

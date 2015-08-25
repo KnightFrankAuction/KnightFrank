@@ -128,7 +128,7 @@ public class PropertyListActivity extends BaseFragmentActivity {
 	}
 
 	
-	public class CustomList extends ArrayAdapter<Property> {
+	private class CustomList extends ArrayAdapter<Property> {
 		ArrayList<Property> propertyList;
 		Context context;
 
@@ -184,7 +184,7 @@ public class PropertyListActivity extends BaseFragmentActivity {
         }
 	}//CustomList
 	
-public class saveShortlist extends AsyncTask<Void, Void, Void> {
+	public class saveShortlist extends AsyncTask<Void, Void, Void> {
 		
 		JSONObject jObj;
 		ProgressDialog pDialog;

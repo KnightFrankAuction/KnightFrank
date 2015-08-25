@@ -44,5 +44,12 @@ public class CommonConstants {
 	public static final String SAVE_SHORTLIST_URL = "api/v1/save_shortlist";
 	public static final String GET_ALL_SHORTLIST_URL = "api/v1/getshortlist";
 	
+	/** Starbuy URL**/
+	public static final String STARBUY_URL = "api/v1/";
+	
+	/** Info/News URL**/
+	public static final String INFO_URL = "api/v1/news/";
+	public static final String NEWS_URL = "api/v1/news/{session_token}";
+	
 }
 

@@ -50,7 +50,7 @@ public class Preferences {
     prefs.edit().putString(REGID, regid).commit();
   }
   
-  public static String getSessionToken(Context context) {
+  public String getSessionToken(Context context) {
   	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
     return prefs.getString(SESSION_TOKEN, null);
   }

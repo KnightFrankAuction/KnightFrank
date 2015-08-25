@@ -4,7 +4,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.novitee.knightfrankacution.api.KnightFrankAPI;
-import com.novitee.knightfrankacution.facebook.FacebookLoginFragment;
 import com.novitee.knightfrankacution.util.Preferences;
 
 import android.app.ProgressDialog;

@@ -135,7 +135,13 @@ public class FooterFragment extends BaseFragment implements OnClickListener {
 						listPro.add(property);
 
 						list = property.getPhoto();
-						photo = list.get(0);
+						if(list.size() > 0) {
+							photo = list.get(0);
+						}
+						else {
+							photo = new Photo("");
+						}
+						
 						listImage.add(photo.getName());
 					}
 

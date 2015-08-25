@@ -4,7 +4,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.novitee.knightfrankacution.base.BaseFragment;
-import com.novitee.knightfrankacution.facebook.FacebookLoginFragment;
 import com.novitee.knightfrankacution.util.Preferences;
 
 import android.os.AsyncTask;

@@ -42,7 +42,7 @@ public class ToolsFragmentActivity extends BaseFragmentActivity {
 		
 		fragmentTran = getSupportFragmentManager().beginTransaction();
 		
-		if(title.equals("Loan")) {
+		if(title.equals("Loan Calculator")) {
 			fragmentTran.replace(R.id.tools_layout, new LoanFragment());
 		}
 		else if(title.equals("Gross Yield Calculator")) {

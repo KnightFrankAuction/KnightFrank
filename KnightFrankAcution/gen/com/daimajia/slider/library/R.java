@@ -62,30 +62,30 @@ public final class R {
 		public static final int ZoomIn = 0x7f050037;
 		public static final int ZoomOut = 0x7f050039;
 		public static final int ZoomOutSlide = 0x7f050038;
-		public static final int action_settings = 0x7f05010d;
-		public static final int daimajia_indicator_wrapper = 0x7f0500ca;
-		public static final int daimajia_slider_image = 0x7f0500f2;
-		public static final int daimajia_slider_viewpager = 0x7f0500f8;
-		public static final int default_bottom_left_indicator = 0x7f0500fb;
-		public static final int default_bottom_right_indicator = 0x7f0500fa;
-		public static final int default_center_bottom_indicator = 0x7f0500f9;
-		public static final int default_center_top_indicator = 0x7f0500fc;
-		public static final int default_center_top_left_indicator = 0x7f0500fe;
-		public static final int default_center_top_right_indicator = 0x7f0500fd;
-		public static final int description = 0x7f0500f5;
-		public static final int description_layout = 0x7f0500f4;
+		public static final int action_settings = 0x7f05011a;
+		public static final int daimajia_indicator_wrapper = 0x7f0500d2;
+		public static final int daimajia_slider_image = 0x7f0500ff;
+		public static final int daimajia_slider_viewpager = 0x7f050105;
+		public static final int default_bottom_left_indicator = 0x7f050108;
+		public static final int default_bottom_right_indicator = 0x7f050107;
+		public static final int default_center_bottom_indicator = 0x7f050106;
+		public static final int default_center_top_indicator = 0x7f050109;
+		public static final int default_center_top_left_indicator = 0x7f05010b;
+		public static final int default_center_top_right_indicator = 0x7f05010a;
+		public static final int description = 0x7f050102;
+		public static final int description_layout = 0x7f050101;
 		public static final int invisible = 0x7f050029;
-		public static final int loading_bar = 0x7f0500f3;
+		public static final int loading_bar = 0x7f050100;
 		public static final int oval = 0x7f05003a;
 		public static final int rect = 0x7f05003b;
 		public static final int visible = 0x7f050028;
 	}
 	public static final class layout {
 		public static final int activity_main = 0x7f03000a;
-		public static final int indicator_layout = 0x7f03001b;
-		public static final int render_type_default = 0x7f030028;
-		public static final int render_type_text = 0x7f030029;
-		public static final int slider_layout = 0x7f03002c;
+		public static final int indicator_layout = 0x7f03001c;
+		public static final int render_type_default = 0x7f03002a;
+		public static final int render_type_text = 0x7f03002b;
+		public static final int slider_layout = 0x7f03002e;
 	}
 	public static final class menu {
 		public static final int main = 0x7f0c0009;
