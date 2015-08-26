@@ -49,14 +49,14 @@ public class Property implements Serializable {
 	public Property(JSONObject j) {
 		
 		try {
-			/*property_id = j.getString("property_id");
+			property_id = j.getString("property_id");
 			phone = j.getString("phone");
 			building_name = j.getString("building_name");
 			district = j.getString("district");
 			auction_type = j.getString("auction_type");
 			building_type = j.getString("building_type");
 			floor_area = j.getString("floor_area");
-			price = j.getString("price");
+			price = "$" + j.getString("price");
 			bedroom = j.getString("bedroom");
 			bath = j.getString("bath");
 			tenure = j.getString("tenure");
@@ -79,9 +79,9 @@ public class Property implements Serializable {
 			company_name = j.getString("company_name");
 			phone = j.getString("phone");
 			email = j.getString("email");
-			date = j.getString("start_date");*/
+			date = j.getString("start_date");
 			
-			property_id = j.getString("property_id");
+			/*property_id = j.getString("property_id");
 			phone = j.getString("phone");
 			building_name = j.getString("building_name");
 			district = j.getString("district");
@@ -111,7 +111,7 @@ public class Property implements Serializable {
 			company_name = j.getString("company_name");
 			phone = j.getString("phone");
 			email = j.getString("email");
-			date = j.getString("start_date");
+			date = j.getString("start_date");*/
 			
 			JSONArray jArray = j.getJSONArray("photo");
 			photo = new ArrayList<Photo>();

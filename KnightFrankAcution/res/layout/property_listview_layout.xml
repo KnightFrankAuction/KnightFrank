@@ -35,7 +35,7 @@
             android:layout_margin="5dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
-            android:src="@drawable/shortlist_check"/>
+            android:src="@drawable/shortlist_uncheck"/>
         
         <TextView 
             android:id="@+id/listview_price"

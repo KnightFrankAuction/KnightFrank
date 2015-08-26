@@ -25,6 +25,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.novitee.knightfrankacution.PropertyDetailActivity.deleteShortlist;
+import com.novitee.knightfrankacution.PropertyDetailActivity.saveShortlist;
 import com.novitee.knightfrankacution.base.BaseFragmentActivity;
 import com.novitee.knightfrankacution.model.Photo;
 import com.novitee.knightfrankacution.model.Property;
@@ -45,11 +47,10 @@ public class PropertyListActivity extends BaseFragmentActivity {
 	List<String> imageNameList;
 	String title = null;
 	
-	
 	ListView listProperty;
 	Property property;
 	ImageView shortlist;
-	
+	String shortlist_flag;
 	
 	@SuppressWarnings("unchecked")
 	@Override
@@ -171,12 +172,23 @@ public class PropertyListActivity extends BaseFragmentActivity {
             String url = CommonConstants.HOST + imageNameList.get(position);
             Picasso.with(context).load(url).into(propertyImage);
             
+            shortlist_flag = property.getShortlist_flag();
+            
+            if(shortlist_flag.equals("1")) {
+            	shortlist.setImageResource(R.drawable.shortlist_check);
+    		}
+            
             shortlist.setOnClickListener(new OnClickListener() {
 				
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
-					new saveShortlist().execute();
+					if(shortlist_flag.equals("1")) {
+						new deleteShortlist().execute();
+					}
+					else {
+						new saveShortlist().execute();
+					}
 				}
 			});
 
@@ -242,5 +254,64 @@ public class PropertyListActivity extends BaseFragmentActivity {
 		}
 		
 	}//saveShortlist
+	
+public class deleteShortlist extends AsyncTask<Void, Void, Void> {
+		
+		JSONObject jObj;
+		ProgressDialog pDialog;
+		
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			pDialog = new ProgressDialog(PropertyListActivity.this);
+            pDialog.setMessage("Please wait....");
+            pDialog.setCancelable(false);
+            pDialog.show();
+		}
+
+		@Override
+		protected Void doInBackground(Void... params) {
+			// TODO Auto-generated method stub
+			try {
+				jObj = api.deleteShortlist(pref.getSessionToken(context), property.getProperty_id());
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return null;
+		}
+		
+		@Override
+		protected void onPostExecute(Void result) {
+			// TODO Auto-generated method stub
+			super.onPostExecute(result);
+			if(pDialog.isShowing()){
+				pDialog.dismiss();
+			}
+
+			try {
+				int json_responseCode = jObj.getInt("statusCode");
+				int json_status = jObj.getInt("status");
+				
+				if(json_status == 1 && json_responseCode == 200){
+					shortlist.setImageResource(R.drawable.shortlist_uncheck);
+					property.setShortlist_flag("0");
+					shortlist_flag = "0";
+				}
+				else if(json_status == 2 && json_responseCode == 401) {
+					String message = jObj.getString("message");
+					Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+				}
+				else {
+					Toast.makeText(context, "Something went wrong. Please try again.", Toast.LENGTH_SHORT).show();
+				}
+				
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+	}//deleteShortlist
 
 }

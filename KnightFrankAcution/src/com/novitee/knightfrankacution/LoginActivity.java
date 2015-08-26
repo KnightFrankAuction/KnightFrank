@@ -110,25 +110,8 @@ public class LoginActivity extends BaseFragmentActivity {
 		@Override
 		protected Void doInBackground(Void... params) {
 			// TODO Auto-generated method stub
-//			api = new KnightFrankAPI();
 			try {
-				JSONObject json = new JSONObject();
-				json = api.generateKey("A", Preferences.getRegid(context));
-				int json_responseCode = json.getInt("statusCode");
-				int json_status = json.getInt("status");
-				
-				if(json_status == 1 && json_responseCode == 200){
-					String client_key = json.getString("key");
-					Preferences.setGenerateKey(context, client_key);
-					jObj = api.login(userName, passWord, client_key);
-				}
-				else if(json_status == 2 && json_responseCode == 401) {
-					String message = jObj.getString("message");
-					Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
-				}
-				else {
-					Toast.makeText(context, "Unfortunately stopped", Toast.LENGTH_SHORT).show();
-				}
+				jObj = api.login(userName, passWord, pref.getGenerateKey(context));
 				
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
@@ -183,5 +166,5 @@ public class LoginActivity extends BaseFragmentActivity {
 			};
 		}
 		
-	}
+	}//Login
 }

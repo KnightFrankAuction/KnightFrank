@@ -36,7 +36,6 @@ public class MenuActivity extends AdvertisementsActivity implements OnClickListe
 	ArrayList<Property> listPro;
 	ArrayList<String> listImage;
 	
-	
 	String type;
 	
 	@Override
@@ -170,7 +169,7 @@ public class MenuActivity extends AdvertisementsActivity implements OnClickListe
 					}
 
 					Intent intent = new Intent(context, PropertyListActivity.class);
-					intent.putExtra("title", "Shortlist");
+					intent.putExtra("title", type);
 					intent.putExtra("pList", listPro);
 					intent.putExtra("imageList", listImage);
 					startActivity(intent);

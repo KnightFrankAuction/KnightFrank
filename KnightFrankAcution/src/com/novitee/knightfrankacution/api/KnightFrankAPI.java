@@ -23,10 +23,12 @@ public class KnightFrankAPI {
 	public static String FILTER = CommonConstants.HOST + CommonConstants.FILTER_URL;
 	public static String ENQUIRY = CommonConstants.HOST + CommonConstants.ENQUIRY_URL;
 	public static String SAVE_SHORTLIST = CommonConstants.HOST + CommonConstants.SAVE_SHORTLIST_URL;
+	public static String DELETE_SHORTLIST = CommonConstants.HOST + CommonConstants.DELETE_SHORTLIST_URL;
 	public static String GET_ALL_SHORTLIST = CommonConstants.HOST + CommonConstants.GET_ALL_SHORTLIST_URL;
 	public static String STARBUY = CommonConstants.HOST + CommonConstants.STARBUY_URL;
 	public static String NEWS = CommonConstants.HOST + CommonConstants.NEWS_URL;
 	public static String INFO = CommonConstants.HOST + CommonConstants.INFO_URL;
+	public static String TERMS = CommonConstants.HOST + CommonConstants.TERMS_URL;
 	
 	public JSONObject generateKey(String clientPlatform, String clientToken) throws JSONException {
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
@@ -55,7 +57,7 @@ public class KnightFrankAPI {
 		return new JSONParser().getJSONFromUrl(LOGIN_FACEBOOK, params, CommonConstants.POST);
 	}
 	
-	public JSONObject signUp(String email, String username, String password, String phone, String building_no, String building_name, String street, String unit_no, String postal_code, String cea_no, String company, String userType) throws JSONException {
+	public JSONObject signUp(String email, String username, String password, String phone, String building_no, String building_name, String street, String unit_no, String postal_code, String cea_no, String company, String userType, String subscribe, String key) throws JSONException {
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
 		params.add(new BasicNameValuePair("email", email));
 		params.add(new BasicNameValuePair("username", username));
@@ -69,6 +71,8 @@ public class KnightFrankAPI {
 		params.add(new BasicNameValuePair("street", street));
 		params.add(new BasicNameValuePair("unit_no", unit_no));
 		params.add(new BasicNameValuePair("postal_code", postal_code));
+		params.add(new BasicNameValuePair("subscribe", subscribe));
+		params.add(new BasicNameValuePair("key", key));
 		return new JSONParser().getJSONFromUrl(SIGN_UP, params, CommonConstants.POST);
 	}
 	
@@ -120,18 +124,26 @@ public class KnightFrankAPI {
 	}
 	
 	public JSONObject saveShortlist(String session_key, String pID) throws JSONException {
-//		List<NameValuePair> params = new ArrayList<NameValuePair>();
-//		params.add(new BasicNameValuePair("session_key", session_key));
-//		params.add(new BasicNameValuePair("property_id", pID));
-//		return new JSONParser().getJSONFromUrl(SAVE_SHORTLIST, params, CommonConstants.POST);
-		return new JSONParser().getJSONFromUrl("https://api.myjson.com/bins/3dyxg", null, CommonConstants.GET);
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("session_token", session_key));
+		params.add(new BasicNameValuePair("property_id", pID));
+		return new JSONParser().getJSONFromUrl(SAVE_SHORTLIST, params, CommonConstants.POST);
+//		return new JSONParser().getJSONFromUrl("https://api.myjson.com/bins/3dyxg", null, CommonConstants.GET);
+	}
+	
+	public JSONObject deleteShortlist(String session_key, String pID) throws JSONException {
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("session_token", session_key));
+		params.add(new BasicNameValuePair("property_id", pID));
+		return new JSONParser().getJSONFromUrl(DELETE_SHORTLIST, params, CommonConstants.POST);
+//		return new JSONParser().getJSONFromUrl("https://api.myjson.com/bins/3dyxg", null, CommonConstants.GET);
 	}
 	
 	public JSONObject getAllShortlist(String session_key) throws JSONException {
-//		List<NameValuePair> params = new ArrayList<NameValuePair>();
-//		params.add(new BasicNameValuePair("session_key", session_key));
-//		return new JSONParser().getJSONFromUrl(GET_ALL_SHORTLIST, params, CommonConstants.POST);
-		return new JSONParser().getJSONFromUrl("https://api.myjson.com/bins/1395g", null, CommonConstants.GET);
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("session_token", session_key));
+		return new JSONParser().getJSONFromUrl(GET_ALL_SHORTLIST, params, CommonConstants.POST);
+//		return new JSONParser().getJSONFromUrl("https://api.myjson.com/bins/1395g", null, CommonConstants.GET);
 	}
 	
 	public JSONObject getAllList(String session_key, String type) throws JSONException {
@@ -148,6 +160,12 @@ public class KnightFrankAPI {
 		NEWS = NEWS.replace("{session_token}", session_key);
 //		https://api.myjson.com/bins/1hdc6
 		return new JSONParser().getJSONFromUrl("https://api.myjson.com/bins/22ea6", null, CommonConstants.GET);
+	}
+	
+	public JSONObject getTerms(String generate_key) throws JSONException {
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("key", generate_key));
+		return new JSONParser().getJSONFromUrl(TERMS, params, CommonConstants.POST);
 	}
 	
 }

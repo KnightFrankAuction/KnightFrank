@@ -153,7 +153,6 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
 				
 				try {
 					int responseCode = jObj.getInt("statusCode");
-					
 					int status = jObj.getInt("status");				
 					
 					if(status == 1 && responseCode == 200){

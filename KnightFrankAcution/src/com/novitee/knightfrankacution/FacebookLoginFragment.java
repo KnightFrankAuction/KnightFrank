@@ -141,23 +141,7 @@ public class FacebookLoginFragment extends BaseFragment {
 		protected Void doInBackground(Void... params) {
 			// TODO Auto-generated method stub
 			try {
-				JSONObject json = new JSONObject();
-				json = api.generateKey("A", Preferences.getRegid(getActivity()));
-				int json_responseCode = json.getInt("statusCode");
-				int json_status = json.getInt("status");
-				
-				if(json_status == 1 && json_responseCode == 200){
-					String client_key = json.getString("key");
-					Preferences.setGenerateKey(getActivity(), client_key);
-					jObj = new JSONObject();
-//					jObj = api.loginWithFacebook("2345i123456783455678978765", client_key);
-					jObj = api.loginWithFacebook(userInfo.get(4),userInfo.get(2), Preferences.getGenerateKey(getActivity()));
-					
-				}
-				else if(json_status == 2 && json_responseCode == 401) {
-					String message = jObj.getString("message");
-					Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
-				}
+				jObj = api.loginWithFacebook(userInfo.get(4),userInfo.get(2), Preferences.getGenerateKey(getActivity()));
 				
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block

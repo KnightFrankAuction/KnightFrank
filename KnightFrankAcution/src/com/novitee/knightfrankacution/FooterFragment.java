@@ -68,7 +68,6 @@ public class FooterFragment extends BaseFragment implements OnClickListener {
 		}
 		else if(v.getId() == shortlist.getId()) {
 			new GetAllShortList().execute();
-//			intent = new Intent(getActivity(), ShortListActivity.class);
 		}
 		else if(v.getId() == about.getId()) {
 //			intent = new Intent(getActivity(), AboutActivity.class);

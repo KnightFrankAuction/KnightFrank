@@ -3,7 +3,11 @@ package com.novitee.knightfrankacution;
 import java.io.IOException;
 import java.sql.Timestamp;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.google.android.gms.gcm.GoogleCloudMessaging;
+import com.novitee.knightfrankacution.api.KnightFrankAPI;
 import com.novitee.knightfrankacution.util.Preferences;
 
 import android.os.AsyncTask;
@@ -13,6 +17,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
+import android.widget.Toast;
 
 public class SplashScreenActivity extends Activity {
 	
@@ -185,7 +190,43 @@ public class SplashScreenActivity extends Activity {
                 new Timestamp(expirationTime));
         editor.putLong(PROPERTY_ON_SERVER_EXPIRATION_TIME, expirationTime);
         editor.commit();
+        
+        new GenerateKey().execute();
 
         Preferences.setRegid(context, regId);
+    }
+    
+    private class GenerateKey extends AsyncTask<Void, Void, Void> {
+
+    	@Override
+		protected Void doInBackground(Void... params) {
+			// TODO Auto-generated method stub
+//			api = new KnightFrankAPI();
+			try {
+				KnightFrankAPI api = new KnightFrankAPI();
+				JSONObject json = new JSONObject();
+				json = api.generateKey("A", Preferences.getRegid(context));
+				int json_responseCode = json.getInt("statusCode");
+				int json_status = json.getInt("status");
+				
+				if(json_status == 1 && json_responseCode == 200){
+					String client_key = json.getString("key");
+					Preferences.setGenerateKey(context, client_key);
+				}
+				else if(json_status == 2 && json_responseCode == 401) {
+					String message = json.getString("message");
+					Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+				}
+				else {
+					Toast.makeText(context, "Something went wrong", Toast.LENGTH_SHORT).show();
+				}
+				
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return null;
+		}
+    	
     }
 }

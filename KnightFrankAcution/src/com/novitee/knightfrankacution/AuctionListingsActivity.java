@@ -254,7 +254,6 @@ public class AuctionListingsActivity extends AdvertisementsActivity {
 					intent.putExtra("pList", listPro);
 					intent.putExtra("imageList", listImage);
 					startActivity(intent);
-					
 				}
 				else if(json_status == 2 && json_responseCode == 401) {
 					String message = jObj.getString("message");

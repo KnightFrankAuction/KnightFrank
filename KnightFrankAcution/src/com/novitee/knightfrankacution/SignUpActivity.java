@@ -4,28 +4,32 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.novitee.knightfrankacution.api.KnightFrankAPI;
+import com.novitee.knightfrankacution.base.BaseFragmentActivity;
 import com.novitee.knightfrankacution.util.Preferences;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
-public class SignUpActivity extends FragmentActivity {
+public class SignUpActivity extends BaseFragmentActivity {
 	
 	Context context = this;
 	FragmentTransaction fragmentTran;
@@ -44,6 +48,9 @@ public class SignUpActivity extends FragmentActivity {
 	Spinner user_type;
 	Button signup;
 	ImageView back;
+	CheckBox chkTerms;
+	CheckBox chkSubscribe;
+	TextView txtTerms;
 	
 	LinearLayout user_layout;
 	LinearLayout agent_layout;
@@ -87,6 +94,16 @@ public class SignUpActivity extends FragmentActivity {
 		user_layout = (LinearLayout) findViewById(R.id.user_box);
 		agent_layout = (LinearLayout) findViewById(R.id.agent_box);
 		back = (ImageView) findViewById(R.id.signup_back);
+		chkTerms = (CheckBox) findViewById(R.id.chk_terms);
+		chkSubscribe = (CheckBox) findViewById(R.id.chk_subscribe);
+		txtTerms = (TextView) findViewById(R.id.txtTerms);
+		
+		if(connectionManager.isConnected()) {
+			new GetTerms().execute();
+		}
+		else {
+			Toast.makeText(context, "No Internet Connection", Toast.LENGTH_LONG).show();
+		}
 		
 		//testing
 		edit_email.setText("user@gmail.com");
@@ -150,7 +167,62 @@ public class SignUpActivity extends FragmentActivity {
 				cea_no = edit_cea_no.getText().toString();
 				company = edit_company.getText().toString();
 				
-				new SignUp().execute();
+				boolean validate_flag = true;
+				//Validation
+				if(type.equals("Public User")) { 
+					if(email.equals("") || email.equals(null) ||
+						username.equals("") || username.equals(null) ||
+						password.equals("") || password.equals(null) ||
+						phone.equals("") || phone.equals(null) ||
+						building_no.equals("") || building_no.equals(null) ||
+						building_name.equals("") || building_name.equals(null) ||
+						street.equals("") || street.equals(null) ||
+						unit_no.equals("") || unit_no.equals(null) ||
+						postal_code.equals("") || postal_code.equals(null) ) {
+						
+							Toast.makeText(context, "You must fill all fields.", Toast.LENGTH_LONG).show();
+							validate_flag = false;
+					}
+				}
+				else {
+					if(email.equals("") || email.equals(null) ||
+						username.equals("") || username.equals(null) ||
+						password.equals("") || password.equals(null) ||
+						phone.equals("") || phone.equals(null) ||
+						cea_no.equals("") || cea_no.equals(null) ||
+						company.equals("") || company.equals(null) ) {
+						
+							Toast.makeText(context, "You must fill all fields.", Toast.LENGTH_LONG).show();
+							validate_flag = false;
+					}
+				}
+				
+				//validate terms and conditions
+				if(validate_flag == true) {
+					if(chkTerms.isChecked() == false) {
+						AlertDialog.Builder builder = new AlertDialog.Builder(context);
+						builder.setTitle("Sign Up")
+							   .setMessage("Please agree to our terms and conditions.")
+						       .setCancelable(false)
+						       .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+						           public void onClick(DialogInterface dialog, int id) {
+						                //do things
+						        	   dialog.dismiss();
+						           }
+						       });
+						AlertDialog alert = builder.create();
+						alert.show();
+					}
+					else {
+						if(connectionManager.isConnected()) {
+							new SignUp().execute();
+						}
+						else {
+							Toast.makeText(context, "No Internet Connection", Toast.LENGTH_LONG).show();
+						}
+					}
+				}//validate_flag
+
 			}
 		});
 		
@@ -188,7 +260,12 @@ public class SignUpActivity extends FragmentActivity {
 			// TODO Auto-generated method stub
 			KnightFrankAPI api = new KnightFrankAPI();
 			try {
-				jObj = api.signUp(email, username, password, phone, building_no, building_name, street, unit_no, postal_code, cea_no, company, userType);
+				String subscribe = "0";
+				if(chkSubscribe.isChecked() == true) {
+					subscribe = "1";
+				}
+				
+				jObj = api.signUp(email, username, password, phone, building_no, building_name, street, unit_no, postal_code, cea_no, company, userType, subscribe, pref.getGenerateKey(context));
 				
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
@@ -213,9 +290,8 @@ public class SignUpActivity extends FragmentActivity {
 					Preferences.setUserName(context, email);
 					Preferences.setPassword(context, password);
 					
-					Intent intent = new Intent(context, MainActivity.class);
+					Intent intent = new Intent(context, MenuActivity.class);
 					startActivity(intent);
-//					showSuccessDialog();
 				}
 				else if(status == 2 && responseCode == 401) {
 					String message = jObj.getString("message");
@@ -232,13 +308,63 @@ public class SignUpActivity extends FragmentActivity {
 		}
 		
 	}//SignUp
-	
-	public void showSuccessDialog() {
-//		Dialog dialog = new Dialog(context);
-//		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-//		dialog.setContentView(R.layout.signup_success_dialog);
+
+	private class GetTerms extends AsyncTask<Void, Void, Void> {
+		JSONObject jObj;
+		ProgressDialog pDialog;
 		
-//		AlertDialog.Builder dialog = new 
-	}
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			pDialog = new ProgressDialog(context);
+            pDialog.setMessage("Please wait....");
+            pDialog.setCancelable(false);
+            pDialog.show();
+		}
+
+		@Override
+		protected Void doInBackground(Void... params) {
+			// TODO Auto-generated method stub
+			try {
+				jObj = api.getTerms(pref.getGenerateKey(context));
+				
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return null;
+		}
+		
+		@Override
+		protected void onPostExecute(Void result) {
+			// TODO Auto-generated method stub
+			super.onPostExecute(result);
+			super.onPostExecute(result);
+			if(pDialog.isShowing()){
+				pDialog.dismiss();
+			}
+			
+			try {
+				int responseCode = jObj.getInt("statusCode");
+				int status = jObj.getInt("status");	
+				String message = jObj.getString("message");
+				
+				if(status == 1 && responseCode == 200){
+					txtTerms.setText(message);
+				}
+				else if(status == 2 && responseCode == 401) {
+					Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+				}
+				else {
+					Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+				}
+				
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			};
+		}
+		
+	}//GetTerms
 
 }

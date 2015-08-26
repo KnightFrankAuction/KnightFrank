@@ -126,7 +126,7 @@
 	        android:layout_marginTop="20dp"
 	        android:background="@drawable/round_corner"
 	        android:inputType="textEmailAddress"
-	        android:hint="Username"
+	        android:hint="Email"
 	        />
 	    
 	    <EditText 

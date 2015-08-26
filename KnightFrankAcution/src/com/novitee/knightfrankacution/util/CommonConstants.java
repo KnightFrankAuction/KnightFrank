@@ -42,6 +42,7 @@ public class CommonConstants {
 	
 	/** Shortlist URL**/
 	public static final String SAVE_SHORTLIST_URL = "api/v1/save_shortlist";
+	public static final String DELETE_SHORTLIST_URL = "api/v1/save_shortlist";
 	public static final String GET_ALL_SHORTLIST_URL = "api/v1/getshortlist";
 	
 	/** Starbuy URL**/
@@ -50,6 +51,9 @@ public class CommonConstants {
 	/** Info/News URL**/
 	public static final String INFO_URL = "api/v1/news/";
 	public static final String NEWS_URL = "api/v1/news/{session_token}";
+	
+	/** Terms URL**/
+	public static final String TERMS_URL = "api/v1/terms";
 	
 }
 

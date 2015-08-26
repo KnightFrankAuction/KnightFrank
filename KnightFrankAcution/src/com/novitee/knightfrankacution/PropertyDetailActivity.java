@@ -86,6 +86,7 @@ public class PropertyDetailActivity extends BaseFragmentActivity {
 	
 	Property property;
 	ProgressDialog pDialog;
+	String shortlist_flag;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -130,6 +131,7 @@ public class PropertyDetailActivity extends BaseFragmentActivity {
 		facList = new ArrayList<String>();
 		
 		property = (Property) getIntent().getSerializableExtra("Property");
+		
 		new Handler().postDelayed(new Runnable() {
 			
 			@Override
@@ -165,7 +167,13 @@ public class PropertyDetailActivity extends BaseFragmentActivity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				new saveShortlist().execute();
+				if(shortlist_flag.equals("1")) {
+					new deleteShortlist().execute();
+				}
+				else {
+					new saveShortlist().execute();
+				}
+				
 			}
 		});//shortlist
 		
@@ -234,7 +242,7 @@ public class PropertyDetailActivity extends BaseFragmentActivity {
 		photoList = property.getPhoto();
 		
 		String starbuy_flag = property.getStarbuy_flag();
-		String shortlist_flag = property.getShortlist_flag();
+		shortlist_flag = property.getShortlist_flag();
 		
 		if(starbuy_flag.equals("1")) {
 			starbuy.setImageResource(R.drawable.starbuy_check);
@@ -426,9 +434,9 @@ public class PropertyDetailActivity extends BaseFragmentActivity {
 				int json_status = jObj.getInt("status");
 				
 				if(json_status == 1 && json_responseCode == 200){
-					shortlist.setBackgroundResource(R.drawable.shortlist_check);
+					shortlist.setImageResource(R.drawable.shortlist_check);
 					property.setShortlist_flag("1");
-					
+					shortlist_flag = "1";
 				}
 				else if(json_status == 2 && json_responseCode == 401) {
 					String message = jObj.getString("message");
@@ -467,6 +475,65 @@ public class PropertyDetailActivity extends BaseFragmentActivity {
 		}
 		
 	}//saveShortlist
+	
+	public class deleteShortlist extends AsyncTask<Void, Void, Void> {
+		
+		JSONObject jObj;
+		ProgressDialog pDialog;
+		
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			pDialog = new ProgressDialog(PropertyDetailActivity.this);
+            pDialog.setMessage("Please wait....");
+            pDialog.setCancelable(false);
+            pDialog.show();
+		}
+
+		@Override
+		protected Void doInBackground(Void... params) {
+			// TODO Auto-generated method stub
+			try {
+				jObj = api.deleteShortlist(pref.getSessionToken(context), property.getProperty_id());
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return null;
+		}
+		
+		@Override
+		protected void onPostExecute(Void result) {
+			// TODO Auto-generated method stub
+			super.onPostExecute(result);
+			if(pDialog.isShowing()){
+				pDialog.dismiss();
+			}
+
+			try {
+				int json_responseCode = jObj.getInt("statusCode");
+				int json_status = jObj.getInt("status");
+				
+				if(json_status == 1 && json_responseCode == 200){
+					shortlist.setImageResource(R.drawable.shortlist_uncheck);
+					property.setShortlist_flag("0");
+					shortlist_flag = "0";
+				}
+				else if(json_status == 2 && json_responseCode == 401) {
+					String message = jObj.getString("message");
+					Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+				}
+				else {
+					Toast.makeText(context, "Something went wrong. Please try again.", Toast.LENGTH_SHORT).show();
+				}
+				
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+	}//deleteShortlist
 
 }
 
