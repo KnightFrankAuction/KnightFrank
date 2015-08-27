@@ -23,6 +23,7 @@ public class CommonConstants {
 	
 	/** Sign Up URL**/
 	public static final String SIGN_UP_URL = "api/v1/sign_up_public";
+	public static final String SIGN_UP_FB_URL = "api/v1/sign_up_fb";
 	
 	/** Advertisements URL**/
 	public static final String AD_URL = "api/v1/advertisements";

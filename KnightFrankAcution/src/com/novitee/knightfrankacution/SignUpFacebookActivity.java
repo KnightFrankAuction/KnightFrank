@@ -4,22 +4,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.novitee.knightfrankacution.api.KnightFrankAPI;
-import com.novitee.knightfrankacution.base.BaseFragmentActivity;
+import com.novitee.knightfrankacution.base.BaseActivity;
 import com.novitee.knightfrankacution.util.Preferences;
-
-import android.app.AlertDialog;
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -28,15 +20,19 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 
-public class SignUpActivity extends BaseFragmentActivity {
+public class SignUpFacebookActivity extends BaseActivity {
 	
 	Context context = this;
-	FragmentTransaction fragmentTran;
 	
 	EditText edit_email;
 	EditText edit_username;
-	EditText edit_password;
 	EditText edit_phone;
 	EditText edit_building_no;
 	EditText edit_building_name;
@@ -57,7 +53,6 @@ public class SignUpActivity extends BaseFragmentActivity {
 	
 	String email = "";
 	String username = "";
-	String password = "";
 	String phone = "";
 	String building_no = "";
 	String building_name = "";
@@ -68,19 +63,16 @@ public class SignUpActivity extends BaseFragmentActivity {
 	String company = "";
 	String type = "";
 	String userType = "3";
+	
+	String facebooID;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_sign_up);
-		
-		fragmentTran = getSupportFragmentManager().beginTransaction();
-		fragmentTran.replace(R.id.login_frame, new FacebookLoginFragment());
-		fragmentTran.commit();
+		setContentView(R.layout.activity_sign_up_facebook);
 		
 		edit_email = (EditText) findViewById(R.id.edit_email);
 		edit_username = (EditText) findViewById(R.id.edit_username);
-		edit_password = (EditText) findViewById(R.id.edit_password);
 		edit_phone = (EditText) findViewById(R.id.edit_phone);
 		edit_building_no = (EditText) findViewById(R.id.edit_building_no);
 		edit_building_name = (EditText) findViewById(R.id.edit_building_name);
@@ -98,25 +90,16 @@ public class SignUpActivity extends BaseFragmentActivity {
 		chkSubscribe = (CheckBox) findViewById(R.id.chk_subscribe);
 		txtTerms = (TextView) findViewById(R.id.txtTerms);
 		
+		facebooID = getIntent().getStringExtra("facebookID");
+		
+		edit_email.setText("user@gmail.com");
+		
 		if(connectionManager.isConnected()) {
 			new GetTerms().execute();
 		}
 		else {
 			Toast.makeText(context, "No Internet Connection", Toast.LENGTH_LONG).show();
 		}
-		
-		//testing
-		edit_email.setText("user@gmail.com");
-		edit_username.setText("user");
-		edit_password.setText("user");
-		edit_phone.setText("093333333333");
-		edit_building_no.setText("33");
-		edit_building_name.setText("Building");
-		edit_street.setText("street");
-		edit_unit_no.setText("666");
-		edit_postal_code.setText("2345");
-		edit_cea_no.setText("");
-		edit_company.setText("");
 		
 		String pref_email = Preferences.getUserName(context);
 		if(!pref_email.equals("")) {
@@ -157,7 +140,6 @@ public class SignUpActivity extends BaseFragmentActivity {
 				//change to string
 				email = edit_email.getText().toString();
 				username = edit_username.getText().toString();
-				password = edit_password.getText().toString();
 				phone = edit_phone.getText().toString();
 				building_no = edit_building_no.getText().toString();
 				building_name = edit_building_name.getText().toString();
@@ -172,7 +154,6 @@ public class SignUpActivity extends BaseFragmentActivity {
 				if(type.equals("Public User")) { 
 					if(email.equals("") || email.equals(null) ||
 						username.equals("") || username.equals(null) ||
-						password.equals("") || password.equals(null) ||
 						phone.equals("") || phone.equals(null) ||
 						building_no.equals("") || building_no.equals(null) ||
 						building_name.equals("") || building_name.equals(null) ||
@@ -187,7 +168,6 @@ public class SignUpActivity extends BaseFragmentActivity {
 				else {
 					if(email.equals("") || email.equals(null) ||
 						username.equals("") || username.equals(null) ||
-						password.equals("") || password.equals(null) ||
 						phone.equals("") || phone.equals(null) ||
 						cea_no.equals("") || cea_no.equals(null) ||
 						company.equals("") || company.equals(null) ) {
@@ -236,12 +216,6 @@ public class SignUpActivity extends BaseFragmentActivity {
 		});
 	}//onCreate
 	
-	@Override
-	public void onBackPressed() {
-		// TODO Auto-generated method stub
-		super.onBackPressed();
-	}
-	
 	public class SignUp extends AsyncTask<Void, Void, Void> {
 		JSONObject jObj;
 		ProgressDialog pDialog;
@@ -265,7 +239,7 @@ public class SignUpActivity extends BaseFragmentActivity {
 					subscribe = "1";
 				}
 				
-				jObj = api.signUp(email, username, password, phone, building_no, building_name, street, unit_no, postal_code, cea_no, company, userType, subscribe, pref.getGenerateKey(context));
+				jObj = api.signUpFacebook(facebooID ,email, username, phone, building_no, building_name, street, unit_no, postal_code, cea_no, company, userType, subscribe, pref.getGenerateKey(context));
 				
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
@@ -287,9 +261,6 @@ public class SignUpActivity extends BaseFragmentActivity {
 				int status = jObj.getInt("status");				
 				
 				if(status == 1 && responseCode == 200){
-					Preferences.setUserName(context, email);
-					Preferences.setPassword(context, password);
-					
 					Intent intent = new Intent(context, MenuActivity.class);
 					startActivity(intent);
 				}

@@ -110,7 +110,7 @@
             <!--
             <intent-filter>
                 <action android:name="android.intent.action.DIAL" />
-            </intent-filter>
+            </intent-filter>
             -->
 
         </activity>
@@ -162,6 +162,10 @@
         <activity
             android:name="com.novitee.knightfrankacution.NewsActivity"
             android:label="@string/title_activity_news" >
+        </activity>
+        <activity
+            android:name="com.novitee.knightfrankacution.SignUpFacebookActivity"
+            android:label="@string/title_activity_sign_up_facebook" >
         </activity>
     </application>
 

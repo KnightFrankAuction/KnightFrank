@@ -82,10 +82,10 @@ public final class R {
 	}
 	public static final class layout {
 		public static final int activity_main = 0x7f03000a;
-		public static final int indicator_layout = 0x7f03001c;
-		public static final int render_type_default = 0x7f03002a;
-		public static final int render_type_text = 0x7f03002b;
-		public static final int slider_layout = 0x7f03002e;
+		public static final int indicator_layout = 0x7f03001d;
+		public static final int render_type_default = 0x7f03002b;
+		public static final int render_type_text = 0x7f03002c;
+		public static final int slider_layout = 0x7f03002f;
 	}
 	public static final class menu {
 		public static final int main = 0x7f0c0009;

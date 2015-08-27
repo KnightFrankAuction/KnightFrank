@@ -14,7 +14,6 @@ import com.facebook.FacebookSdk;
 import com.facebook.GraphRequest;
 import com.facebook.GraphRequest.GraphJSONObjectCallback;
 import com.facebook.GraphResponse;
-import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.novitee.knightfrankacution.MenuActivity;
@@ -184,7 +183,8 @@ public class FacebookLoginFragment extends BaseFragment {
 					
 					Preferences.setUserName(context, userInfo.get(2));
 					
-					Intent intent = new Intent(getActivity(), SignUpActivity.class);
+					Intent intent = new Intent(getActivity(), SignUpFacebookActivity.class);
+					intent.putExtra("facebookID", userInfo.get(4));
 					startActivity(intent);
 				}
 				else {

@@ -16,6 +16,7 @@ public class KnightFrankAPI {
 	public static String NEXT_AUCTION = CommonConstants.HOST + CommonConstants.NEXT_AUCTION_URL;
 	public static String LOGIN_FACEBOOK = CommonConstants.HOST + CommonConstants.LOGIN_FACEBOOK_URL;
 	public static String SIGN_UP = CommonConstants.HOST + CommonConstants.SIGN_UP_URL;
+	public static String SIGN_UP_FB = CommonConstants.HOST + CommonConstants.SIGN_UP_FB_URL;
 	public static String AD = CommonConstants.HOST + CommonConstants.AD_URL;
 	public static String AUCTION_DATE = CommonConstants.HOST + CommonConstants.AUCTION_DATE_URL;
 	public static String AUCTION_LIST = CommonConstants.HOST + CommonConstants.AUCTION_LIST_URL;
@@ -74,6 +75,25 @@ public class KnightFrankAPI {
 		params.add(new BasicNameValuePair("subscribe", subscribe));
 		params.add(new BasicNameValuePair("key", key));
 		return new JSONParser().getJSONFromUrl(SIGN_UP, params, CommonConstants.POST);
+	}
+	
+	public JSONObject signUpFacebook(String fb_id, String email, String username, String phone, String building_no, String building_name, String street, String unit_no, String postal_code, String cea_no, String company, String userType, String subscribe, String key) throws JSONException {
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("facebook_id", fb_id));		
+		params.add(new BasicNameValuePair("email", email));
+		params.add(new BasicNameValuePair("username", username));
+		params.add(new BasicNameValuePair("phone_no", phone));
+		params.add(new BasicNameValuePair("user_type", userType));
+		params.add(new BasicNameValuePair("cea_no", cea_no));
+		params.add(new BasicNameValuePair("company", company));
+		params.add(new BasicNameValuePair("building_no", building_no));
+		params.add(new BasicNameValuePair("building_name", building_name));
+		params.add(new BasicNameValuePair("street", street));
+		params.add(new BasicNameValuePair("unit_no", unit_no));
+		params.add(new BasicNameValuePair("postal_code", postal_code));
+		params.add(new BasicNameValuePair("subscribe", subscribe));
+		params.add(new BasicNameValuePair("key", key));
+		return new JSONParser().getJSONFromUrl(SIGN_UP_FB, params, CommonConstants.POST);
 	}
 	
 	public JSONObject getAD() throws JSONException {
