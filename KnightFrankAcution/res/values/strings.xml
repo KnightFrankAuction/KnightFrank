@@ -42,5 +42,6 @@
     <string name="title_activity_area_converter">AreaConverterActivity</string>
     <string name="title_activity_news">NewsActivity</string>
     <string name="title_activity_sign_up_facebook">SignUpFacebookActivity</string>
+    <string name="title_activity_about_us">AboutUsActivity</string>
 
 </resources>

@@ -25,8 +25,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.novitee.knightfrankacution.PropertyDetailActivity.deleteShortlist;
-import com.novitee.knightfrankacution.PropertyDetailActivity.saveShortlist;
 import com.novitee.knightfrankacution.base.BaseFragmentActivity;
 import com.novitee.knightfrankacution.model.Photo;
 import com.novitee.knightfrankacution.model.Property;
@@ -93,12 +91,7 @@ public class PropertyListActivity extends BaseFragmentActivity {
 	public void setTitleBarAndFooter() {
 		//title bar
 		titleText = (TextView) findViewById(R.id.title_text);
-		
-//		titleImage = (ImageView) findViewById(R.id.title_image);
-//		titleText2 = (TextView) findViewById(R.id.title_text2);
-//		titleImage.setVisibility(View.GONE);
-//		titleText2.setText("Apply");
-		
+
 		if(title != null) {
 			titleText.setText(title);
 		}
@@ -121,14 +114,7 @@ public class PropertyListActivity extends BaseFragmentActivity {
 			}
 		});
 	}//setTitleBarAndFooter
-	
-	@Override
-	public void onBackPressed() {
-		// TODO Auto-generated method stub
-		super.onBackPressed();
-	}
 
-	
 	private class CustomList extends ArrayAdapter<Property> {
 		ArrayList<Property> propertyList;
 		Context context;
@@ -168,9 +154,12 @@ public class PropertyListActivity extends BaseFragmentActivity {
             tenure.setText(property.getTenure());
             price2.setText(property.getPrice());
             psf.setText(property.getPsf());
-            
-            String url = CommonConstants.HOST + imageNameList.get(position);
-            Picasso.with(context).load(url).into(propertyImage);
+
+            String image_name = imageNameList.get(position);
+            if(image_name.length() > 0) {
+            	String url = CommonConstants.HOST + imageNameList.get(position);
+                Picasso.with(context).load(url).into(propertyImage);
+            }
             
             shortlist_flag = property.getShortlist_flag();
             

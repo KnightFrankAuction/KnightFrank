@@ -17,65 +17,86 @@
 	        android:layout_height="50dp"
 	        layout="@layout/title_layout"/>
 	    
-	    /********* Image slider ************/
-	    <com.daimajia.slider.library.SliderLayout 
-	        android:id="@+id/detail_slider"
+	    <RelativeLayout 
+	        android:id="@+id/layout_image"
 	        android:layout_width="match_parent"
-	        android:layout_below="@+id/title_layout"
-	        custom:pager_animation="Accordion"
-	        custom:auto_cycle="true"
-	        custom:indicator_visibility="visible"
-	        custom:pager_animation_span="1100"
-	        android:layout_height="250dp" />
-	    
-	    <com.daimajia.slider.library.Indicators.PagerIndicator
-	        android:id="@+id/custom_indicator"
-	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:gravity="center"
-	        custom:selected_color="#0095BF"
-	        custom:unselected_color="#55333333"
-	        custom:shape="oval"
-	        custom:selected_padding_left="5dp"
-	        custom:selected_padding_right="5dp"
-	        custom:unselected_padding_left="5dp"
-	        custom:unselected_padding_right="5dp"
-	        android:layout_centerHorizontal="true"
-	        android:layout_alignParentBottom="true"
-	        custom:selected_width="6dp"
-	        custom:selected_height="6dp"
-	        custom:unselected_width="6dp"
-	        custom:unselected_height="6dp"
-	        android:layout_marginBottom="20dp"
-	        />
-		
-		<ImageView 
-		    android:id="@+id/property_starbuy"
-		    android:layout_width="40dp"
-		    android:layout_height="40dp"
-		    android:layout_marginTop="10dp"
-		    android:layout_marginRight="10dp"
-		    android:layout_alignParentRight="true"
-		    android:layout_below="@+id/title_layout"
-		    android:src="@drawable/starbuy_uncheck"
-		    />
-		
-		<ImageView 
-		    android:id="@+id/property_shortlist"
-		    android:layout_width="40dp"
-		    android:layout_height="40dp"
-		    android:layout_marginTop="10dp"
-		    android:layout_marginRight="10dp"
-		    android:layout_alignParentRight="true"
-		    android:layout_below="@+id/property_starbuy"
-		    android:src="@drawable/shortlist_uncheck"
-		    />
-		
+	        android:layout_below="@+id/title_layout">
+	        
+	        <RelativeLayout 
+	            android:id="@+id/layout_slider"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content">
+	        
+		        <!-- Image slider -->
+			    <com.daimajia.slider.library.SliderLayout 
+			        android:id="@+id/detail_slider"
+			        android:layout_width="match_parent"
+			        custom:pager_animation="Accordion"
+			        custom:auto_cycle="true"
+			        custom:indicator_visibility="visible"
+			        custom:pager_animation_span="1100"
+			        android:layout_height="250dp" />
+			    
+			    <com.daimajia.slider.library.Indicators.PagerIndicator
+			        android:id="@+id/custom_indicator"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:gravity="center"
+			        custom:selected_color="#0095BF"
+			        custom:unselected_color="#55333333"
+			        custom:shape="oval"
+			        custom:selected_padding_left="5dp"
+			        custom:selected_padding_right="5dp"
+			        custom:unselected_padding_left="5dp"
+			        custom:unselected_padding_right="5dp"
+			        android:layout_centerHorizontal="true"
+			        android:layout_alignParentBottom="true"
+			        custom:selected_width="6dp"
+			        custom:selected_height="6dp"
+			        custom:unselected_width="6dp"
+			        custom:unselected_height="6dp"
+			        android:layout_marginBottom="20dp"
+			        />
+			    
+			</RelativeLayout>			    
+		    
+		    <!-- Property default image -->
+		    <ImageView 
+		        android:id="@+id/default_image"
+		        android:layout_width="match_parent"
+		        android:layout_height="250dp"
+		        android:background="@color/gray"
+		        android:src="@drawable/house_long"/>
+			
+			<ImageView 
+			    android:id="@+id/property_starbuy"
+			    android:layout_width="40dp"
+			    android:layout_height="40dp"
+			    android:layout_marginTop="10dp"
+			    android:layout_marginRight="10dp"
+			    android:layout_alignParentRight="true"
+			    android:src="@drawable/starbuy_uncheck"
+			    />
+			
+			<ImageView 
+			    android:id="@+id/property_shortlist"
+			    android:layout_width="40dp"
+			    android:layout_height="40dp"
+			    android:layout_marginTop="10dp"
+			    android:layout_marginRight="10dp"
+			    android:layout_alignParentRight="true"
+			    android:layout_below="@+id/property_starbuy"
+			    android:src="@drawable/shortlist_uncheck"
+			    />
+	        
+	    </RelativeLayout>
+
 		<LinearLayout 
 		    android:id="@+id/white_layout"
 		    android:layout_width="match_parent"
 		    android:layout_height="wrap_content"
-		    android:layout_below="@+id/detail_slider"
+		    android:layout_below="@+id/layout_image"
 		    android:background="@color/white"
 		    android:orientation="vertical">
 	        
@@ -520,30 +541,120 @@
 		        android:layout_margin="10dp"
 		        android:background="@color/gray"/>
 		    
+		    <!-- Facilities Layout -->
 		    <GridLayout
 		        android:id="@+id/facilities"
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
 		        android:paddingRight="10dp"
-		        android:columnCount="2" />
+		        android:layout_margin="10dp"
+		        android:columnCount="2" >
 		        
-		        <!-- <CheckBox 
+		        <CheckBox 
+		            android:id="@+id/chkGym"
 		            android:layout_width="wrap_content"
 		            android:layout_height="wrap_content"
-		            android:checked="true"
 		            android:textSize="20sp"
 		            android:textColor="@color/black"
 		            android:text="Gym"/>
 		        
 		        <CheckBox 
+		            android:id="@+id/chkSwimmingPool"
 		            android:layout_width="wrap_content"
 		            android:layout_height="wrap_content"
-		            android:checked="true"
 		            android:textSize="20sp"
 		            android:textColor="@color/black"
-		            android:text="Swimming pool"/> -->
+		            android:text="Swimming Pool"/>
 		        
-		    <!-- </GridLayout> -->
+		        <CheckBox 
+		            android:id="@+id/chkPlayGround"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+
+		            android:textSize="20sp"
+		            android:textColor="@color/black"
+		            android:text="Play Ground"/>
+		        
+		        <CheckBox 
+		            android:id="@+id/chkTennisCourt"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:textSize="20sp"
+		            android:textColor="@color/black"
+		            android:text="Tennis Court"/>
+		        
+		        <CheckBox 
+		            android:id="@+id/chkFunctionRoom"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:textSize="20sp"
+		            android:textColor="@color/black"
+		            android:text="Function Room"/>
+		        
+		    </GridLayout>
+		    
+		    <View 
+		        android:layout_width="match_parent"
+		        android:layout_height="2dp"
+		        android:layout_margin="10dp"
+		        android:background="@color/gray"/>
+	        
+	        <TextView 
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textColor="@color/black"
+		        android:layout_margin="10dp"
+		        android:textSize="22sp"
+		        android:text="Features"/>
+		    
+		    <View 
+		        android:layout_width="match_parent"
+		        android:layout_height="2dp"
+		        android:layout_margin="10dp"
+		        android:background="@color/gray"/>
+		    
+		    <!-- Feature Layout -->
+		    <GridLayout
+		        android:id="@+id/features"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:paddingRight="10dp"
+		        android:layout_margin="10dp"
+		        android:columnCount="2" >
+
+		        <CheckBox 
+		            android:id="@+id/chkPentHouse"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:textSize="20sp"
+		            android:textColor="@color/black"
+		            android:text="Pent House"/>
+		        
+		        <CheckBox 
+		            android:id="@+id/chkCityView"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:textSize="20sp"
+		            android:textColor="@color/black"
+		            android:text="City View"/>
+		        
+		        <CheckBox 
+		            android:id="@+id/chkHighFloor"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:textSize="20sp"
+		            android:textColor="@color/black"
+		            android:text="High Floor"/>
+		        
+		        <CheckBox 
+		            android:id="@+id/chkBalcony"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:textSize="20sp"
+		            android:textColor="@color/black"
+		            android:text="Balcony"/>
+		        
+		    </GridLayout>
 	        
 		    
 		</LinearLayout>//details block

@@ -20,6 +20,7 @@ import com.novitee.knightfrankacution.base.BaseFragmentActivity;
 import com.novitee.knightfrankacution.model.Photo;
 import com.novitee.knightfrankacution.model.Property;
 import com.novitee.knightfrankacution.util.CommonConstants;
+import com.squareup.picasso.Picasso;
 
 import android.location.Address;
 import android.location.Geocoder;
@@ -33,6 +34,7 @@ import android.view.View.OnClickListener;
 import android.widget.CheckBox;
 import android.widget.GridLayout;
 import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.app.ProgressDialog;
@@ -40,11 +42,8 @@ import android.content.Context;
 import android.content.Intent;
 
 public class PropertyDetailActivity extends BaseFragmentActivity {
-//	BaseSliderView
 	Context context = this;
 
-//	String pID = "1";
-	
 	TextView titleText;
 	TextView titleText2;
 	ImageView titleImage;
@@ -52,6 +51,7 @@ public class PropertyDetailActivity extends BaseFragmentActivity {
 	GoogleMap googleMap;
 	FragmentTransaction fragmentTran;
 	
+	ImageView default_image;
 	ImageView starbuy;
 	ImageView shortlist;
 //	TextView buildingName;
@@ -76,6 +76,15 @@ public class PropertyDetailActivity extends BaseFragmentActivity {
 	ImageView sendEmail;
 	SliderLayout detailSlider;
 	GridLayout facilitiesLayout;
+	CheckBox chkGym;
+	CheckBox chkSwimmingPool;
+	CheckBox chkTennisCourt;
+	CheckBox chkPlayGround;
+	CheckBox chkFunctionRoom;
+	CheckBox chkPentHouse;
+	CheckBox chkCityView;
+	CheckBox chkHighFloor;
+	CheckBox chkBalcony;
 	
 	String phoneNo;
 	String email;
@@ -100,6 +109,7 @@ public class PropertyDetailActivity extends BaseFragmentActivity {
 		
 		setTitleBarAndFooter();
 		
+		default_image = (ImageView) findViewById(R.id.default_image);
 		starbuy = (ImageView) findViewById(R.id.property_starbuy);
 		shortlist = (ImageView) findViewById(R.id.property_shortlist);
 //		buildingName = (TextView) findViewById(R.id.building_name);
@@ -124,6 +134,15 @@ public class PropertyDetailActivity extends BaseFragmentActivity {
 		sendEmail = (ImageView) findViewById(R.id.detail_email);
 		facilitiesLayout = (GridLayout) findViewById(R.id.facilities);
 		detailSlider = (SliderLayout) findViewById(R.id.detail_slider);
+		chkGym = (CheckBox) findViewById(R.id.chkGym);
+		chkSwimmingPool = (CheckBox) findViewById(R.id.chkSwimmingPool);
+		chkTennisCourt = (CheckBox) findViewById(R.id.chkTennisCourt);
+		chkPlayGround = (CheckBox) findViewById(R.id.chkPlayGround);
+		chkFunctionRoom = (CheckBox) findViewById(R.id.chkFunctionRoom);
+		chkPentHouse = (CheckBox) findViewById(R.id.chkPentHouse);
+		chkCityView = (CheckBox) findViewById(R.id.chkCityView);
+		chkHighFloor = (CheckBox) findViewById(R.id.chkHighFloor);
+		chkBalcony = (CheckBox) findViewById(R.id.chkBalcony);
 		
 		titleImage.setBackgroundResource(R.drawable.share_circle);
 		
@@ -260,24 +279,47 @@ public class PropertyDetailActivity extends BaseFragmentActivity {
 		String function_room = property.getFunction_room();
 		
 		if(gym.equals("1")) {
-			addCheckbox("Gym");
+			chkGym.setChecked(true);
 		}
 		if(playground.equals("1")) {
-			addCheckbox("Play Ground");
+			chkPlayGround.setChecked(true);
 		}
 		if(swimming_pool.equals("1")) {
-			addCheckbox("Swimming Pool");
+			chkSwimmingPool.setChecked(true);
 		}
 		if(tennis_court.equals("1")) {
-			addCheckbox("Tennis Court");
+			chkTennisCourt.setChecked(true);
 		}
 		if(function_room.equals("1")) {
-			addCheckbox("Function Room");
+			chkFunctionRoom.setChecked(true);
 		}
 		
+		String pentHouse = property.getPenthouse();
+		String cityView = property.getCity_view();
+		String highFloor = property.getHigh_floor();
+		String balcony = property.getBalcony();
+		
+		if(pentHouse.equals("1")) {
+			chkPentHouse.setChecked(true);
+		}
+		if(cityView.equals("1")) {
+			chkCityView.setChecked(true);
+		}
+		if(highFloor.equals("1")) {
+			chkHighFloor.setChecked(true);
+		}
+		if(balcony.equals("1")) {
+			chkBalcony.setChecked(true);
+		}
 		
 		//add Image to slider
-		if(photoList.size() > 0 ) {
+		if(photoList.size() == 1) {
+			default_image.setScaleType(ScaleType.FIT_XY);
+			String url = CommonConstants.HOST + photoList.get(0).getName();
+            Picasso.with(context).load(url).into(default_image);
+		}
+		else if(photoList.size() > 1) {
+			default_image.setVisibility(View.GONE);
 			addImagetoSlider();
 		}
 		
@@ -291,15 +333,6 @@ public class PropertyDetailActivity extends BaseFragmentActivity {
         }
 	}//showProperty
 
-	public void addCheckbox(String text) {
-		CheckBox cb = new CheckBox(context);
-		cb.setText(text);
-		cb.setTextColor(getResources().getColor(R.color.black));
-		cb.setChecked(true);
-		cb.setTextSize((float) 20.0);
-		facilitiesLayout.addView(cb);
-	}
-	
 	public void addImagetoSlider() {
 		HashMap<String,String> url_maps = new HashMap<String, String>();
 		

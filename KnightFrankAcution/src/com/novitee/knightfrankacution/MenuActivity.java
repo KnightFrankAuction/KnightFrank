@@ -146,7 +146,7 @@ public class MenuActivity extends AdvertisementsActivity implements OnClickListe
 				
 				if(json_status == 1 && json_responseCode == 200){
 					Property property;
-					JSONArray jArray = jObj.getJSONArray("data");
+					JSONArray jArray = jObj.getJSONArray("property");
 					
 					listPro.clear();
 					Photo photo;

@@ -26,7 +26,7 @@ public class KnightFrankAPI {
 	public static String SAVE_SHORTLIST = CommonConstants.HOST + CommonConstants.SAVE_SHORTLIST_URL;
 	public static String DELETE_SHORTLIST = CommonConstants.HOST + CommonConstants.DELETE_SHORTLIST_URL;
 	public static String GET_ALL_SHORTLIST = CommonConstants.HOST + CommonConstants.GET_ALL_SHORTLIST_URL;
-	public static String STARBUY = CommonConstants.HOST + CommonConstants.STARBUY_URL;
+	public static String LISTINGS = CommonConstants.HOST + CommonConstants.LISTINGS_URL;
 	public static String NEWS = CommonConstants.HOST + CommonConstants.NEWS_URL;
 	public static String INFO = CommonConstants.HOST + CommonConstants.INFO_URL;
 	public static String TERMS = CommonConstants.HOST + CommonConstants.TERMS_URL;
@@ -167,7 +167,11 @@ public class KnightFrankAPI {
 	}
 	
 	public JSONObject getAllList(String session_key, String type) throws JSONException {
-		return new JSONParser().getJSONFromUrl("https://api.myjson.com/bins/1395g", null, CommonConstants.GET);
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("session_token", session_key));
+		params.add(new BasicNameValuePair("type", type));
+		return new JSONParser().getJSONFromUrl(LISTINGS, params, CommonConstants.POST);
+//		return new JSONParser().getJSONFromUrl("https://api.myjson.com/bins/1395g", null, CommonConstants.GET);
 	}
 	
 	public JSONObject getNews(String session_key) throws JSONException {

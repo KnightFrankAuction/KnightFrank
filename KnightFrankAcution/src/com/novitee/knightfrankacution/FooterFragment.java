@@ -70,14 +70,16 @@ public class FooterFragment extends BaseFragment implements OnClickListener {
 			new GetAllShortList().execute();
 		}
 		else if(v.getId() == about.getId()) {
-//			intent = new Intent(getActivity(), AboutActivity.class);
+//			intent = new Intent(getActivity(), MoreActivity.class);
+//			startActivity(intent);
 		}
 		else if(v.getId() == enquiry.getId()) {
 			intent = new Intent(getActivity(), EnquiryActivity.class);
 			startActivity(intent);
 		}
 		else if(v.getId() == menu.getId()) {
-//			intent = new Intent(context, MenuListActivity.class);
+			intent = new Intent(getActivity(), MoreActivity.class);
+			startActivity(intent);
 		}
 		
 	}//onClick

@@ -290,7 +290,7 @@ public class SignUpActivity extends BaseFragmentActivity {
 					Preferences.setUserName(context, email);
 					Preferences.setPassword(context, password);
 					
-					Intent intent = new Intent(context, MenuActivity.class);
+					Intent intent = new Intent(context, MainActivity.class);
 					startActivity(intent);
 				}
 				else if(status == 2 && responseCode == 401) {
