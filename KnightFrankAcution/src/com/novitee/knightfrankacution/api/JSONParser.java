@@ -145,6 +145,7 @@ public class JSONParser {
 			
 			httpost.setEntity(multipartEntity);
 			HttpResponse response = httpClient.execute(httpost);
+			StatusCode = response.getStatusLine().getStatusCode();
 			is = response.getEntity().getContent();
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();

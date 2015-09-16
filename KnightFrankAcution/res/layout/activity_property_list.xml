@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/gray"
-    tools:context=".PrpertyListActivity" >
+    tools:context=".FilterListActiviy" >
     
     <include 
         android:id="@+id/title_layout"
@@ -13,21 +13,21 @@
         layout="@layout/title_layout"/>
     
     <FrameLayout 
-        android:id="@+id/property_list_search"
+        android:id="@+id/filter_list_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/title_layout" />
     
     <ListView 
-        android:id="@+id/property_list"
+        android:id="@+id/filter_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/property_list_search"
-        android:layout_above="@+id/property_list_footer"
+        android:layout_below="@+id/filter_list_search"
+        android:layout_above="@+id/filter_list_footer"
         android:layout_marginBottom="10dp" />
     
     <FrameLayout 
-        android:id="@+id/property_list_footer"
+        android:id="@+id/filter_list_footer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true" />

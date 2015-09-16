@@ -11,7 +11,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -30,8 +29,7 @@ public class LoginActivity extends BaseFragmentActivity {
 	ImageView back;
 	
 	String userName, passWord;
-	
-	FragmentTransaction fragmentTran;
+
 	ViewFlipper mViewFlipper;
 
 	@Override
@@ -45,17 +43,13 @@ public class LoginActivity extends BaseFragmentActivity {
 		mViewFlipper.setFlipInterval(4000);
 		mViewFlipper.startFlipping();
 		
-		fragmentTran = getSupportFragmentManager().beginTransaction();
-		fragmentTran.replace(R.id.login_frame, new FacebookLoginFragment());
-		fragmentTran.commit();
-		
 		username = (EditText) findViewById(R.id.user_name);
 		password = (EditText) findViewById(R.id.password);
 		btnLogin = (Button) findViewById(R.id.btnLogIn);
 		back = (ImageView) findViewById(R.id.login_back);
 
-		String pref_username = Preferences.getUserName(context);
-		String pref_password = Preferences.getPassword(context);
+		String pref_username = Preferences.getInstance(context).getUserName();
+		String pref_password = Preferences.getInstance(context).getPassword();
 		if(!pref_username.equals("")) {
 			username.setText(pref_username);
 			password.setText(pref_password);
@@ -93,7 +87,7 @@ public class LoginActivity extends BaseFragmentActivity {
 		super.onBackPressed();
 	}
 
-	public class Login extends AsyncTask<Void, Void, Void> {
+	private class Login extends AsyncTask<Void, Void, Void> {
 		
 		JSONObject jObj;
 		ProgressDialog pDialog;
@@ -111,7 +105,7 @@ public class LoginActivity extends BaseFragmentActivity {
 		protected Void doInBackground(Void... params) {
 			// TODO Auto-generated method stub
 			try {
-				jObj = api.login(userName, passWord, pref.getGenerateKey(context));
+				jObj = api.login(userName, passWord, Preferences.getInstance(context).getGenerateKey());
 				
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
@@ -136,10 +130,10 @@ public class LoginActivity extends BaseFragmentActivity {
 					int user_type = jObj.getInt("type");
 					String session_token = jObj.getString("session_token");
 					
-					Preferences.setUserName(context, userName);
-					Preferences.setPassword(context, passWord);
-					Preferences.setUserType(context, user_type);
-					Preferences.setSessionToken(context, session_token);
+					Preferences.getInstance(context).setUserName(userName);
+					Preferences.getInstance(context).setPassword(passWord);
+					Preferences.getInstance(context).setUserType(user_type);
+					Preferences.getInstance(context).setSessionToken(session_token);
 					
 					Toast.makeText(context, "Login Successful", Toast.LENGTH_SHORT).show();
 					
@@ -154,7 +148,7 @@ public class LoginActivity extends BaseFragmentActivity {
 					String message = jObj.getString("message");
 					Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
 					
-					Preferences.setUserName(context, userName);
+					Preferences.getInstance(context).setUserName(userName);
 					
 					Intent intent = new Intent(context, SignUpActivity.class);
 					startActivity(intent);

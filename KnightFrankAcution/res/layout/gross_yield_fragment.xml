@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/FilterTextviewStyle"
-            android:layout_marginRight="10dp"
+            android:layout_marginRight="5dp"
             android:layout_toLeftOf="@+id/arrow_gross_property_price"
             android:text="523,123.21"/>
         
@@ -67,7 +67,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/FilterTextviewStyle"
-            android:layout_marginRight="10dp"
+            android:layout_marginRight="5dp"
             android:layout_toLeftOf="@+id/arrow_anual_price"
             android:text="4000"/>
         

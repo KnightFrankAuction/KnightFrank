@@ -1,22 +1,16 @@
 package com.novitee.knightfrankacution;
 
-import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
-import com.facebook.login.LoginManager;
-import com.facebook.share.ShareApi;
 import com.facebook.share.Sharer;
-import com.facebook.share.model.ShareOpenGraphAction;
-import com.facebook.share.model.ShareOpenGraphContent;
-import com.facebook.share.model.ShareOpenGraphObject;
+import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.widget.ShareDialog;
 
-import java.util.Arrays;
-import java.util.Set;
-
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 import android.app.Activity;
 import android.content.Context;
@@ -38,49 +32,8 @@ public class FacebookShareContentFragment extends Activity {
 		FacebookSdk.sdkInitialize(context);
         callbackManager = CallbackManager.Factory.create();
         shareDialog = new ShareDialog((Activity) context);
-		
-        LoginManager.getInstance().logInWithPublishPermissions((Activity) context, Arrays.asList("publish_actions"));
-        Set<String> accessToken = AccessToken.getCurrentAccessToken().getPermissions();
-		ShareOpenGraphObject object = new ShareOpenGraphObject.Builder()
-				.putString("og:type", "books.book")
-				.putString("og:title", "Check the following property from Knight Frank Auction App Out:")
-				.putString("og:description", "This is the testing post from KnightFrank")
-				.build();
-		
-		ShareOpenGraphAction action = new ShareOpenGraphAction.Builder()
-		        .setActionType("books.reads")
-		        .putObject("book", object)
-		        .build();
-		
-		ShareOpenGraphContent content = new ShareOpenGraphContent.Builder()
-		        .setPreviewPropertyName("book")
-		        .setAction(action)
-		        .build();
-		
-//		LoginManager.getInstance().logInWithPublishPermissions((Activity) context, Arrays.asList("publish_actions"));
-        
-        ShareApi.share(content,new FacebookCallback<Sharer.Result>() {
-            @Override
-            public void onSuccess(Sharer.Result result) {
-            	Toast.makeText(context, "Share Success", Toast.LENGTH_SHORT).show();
-//                Log.d(Check.TAG, "Story posted! " + result);
-            }
 
-            @Override
-            public void onCancel() {
-//                Log.d(Check.TAG, "canceled");
-
-            }
-
-            @Override
-            public void onError(FacebookException e) {
-//                Log.d(Check.TAG, "error posting: "+e.getMessage() );
-            	Toast.makeText(context, e.getMessage().toString(), Toast.LENGTH_LONG).show();
-            	e.printStackTrace();
-            }
-        });
-        
-        /*shareDialog.registerCallback(callbackManager, new FacebookCallback<Sharer.Result>() {
+        shareDialog.registerCallback(callbackManager, new FacebookCallback<Sharer.Result>() {
             @Override
             public void onSuccess(Sharer.Result result) {
                 Toast.makeText(context, "Share Success", Toast.LENGTH_SHORT).show();
@@ -107,28 +60,11 @@ public class FacebookShareContentFragment extends Activity {
             ShareLinkContent linkContent = new ShareLinkContent.Builder()
                     .setContentTitle("Check the following property from Knight Frank Auction App Out:")
                     .setContentDescription("This is the testing post from KnightFrank")
+                    .setContentUrl(Uri.parse("http://www.knightfrank.com.sg"))
                     .build();
             
             shareDialog.show(linkContent);
-            
-            ShareOpenGraphObject object = new ShareOpenGraphObject.Builder()
-            		.putString("og:type", "books.book")
-            		.putString("og:title", "Check the following property from Knight Frank Auction App Out:")
-            		.putString("og:description", "This is the testing post from KnightFrank")
-            		.build();
-            
-            ShareOpenGraphAction action = new ShareOpenGraphAction.Builder()
-		            .setActionType("books.reads")
-		            .putObject("book", object)
-		            .build();
-            
-            ShareOpenGraphContent content = new ShareOpenGraphContent.Builder()
-		            .setPreviewPropertyName("book")
-		            .setAction(action)
-		            .build();
-            
-//            ShareDialog.show((Activity) context, content);
-        }*/
+        }
 	}
 	
 	@Override

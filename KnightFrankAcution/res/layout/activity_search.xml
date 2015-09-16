@@ -1,0 +1,396 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray"
+    tools:context=".SearchActivity" >
+
+    <include 
+        android:id="@+id/title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        layout="@layout/title_layout"/>
+    
+    <ScrollView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title_layout">
+        
+        <RelativeLayout 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            
+            <EditText 
+		        android:id="@+id/search_building_name"
+		        android:layout_width="match_parent"
+		        android:layout_height="50dp"
+		        android:drawableLeft="@drawable/search_icon"
+		        android:layout_margin="10dp"
+		        android:hint="Building Name" />
+		    
+		    <LinearLayout
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:background="@color/white"
+		        android:layout_below="@+id/search_building_name"
+		        android:orientation="vertical" >
+		        
+		        <RelativeLayout 
+			        android:id="@+id/layout_listing_type"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:gravity="center_vertical"
+			        android:layout_marginTop="5dp"
+			        android:background="@color/white">
+			        
+			        <TextView 
+			            android:id="@+id/txt_listing_type"
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            style="@style/FilterTextviewStyle"
+			            android:gravity="center_vertical"
+			            android:layout_toLeftOf="@+id/arrow_listing_type"
+			            android:layout_alignParentLeft="true"
+			            android:text="Listing Type"/>
+			        
+			        <Spinner 
+			            android:id="@+id/listing_type"
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            style="@style/SearchStyle"
+			            android:layout_centerVertical="true"
+			            android:background="@color/white"
+			            android:layout_toLeftOf="@+id/arrow_listing_type"/>
+			        
+			        <ImageView 
+			            android:id="@+id/arrow_listing_type"
+			            android:layout_width="40dp"
+			            android:layout_height="30dp"
+			            android:layout_alignParentRight="true"
+			            android:layout_marginTop="18dp"
+			            android:src="@drawable/right_arrow_gray"/>
+			        
+			        <View 
+				        android:layout_width="match_parent"
+				        android:layout_height="2dp"
+				        android:layout_margin="10dp"
+				        android:layout_below="@+id/arrow_listing_type"
+				        android:background="@color/gray"/>
+			        
+			    </RelativeLayout>
+			    
+		        <RelativeLayout 
+			        android:id="@+id/layout_building_type"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:gravity="center_vertical"
+			        android:layout_marginTop="5dp"
+			        android:background="@color/white">
+			        
+			        <TextView 
+			            android:id="@+id/txt_building_type"
+			            android:layout_width="match_parent"
+			            android:layout_height="wrap_content"
+			            style="@style/FilterTextviewStyle"
+			            android:gravity="center_vertical"
+			            android:layout_toLeftOf="@+id/building_type"
+			            android:text="Building Type"/>
+			        
+			        <Spinner 
+			            android:id="@+id/building_type"
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            style="@style/SearchStyle"
+			            android:background="@color/white"
+			            android:layout_centerVertical="true"
+			            android:layout_toLeftOf="@+id/arrow_building_type"/>
+			        
+			        <ImageView 
+			            android:id="@+id/arrow_building_type"
+			            android:layout_width="40dp"
+			            android:layout_height="30dp"
+			            android:layout_alignParentRight="true"
+			            android:layout_marginTop="18dp"
+			            android:src="@drawable/right_arrow_gray"/>
+			        
+			        <View 
+				        android:layout_width="match_parent"
+				        android:layout_height="2dp"
+				        android:layout_margin="10dp"
+				        android:layout_below="@+id/arrow_building_type"
+				        android:background="@color/gray"/>
+			        
+			    </RelativeLayout>
+			    
+		        <RelativeLayout 
+			        android:id="@+id/layout_type_of_sales"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:gravity="center_vertical"
+			        android:layout_marginTop="5dp"
+			        android:background="@color/white">
+			        
+			        <TextView 
+			            android:id="@+id/txt_type_of_sales"
+			            android:layout_width="match_parent"
+			            android:layout_height="wrap_content"
+			            style="@style/FilterTextviewStyle"
+			            android:gravity="center_vertical"
+			            android:layout_toLeftOf="@+id/type_of_sales"
+			            android:text="Type of Sales"/>
+			        
+			        <Spinner 
+			            android:id="@+id/type_of_sales"
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            style="@style/SearchStyle"
+			            android:background="@color/white"
+			            android:layout_toLeftOf="@+id/arrow_type_of_sales"
+			            android:layout_centerVertical="true"/>
+			        
+			        <ImageView 
+			            android:id="@+id/arrow_type_of_sales"
+			            android:layout_width="40dp"
+			            android:layout_height="30dp"
+			            android:layout_alignParentRight="true"
+			            android:layout_marginTop="18dp"
+			            android:src="@drawable/right_arrow_gray"/>
+			        
+			        <View 
+				        android:layout_width="match_parent"
+				        android:layout_height="2dp"
+				        android:layout_marginLeft="10dp"
+				        android:layout_marginRight="10dp"
+				        android:layout_marginTop="15dp"
+				        android:layout_marginBottom="15dp"
+				        android:layout_below="@+id/arrow_type_of_sales"
+				        android:background="@color/gray"/>
+			        
+			    </RelativeLayout>
+			    
+		        <RelativeLayout 
+			        android:id="@+id/layout_bedroom"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:gravity="center_vertical"
+			        android:layout_marginTop="5dp"
+			        android:background="@color/white">
+			        
+			        <TextView 
+			            android:id="@+id/txt_bedroom"
+			            android:layout_width="match_parent"
+			            android:layout_height="wrap_content"
+			            style="@style/FilterTextviewStyle"
+			            android:gravity="center_vertical"
+			            android:layout_toLeftOf="@+id/bedroom"
+			            android:text="Bedroom"/>
+			        
+			        <Spinner 
+			            android:id="@+id/bedroom"
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            style="@style/SearchStyle"
+			            android:background="@color/white"
+			            android:layout_toLeftOf="@+id/arrow_bedroom"
+			            android:layout_centerVertical="true"/>
+			        
+			        <ImageView 
+			            android:id="@+id/arrow_bedroom"
+			            android:layout_width="40dp"
+			            android:layout_height="30dp"
+			            android:layout_alignParentRight="true"
+			            android:layout_marginTop="18dp"
+			            android:src="@drawable/right_arrow_gray"/>
+			        
+			        <View 
+				        android:layout_width="match_parent"
+				        android:layout_height="2dp"
+				        android:layout_margin="10dp"
+				        android:layout_below="@+id/arrow_bedroom"
+				        android:background="@color/gray"/>
+			        
+			    </RelativeLayout>
+		        
+		        <RelativeLayout 
+			        android:id="@+id/layout_bathroom"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:gravity="center_vertical"
+			        android:layout_marginTop="5dp"
+			        android:background="@color/white">
+			        
+			        <TextView 
+			            android:id="@+id/txt_bathroom"
+			            android:layout_width="match_parent"
+			            android:layout_height="wrap_content"
+			            style="@style/FilterTextviewStyle"
+			            android:gravity="center_vertical"
+			            android:layout_toLeftOf="@+id/bathroom"
+			            android:text="Bathroom"/>
+			        
+			        <Spinner 
+			            android:id="@+id/bathroom"
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            style="@style/SearchStyle"
+			            android:background="@color/white"
+			            android:layout_toLeftOf="@+id/arrow_bathroom"
+			            android:layout_centerVertical="true"/>
+			        
+			        <ImageView 
+			            android:id="@+id/arrow_bathroom"
+			            android:layout_width="40dp"
+			            android:layout_height="30dp"
+			            android:layout_alignParentRight="true"
+			            android:layout_marginTop="18dp"
+			            android:src="@drawable/right_arrow_gray"/>
+			        
+			        <View 
+				        android:layout_width="match_parent"
+				        android:layout_height="2dp"
+				        android:layout_margin="10dp"
+				        android:layout_below="@+id/arrow_bathroom"
+				        android:background="@color/gray"/>
+			        
+			    </RelativeLayout>
+			    
+		        <RelativeLayout 
+			        android:id="@+id/layout_min_size"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:gravity="center_vertical"
+			        android:layout_marginTop="5dp"
+			        android:background="@color/white">
+			        
+			        <TextView 
+			            android:id="@+id/txt_min_size"
+			            android:layout_width="match_parent"
+			            android:layout_height="wrap_content"
+			            style="@style/FilterTextviewStyle"
+			            android:gravity="center_vertical"
+			            android:layout_toLeftOf="@+id/min_size"
+			            android:text="Min Size"/>
+			        
+			        <Spinner 
+			            android:id="@+id/min_size"
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            style="@style/SearchStyle"
+			            android:background="@color/white"
+			            android:layout_toLeftOf="@+id/arrow_min_size"
+			            android:layout_centerVertical="true"/>
+			        
+			        <ImageView 
+			            android:id="@+id/arrow_min_size"
+			            android:layout_width="40dp"
+			            android:layout_height="30dp"
+			            android:layout_alignParentRight="true"
+			            android:layout_marginTop="18dp"
+			            android:src="@drawable/right_arrow_gray"/>
+			        
+			        <View 
+				        android:layout_width="match_parent"
+				        android:layout_height="2dp"
+				        android:layout_margin="10dp"
+				        android:layout_below="@+id/arrow_min_size"
+				        android:background="@color/gray"/>
+			        
+			    </RelativeLayout>
+			    
+		        <RelativeLayout 
+			        android:id="@+id/layout_max_price"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:gravity="center_vertical"
+			        android:layout_marginTop="5dp"
+			        android:background="@color/white">
+			        
+			        <TextView 
+			            android:id="@+id/txt_max_price"
+			            android:layout_width="match_parent"
+			            android:layout_height="wrap_content"
+			            style="@style/FilterTextviewStyle"
+			            android:gravity="center_vertical"
+			            android:layout_toLeftOf="@+id/max_price"
+			            android:text="Max Price" />
+			        
+			        <Spinner 
+			            android:id="@+id/max_price"
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            style="@style/SearchStyle"
+			            android:background="@color/white"
+			            android:layout_toLeftOf="@+id/arrow_max_price"
+			            android:layout_centerVertical="true"/>
+			        
+			        <ImageView 
+			            android:id="@+id/arrow_max_price"
+			            android:layout_width="40dp"
+			            android:layout_height="30dp"
+			            android:layout_alignParentRight="true"
+			            android:layout_marginTop="18dp"
+			            android:src="@drawable/right_arrow_gray"/>
+			        
+			        <View 
+				        android:layout_width="match_parent"
+				        android:layout_height="2dp"
+				        android:layout_margin="10dp"
+				        android:layout_below="@+id/arrow_max_price"
+				        android:background="@color/gray"/>
+			        
+			    </RelativeLayout>
+			    
+		        <RelativeLayout 
+			        android:id="@+id/layout_listed_on"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:gravity="center_vertical"
+			        android:layout_marginBottom="10dp"
+			        android:background="@color/white">
+			        
+			        <TextView 
+			            android:id="@+id/txt_listed_on"
+			            android:layout_width="match_parent"
+			            android:layout_height="wrap_content"
+			            style="@style/FilterTextviewStyle"
+			            android:gravity="center_vertical"
+			            android:layout_toLeftOf="@+id/listed_on"
+			            android:text="Listed On"/>
+			        
+			        <TextView 
+			            android:id="@+id/listed_on"
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            style="@style/SearchStyle"
+			            android:layout_toLeftOf="@+id/arrow_listed_on"
+			            android:layout_centerVertical="true"
+			            android:layout_marginTop="5dp"
+			            android:text="Any"/>
+			        
+			        <ImageView 
+			            android:id="@+id/arrow_listed_on"
+			            android:layout_width="40dp"
+			            android:layout_height="30dp"
+			            android:layout_alignParentRight="true"
+			            android:layout_marginTop="18dp"
+			            android:src="@drawable/right_arrow_gray"/>
+			        
+			    </RelativeLayout>
+	    
+        	</LinearLayout>
+            
+        </RelativeLayout>
+        
+    </ScrollView>
+    
+    
+	    
+    
+    
+    <FrameLayout 
+        android:id="@+id/search_footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>

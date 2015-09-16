@@ -24,19 +24,28 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
+            android:layout_toLeftOf="@+id/shortlist_layout"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:text="14 Beng Wan Road"/>
         
-        <ImageView 
-            android:id="@+id/listview_shortlist"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_margin="5dp"
+        <RelativeLayout 
+            android:id="@+id/shortlist_layout"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:src="@drawable/shortlist_uncheck"/>
-        
+	        android:layout_alignParentRight="true">
+            
+            <ImageView 
+                android:id="@+id/listview_shortlist"
+	            android:layout_width="40dp"
+	            android:layout_height="40dp"
+	            android:layout_margin="5dp"
+	            android:layout_alignParentRight="true"
+	            android:src="@drawable/shortlist_uncheck"/>
+            
+        </RelativeLayout>
+
         <TextView 
             android:id="@+id/listview_price"
             android:layout_width="match_parent"
@@ -109,21 +118,11 @@
             android:text="99 Tenure from May 1991"/>
          
          <TextView 
-            android:id="@+id/listview_price2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_below="@+id/listview_tenure"
-            android:textColor="@color/black1"
-            android:textSize="20sp"
-            android:text="$100,000"/>
-         
-         <TextView 
             android:id="@+id/listview_psf"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:layout_below="@+id/listview_price2"
+            android:layout_below="@+id/listview_tenure"
             android:textColor="@color/black1"
             android:textSize="20sp"
             android:text="$59 psft"/>

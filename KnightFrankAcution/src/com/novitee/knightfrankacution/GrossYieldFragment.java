@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class GrossYieldFragment extends BaseFragment implements OnClickListener {
 	
@@ -47,7 +48,14 @@ public class GrossYieldFragment extends BaseFragment implements OnClickListener 
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				CalculateLoan();
+				if(valuePropertyPrice.equals("") || valuePropertyPrice.equals(null) ||
+						valueAnnualPrice.equals("") || valueAnnualPrice.equals(null) ) {
+					
+					Toast.makeText(context, "You must fill all fields.", Toast.LENGTH_LONG).show();
+				}
+				else {
+					CalculateGrossYield();
+				}
 			}
 		});
 		
@@ -92,7 +100,7 @@ public class GrossYieldFragment extends BaseFragment implements OnClickListener 
 		
 	}//showDialog
 
-	private void CalculateLoan() {
+	private void CalculateGrossYield() {
 		
 		//Property Price
 		String st = valuePropertyPrice.getText().toString();

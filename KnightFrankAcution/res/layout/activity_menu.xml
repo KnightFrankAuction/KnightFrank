@@ -30,193 +30,210 @@
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:layout_marginRight="5dp"
+            android:visibility="gone"
             android:src="@drawable/document" />
         
     </RelativeLayout>
     
-    /************* Menu Layout *************/
-    <LinearLayout 
-        android:id="@+id/menu_layout" 
+    <ScrollView 
+        android:id="@+id/scroll_menu_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+	    android:layout_height="match_parent"
         android:layout_below="@+id/menu_action_bar"
-        android:orientation="vertical"
-        android:weightSum="3">
-        
-        /************* First row *************/
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:orientation="horizontal"
-            android:layout_weight="1"
-            android:weightSum="2">
-            
-            <LinearLayout 
-                android:id="@+id/auction_listings"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:padding="10dp"
-                android:layout_weight="1">
-                
-                <ImageView 
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:src="@drawable/auction_listing_icon"/>
-                
-                <TextView 
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="@style/MenuTextviewStyle"
-                    android:gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:text="AUCTION LISTINGS"/>
-                
-            </LinearLayout>//first_row first_column
-            
-            <LinearLayout 
-                android:id="@+id/private_listings"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:padding="10dp"
-                android:layout_weight="1">
-                
-                <ImageView 
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:src="@drawable/private_treaty_icon"/>
-                
-                <TextView 
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="@style/MenuTextviewStyle"
-                    android:gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:text="PRIVATE TREATY LISTINGS"/>
-                
-            </LinearLayout>//first_row second_column
-            
-        </LinearLayout>//first_row
-        
-        /************* Second row *************/
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:orientation="horizontal"
-            android:layout_weight="1"
-            android:weightSum="2">
-            
-            <LinearLayout 
-                android:id="@+id/project_listings"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:padding="10dp"
-                android:layout_weight="1">
-                
-                <ImageView 
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:src="@drawable/project_listing_icon"/>
-                
-                <TextView 
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="@style/MenuTextviewStyle"
-                    android:gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:text="PROJECT LISTINGS"/>
-                
-            </LinearLayout>//Second_row first_column
-            
-            <LinearLayout 
-                android:id="@+id/starbuys"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:padding="10dp"
-                android:layout_weight="1">
-                
-                <ImageView 
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:src="@drawable/starbuy"/>
-                
-                <TextView 
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="@style/MenuTextviewStyle"
-                    android:gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:text="STAR BUYS"/>
-                
-            </LinearLayout>//Second_row second_column
-            
-        </LinearLayout>//Second_row
-        
-        /************* Third row *************/
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:orientation="horizontal"
-            android:layout_weight="1"
-            android:weightSum="2">
-            
-            <LinearLayout 
-                android:id="@+id/info_and_news"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:padding="10dp"
-                android:layout_weight="1">
-                
-                <ImageView 
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:src="@drawable/info_and_news"/>
-                
-                <TextView 
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="@style/MenuTextviewStyle"
-                    android:gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:text="KNIGHTFRANK INFO AND NEWS"/>
-                
-            </LinearLayout>//Third_row first_column
-            
-            <LinearLayout 
-                android:id="@+id/tools"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:padding="10dp"
-                android:layout_weight="1">
-                
-                <ImageView 
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:src="@drawable/tools"/>
-                
-                <TextView 
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="@style/MenuTextviewStyle"
-                    android:gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:text="TOOLS"/>
-                
-            </LinearLayout>//Third_row second_column
-            
-        </LinearLayout>//Third_row
-        
-    </LinearLayout>//menu layout
+        android:layout_above="@+id/menu_footer">
+    
+	    /************* Menu Layout *************/
+	    <LinearLayout 
+	        android:id="@+id/menu_layout" 
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:orientation="vertical"
+	        android:weightSum="3">
+	        
+	        /************* First row *************/
+	        <LinearLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="0dp"
+	            android:orientation="horizontal"
+	            android:layout_weight="1"
+	            android:weightSum="2">
+	            
+	            <LinearLayout 
+	                android:id="@+id/auction_listings"
+	                android:layout_width="0dp"
+	                android:layout_height="match_parent"
+	                android:orientation="vertical"
+	                android:gravity="center"
+	                android:padding="10dp"
+	                android:layout_weight="1">
+	                
+	                <ImageView 
+	                    android:layout_width="100dp"
+	                    android:layout_height="100dp"
+	                    android:src="@drawable/auction_listing_icon"/>
+	                
+	                <TextView 
+	                    android:layout_width="match_parent"
+	                    android:layout_height="wrap_content"
+	                    style="@style/MenuTextviewStyle"
+	                    android:gravity="center"
+	                    android:layout_marginTop="10dp"
+	                    android:text="AUCTION LISTINGS"/>
+	                
+	            </LinearLayout>//first_row first_column
+	            
+	            <LinearLayout 
+	                android:id="@+id/private_listings"
+	                android:layout_width="0dp"
+	                android:layout_height="match_parent"
+	                android:orientation="vertical"
+	                android:gravity="center"
+	                android:padding="10dp"
+	                android:layout_weight="1">
+	                
+	                <ImageView 
+	                    android:layout_width="100dp"
+	                    android:layout_height="100dp"
+	                    android:src="@drawable/private_treaty_icon"/>
+	                
+	                <TextView 
+	                    android:layout_width="match_parent"
+	                    android:layout_height="wrap_content"
+	                    style="@style/MenuTextviewStyle"
+	                    android:gravity="center"
+	                    android:layout_marginTop="10dp"
+	                    android:text="PRIVATE TREATY LISTINGS"/>
+	                
+	            </LinearLayout>//first_row second_column
+	            
+	        </LinearLayout>//first_row
+	        
+	        /************* Second row *************/
+	        <LinearLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="0dp"
+	            android:orientation="horizontal"
+	            android:layout_weight="1"
+	            android:weightSum="2">
+	            
+	            <LinearLayout 
+	                android:id="@+id/project_listings"
+	                android:layout_width="0dp"
+	                android:layout_height="match_parent"
+	                android:orientation="vertical"
+	                android:gravity="center"
+	                android:padding="10dp"
+	                android:layout_weight="1">
+	                
+	                <ImageView 
+	                    android:layout_width="100dp"
+	                    android:layout_height="100dp"
+	                    android:src="@drawable/project_listing_icon"/>
+	                
+	                <TextView 
+	                    android:layout_width="match_parent"
+	                    android:layout_height="wrap_content"
+	                    style="@style/MenuTextviewStyle"
+	                    android:gravity="center"
+	                    android:layout_marginTop="10dp"
+	                    android:text="PROJECT LISTINGS"/>
+	                
+	            </LinearLayout>//Second_row first_column
+	            
+	            <LinearLayout 
+	                android:id="@+id/starbuys"
+	                android:layout_width="0dp"
+	                android:layout_height="match_parent"
+	                android:orientation="vertical"
+	                android:gravity="center"
+	                android:padding="10dp"
+	                android:layout_weight="1">
+	                
+	                <ImageView 
+	                    android:layout_width="100dp"
+	                    android:layout_height="100dp"
+	                    android:src="@drawable/starbuy"/>
+	                
+	                <TextView 
+	                    android:layout_width="match_parent"
+	                    android:layout_height="wrap_content"
+	                    style="@style/MenuTextviewStyle"
+	                    android:gravity="center"
+	                    android:layout_marginTop="10dp"
+	                    android:text="STAR BUYS"/>
+	                
+	            </LinearLayout>//Second_row second_column
+	            
+	        </LinearLayout>//Second_row
+	        
+	        /************* Third row *************/
+	        <LinearLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="0dp"
+	            android:orientation="horizontal"
+	            android:layout_weight="1"
+	            android:weightSum="2">
+	            
+	            <LinearLayout 
+	                android:id="@+id/info_and_news"
+	                android:layout_width="0dp"
+	                android:layout_height="match_parent"
+	                android:orientation="vertical"
+	                android:gravity="center"
+	                android:padding="10dp"
+	                android:layout_weight="1">
+	                
+	                <ImageView 
+	                    android:layout_width="100dp"
+	                    android:layout_height="100dp"
+	                    android:src="@drawable/info_and_news"/>
+	                
+	                <TextView 
+	                    android:layout_width="match_parent"
+	                    android:layout_height="wrap_content"
+	                    style="@style/MenuTextviewStyle"
+	                    android:gravity="center"
+	                    android:layout_marginTop="10dp"
+	                    android:text="KNIGHTFRANK INFO AND NEWS"/>
+	                
+	            </LinearLayout>//Third_row first_column
+	            
+	            <LinearLayout 
+	                android:id="@+id/tools"
+	                android:layout_width="0dp"
+	                android:layout_height="match_parent"
+	                android:orientation="vertical"
+	                android:gravity="center"
+	                android:padding="10dp"
+	                android:layout_weight="1">
+	                
+	                <ImageView 
+	                    android:layout_width="100dp"
+	                    android:layout_height="100dp"
+	                    android:src="@drawable/tools"/>
+	                
+	                <TextView 
+	                    android:layout_width="match_parent"
+	                    android:layout_height="wrap_content"
+	                    style="@style/MenuTextviewStyle"
+	                    android:gravity="center"
+	                    android:layout_marginTop="10dp"
+	                    android:text="TOOLS"/>
+	                
+	            </LinearLayout>//Third_row second_column
+	            
+	        </LinearLayout>//Third_row
+	        
+	    </LinearLayout>//menu layout
+	    
+	</ScrollView>
+    
+    <!-- Footer -->
+    <FrameLayout 
+        android:id="@+id/menu_footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        android:layout_alignParentBottom="true" />
 
 </RelativeLayout>

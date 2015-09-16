@@ -75,48 +75,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/login_action_bar"
-        android:layout_margin="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:orientation="vertical">
-
-	        <FrameLayout 
-	            android:id="@+id/login_frame"
-	            android:layout_width="match_parent"
-	            android:layout_height="50dp">
-	        </FrameLayout>
-        
-        <LinearLayout 
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp"
-            android:weightSum="3">
-            
-            <View 
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_marginRight="5dp"
-                android:layout_weight="1.3"
-                android:layout_gravity="center_vertical"
-                android:background="@color/white"/>
-            
-            <TextView 
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.4"
-                android:gravity="center_horizontal"
-                android:textColor="@color/white"
-                android:textSize="18sp"
-                android:text="or"/>
-            
-            <View 
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_marginLeft="5dp"
-                android:layout_weight="1.3"
-                android:layout_gravity="center_vertical"
-                android:background="@color/white"/>
-            
-        </LinearLayout>
 	
 	    <EditText 
 	        android:id="@+id/user_name"

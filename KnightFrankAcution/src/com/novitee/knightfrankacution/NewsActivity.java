@@ -8,6 +8,7 @@ import org.json.JSONObject;
 
 import com.novitee.knightfrankacution.base.BaseFragmentActivity;
 import com.novitee.knightfrankacution.model.News;
+import com.novitee.knightfrankacution.util.Preferences;
 
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -153,7 +154,7 @@ public class NewsActivity extends BaseFragmentActivity {
 		protected Void doInBackground(Void... params) {
 			// TODO Auto-generated method stub
 			try {
-				jObj = api.getNews(pref.getSessionToken(context));
+				jObj = api.getNews(Preferences.getInstance(context).getSessionToken());
 				
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block

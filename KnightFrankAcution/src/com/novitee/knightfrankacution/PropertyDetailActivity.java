@@ -5,9 +5,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
@@ -31,10 +28,10 @@ import android.os.Handler;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.CheckBox;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.app.ProgressDialog;
@@ -53,7 +50,6 @@ public class PropertyDetailActivity extends BaseFragmentActivity {
 	
 	ImageView default_image;
 	ImageView starbuy;
-	ImageView shortlist;
 //	TextView buildingName;
 	TextView titlePrice;
 	TextView titleBedroom;
@@ -76,15 +72,9 @@ public class PropertyDetailActivity extends BaseFragmentActivity {
 	ImageView sendEmail;
 	SliderLayout detailSlider;
 	GridLayout facilitiesLayout;
-	CheckBox chkGym;
-	CheckBox chkSwimmingPool;
-	CheckBox chkTennisCourt;
-	CheckBox chkPlayGround;
-	CheckBox chkFunctionRoom;
-	CheckBox chkPentHouse;
-	CheckBox chkCityView;
-	CheckBox chkHighFloor;
-	CheckBox chkBalcony;
+	GridLayout featuresLayout;
+	LinearLayout facilitiesLinear;
+	LinearLayout featuresLinear;
 	
 	String phoneNo;
 	String email;
@@ -95,7 +85,6 @@ public class PropertyDetailActivity extends BaseFragmentActivity {
 	
 	Property property;
 	ProgressDialog pDialog;
-	String shortlist_flag;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -111,7 +100,6 @@ public class PropertyDetailActivity extends BaseFragmentActivity {
 		
 		default_image = (ImageView) findViewById(R.id.default_image);
 		starbuy = (ImageView) findViewById(R.id.property_starbuy);
-		shortlist = (ImageView) findViewById(R.id.property_shortlist);
 //		buildingName = (TextView) findViewById(R.id.building_name);
 		titlePrice = (TextView) findViewById(R.id.txtPrice);
 		titleBedroom = (TextView) findViewById(R.id.txtBedroom);
@@ -133,18 +121,11 @@ public class PropertyDetailActivity extends BaseFragmentActivity {
 		makeCall = (ImageView) findViewById(R.id.detail_phone);
 		sendEmail = (ImageView) findViewById(R.id.detail_email);
 		facilitiesLayout = (GridLayout) findViewById(R.id.facilities);
+		featuresLayout = (GridLayout) findViewById(R.id.features);
 		detailSlider = (SliderLayout) findViewById(R.id.detail_slider);
-		chkGym = (CheckBox) findViewById(R.id.chkGym);
-		chkSwimmingPool = (CheckBox) findViewById(R.id.chkSwimmingPool);
-		chkTennisCourt = (CheckBox) findViewById(R.id.chkTennisCourt);
-		chkPlayGround = (CheckBox) findViewById(R.id.chkPlayGround);
-		chkFunctionRoom = (CheckBox) findViewById(R.id.chkFunctionRoom);
-		chkPentHouse = (CheckBox) findViewById(R.id.chkPentHouse);
-		chkCityView = (CheckBox) findViewById(R.id.chkCityView);
-		chkHighFloor = (CheckBox) findViewById(R.id.chkHighFloor);
-		chkBalcony = (CheckBox) findViewById(R.id.chkBalcony);
-		
 		titleImage.setBackgroundResource(R.drawable.share_circle);
+		facilitiesLinear = (LinearLayout) findViewById(R.id.facilitesLayout);
+		featuresLinear = (LinearLayout) findViewById(R.id.featuresLayout);
 		
 		photoList = new ArrayList<Photo>();
 		facList = new ArrayList<String>();
@@ -180,21 +161,6 @@ public class PropertyDetailActivity extends BaseFragmentActivity {
 				}
 			}
 		});//makeCall
-
-		shortlist.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				if(shortlist_flag.equals("1")) {
-					new deleteShortlist().execute();
-				}
-				else {
-					new saveShortlist().execute();
-				}
-				
-			}
-		});//shortlist
 		
 	}//onCreate
 	
@@ -205,6 +171,10 @@ public class PropertyDetailActivity extends BaseFragmentActivity {
 		titleImage = (ImageView) findViewById(R.id.title_image);
 		titleText2.setVisibility(View.GONE);
 		
+		fragmentTran = getSupportFragmentManager().beginTransaction();
+		fragmentTran.replace(R.id.detail_footer, new FooterFragment());
+		fragmentTran.commit();
+		
 		titleImage.setBackgroundResource(R.drawable.share_circle);
 		
 		titleImage.setOnClickListener(new OnClickListener() {
@@ -212,8 +182,10 @@ public class PropertyDetailActivity extends BaseFragmentActivity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				FacebookShareContentFragment shareContent = new FacebookShareContentFragment();
-				shareContent.share(PropertyDetailActivity.this);
+				ShareWithEmail activity = new ShareWithEmail();
+				activity.shareDetailProperty(property, context);	
+//				FacebookShareContentFragment shareContent = new FacebookShareContentFragment();
+//				shareContent.share(PropertyDetailActivity.this);
 			}
 		});
 
@@ -250,68 +222,88 @@ public class PropertyDetailActivity extends BaseFragmentActivity {
 		price.setText(property.getPrice());
 		tenure.setText(property.getTenure());
 		highlight.setText(property.getHighlights());
-		contact.setText(property.getSeller_name());
-		ceaNo.setText(property.getCea_no());
-		companyName.setText(property.getCompany_name());
 		phoneNo = property.getPhone();
 		email = property.getEmail();
 		postal_code = property.getPostal_code();
+		
+		if(property.getSeller_name().length() > 0) {
+			contact.setText(property.getSeller_name());
+		} else {
+			contact.setVisibility(View.GONE);
+		}
+
+		if(property.getCea_no().length() > 0) {
+			ceaNo.setText(property.getCea_no());
+		} else {
+			ceaNo.setVisibility(View.GONE);
+		}
+
+		if(property.getCompany_name().length() > 0) {
+			companyName.setText(property.getCompany_name());
+		} else {
+			companyName.setVisibility(View.GONE);
+		}
 		
 		photoList.clear();
 		photoList = property.getPhoto();
 		
 		String starbuy_flag = property.getStarbuy_flag();
-		shortlist_flag = property.getShortlist_flag();
 		
 		if(starbuy_flag.equals("1")) {
 			starbuy.setImageResource(R.drawable.starbuy_check);
 		}
-		
-		if(shortlist_flag.equals("1")) {
-			shortlist.setImageResource(R.drawable.shortlist_check);
-		}
-		
+
 		//Facilities
 		String gym = property.getGym();
 		String playground = property.getPlayground();
 		String swimming_pool = property.getSwimming_pool();
 		String tennis_court = property.getTennis_court();
 		String function_room = property.getFunction_room();
-		
-		if(gym.equals("1")) {
-			chkGym.setChecked(true);
+
+		if(gym.equals("0") && playground.equals("0") && swimming_pool.equals("0") && tennis_court.equals("0") && function_room.equals("0")) {
+			facilitiesLinear.setVisibility(View.GONE);
 		}
-		if(playground.equals("1")) {
-			chkPlayGround.setChecked(true);
+		else {
+			if(gym.equals("1")) {
+				addTextView("Gym");
+			}
+			if(playground.equals("1")) {
+				addTextView("Play Ground");
+			}
+			if(swimming_pool.equals("1")) {
+				addTextView("Swimming Pool");
+			}
+			if(tennis_court.equals("1")) {
+				addTextView("Tennis Court");
+			}
+			if(function_room.equals("1")) {
+				addTextView("Function Room");
+			}
 		}
-		if(swimming_pool.equals("1")) {
-			chkSwimmingPool.setChecked(true);
-		}
-		if(tennis_court.equals("1")) {
-			chkTennisCourt.setChecked(true);
-		}
-		if(function_room.equals("1")) {
-			chkFunctionRoom.setChecked(true);
-		}
-		
+
 		String pentHouse = property.getPenthouse();
 		String cityView = property.getCity_view();
 		String highFloor = property.getHigh_floor();
 		String balcony = property.getBalcony();
 		
-		if(pentHouse.equals("1")) {
-			chkPentHouse.setChecked(true);
+		if(pentHouse.equals("0") && cityView.equals("0") && highFloor.equals("0") && balcony.equals("0")) {
+			featuresLinear.setVisibility(View.GONE);
 		}
-		if(cityView.equals("1")) {
-			chkCityView.setChecked(true);
+		else {
+			if(pentHouse.equals("1")) {
+				addTextViewFeature("Pent House");
+			}
+			if(cityView.equals("1")) {
+				addTextViewFeature("City View");
+			}
+			if(highFloor.equals("1")) {
+				addTextViewFeature("High Floor");
+			}
+			if(balcony.equals("1")) {
+				addTextViewFeature("Balcony");
+			}
 		}
-		if(highFloor.equals("1")) {
-			chkHighFloor.setChecked(true);
-		}
-		if(balcony.equals("1")) {
-			chkBalcony.setChecked(true);
-		}
-		
+
 		//add Image to slider
 		if(photoList.size() == 1) {
 			default_image.setScaleType(ScaleType.FIT_XY);
@@ -381,7 +373,6 @@ public class PropertyDetailActivity extends BaseFragmentActivity {
         super.onResume();
         initilizeMap();
     }
-    
 
 	public void locationFromPostCode(String postCode){ 
 		Geocoder geocoder1 = new Geocoder(this); 
@@ -428,65 +419,6 @@ public class PropertyDetailActivity extends BaseFragmentActivity {
     	
 	}//setLocationMarker
 	
-	public class saveShortlist extends AsyncTask<Void, Void, Void> {
-		
-		JSONObject jObj;
-		ProgressDialog pDialog;
-		
-		@Override
-		protected void onPreExecute() {
-			super.onPreExecute();
-			pDialog = new ProgressDialog(PropertyDetailActivity.this);
-            pDialog.setMessage("Please wait....");
-            pDialog.setCancelable(false);
-            pDialog.show();
-		}
-
-		@Override
-		protected Void doInBackground(Void... params) {
-			// TODO Auto-generated method stub
-			try {
-				jObj = api.saveShortlist(pref.getSessionToken(context), property.getProperty_id());
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return null;
-		}
-		
-		@Override
-		protected void onPostExecute(Void result) {
-			// TODO Auto-generated method stub
-			super.onPostExecute(result);
-			if(pDialog.isShowing()){
-				pDialog.dismiss();
-			}
-
-			try {
-				int json_responseCode = jObj.getInt("statusCode");
-				int json_status = jObj.getInt("status");
-				
-				if(json_status == 1 && json_responseCode == 200){
-					shortlist.setImageResource(R.drawable.shortlist_check);
-					property.setShortlist_flag("1");
-					shortlist_flag = "1";
-				}
-				else if(json_status == 2 && json_responseCode == 401) {
-					String message = jObj.getString("message");
-					Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
-				}
-				else {
-					Toast.makeText(context, "Something went wrong. Please try again.", Toast.LENGTH_SHORT).show();
-				}
-				
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		
-	}//saveShortlist
-	
 	public class AsyncShowProperty extends AsyncTask<Void, Void, Void> {
 
 		@Override
@@ -507,67 +439,28 @@ public class PropertyDetailActivity extends BaseFragmentActivity {
 			}
 		}
 		
-	}//saveShortlist
+	}//AsyncShowProperty
+
+	public void addTextViewFeature(String text) {
+		TextView txt = new TextView(context);
+		txt.setText(text);
+		txt.setTextColor(getResources().getColor(R.color.black));
+		txt.setTextSize((float) 20.0);
+		txt.setPadding(10, 10, 10, 10);
+		txt.setCompoundDrawablesWithIntrinsicBounds(R.drawable.check, 0, 0, 0);
+		featuresLayout.addView(txt);
+	}
 	
-	public class deleteShortlist extends AsyncTask<Void, Void, Void> {
-		
-		JSONObject jObj;
-		ProgressDialog pDialog;
-		
-		@Override
-		protected void onPreExecute() {
-			super.onPreExecute();
-			pDialog = new ProgressDialog(PropertyDetailActivity.this);
-            pDialog.setMessage("Please wait....");
-            pDialog.setCancelable(false);
-            pDialog.show();
-		}
-
-		@Override
-		protected Void doInBackground(Void... params) {
-			// TODO Auto-generated method stub
-			try {
-				jObj = api.deleteShortlist(pref.getSessionToken(context), property.getProperty_id());
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return null;
-		}
-		
-		@Override
-		protected void onPostExecute(Void result) {
-			// TODO Auto-generated method stub
-			super.onPostExecute(result);
-			if(pDialog.isShowing()){
-				pDialog.dismiss();
-			}
-
-			try {
-				int json_responseCode = jObj.getInt("statusCode");
-				int json_status = jObj.getInt("status");
-				
-				if(json_status == 1 && json_responseCode == 200){
-					shortlist.setImageResource(R.drawable.shortlist_uncheck);
-					property.setShortlist_flag("0");
-					shortlist_flag = "0";
-				}
-				else if(json_status == 2 && json_responseCode == 401) {
-					String message = jObj.getString("message");
-					Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
-				}
-				else {
-					Toast.makeText(context, "Something went wrong. Please try again.", Toast.LENGTH_SHORT).show();
-				}
-				
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		
-	}//deleteShortlist
-
+	private void addTextView(String text) {
+		TextView txt = new TextView(context);
+		txt.setText(text);
+		txt.setTextColor(getResources().getColor(R.color.black));
+		txt.setTextSize((float) 20.0);
+		txt.setPadding(10, 10, 10, 10);
+		txt.setCompoundDrawablesWithIntrinsicBounds(R.drawable.check, 0, 0, 0);
+		facilitiesLayout.addView(txt);
+	}
+	
 }
 
  

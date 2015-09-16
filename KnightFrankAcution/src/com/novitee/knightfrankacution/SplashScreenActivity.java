@@ -1,6 +1,8 @@
 package com.novitee.knightfrankacution;
 
 import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Timestamp;
 
 import org.json.JSONException;
@@ -8,53 +10,79 @@ import org.json.JSONObject;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.novitee.knightfrankacution.api.KnightFrankAPI;
+import com.novitee.knightfrankacution.base.BaseActivity;
 import com.novitee.knightfrankacution.util.Preferences;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.pm.Signature;
+import android.util.Base64;
 import android.util.Log;
 import android.widget.Toast;
 
-public class SplashScreenActivity extends Activity {
-	
-	Context context = this;
-	
-	//GCM
-	String regId;
-	GoogleCloudMessaging gcm;
-	public static final String PROPERTY_REG_ID = "registration_id";
-	private static final String PROPERTY_APP_VERSION = "appVersion";
-	private static final String PROPERTY_ON_SERVER_EXPIRATION_TIME = "onServerExpirationTimeMs";
-	public static final long REGISTRATION_EXPIRY_TIME_MS = 1000 * 3600 * 24 * 7;
+public class SplashScreenActivity extends BaseActivity {
+    
+    Context context = this;
+    
+    //GCM
+    String regId;
+    GoogleCloudMessaging gcm;
+    public static final String PROPERTY_REG_ID = "registration_id";
+    private static final String PROPERTY_APP_VERSION = "appVersion";
+    private static final String PROPERTY_ON_SERVER_EXPIRATION_TIME = "onServerExpirationTimeMs";
+    public static final long REGISTRATION_EXPIRY_TIME_MS = 1000 * 3600 * 24 * 7;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_splash_screen);
-		
-		if (Preferences.getRegid(context) == null) {
-	            regId = getRegistrationId(getApplicationContext());
-	        	//regId="1856c20b587c402c00e0b1ff901ebcd5d3d";
-	            
-	            gcm = GoogleCloudMessaging.getInstance(this);
-	            
-	            if (regId.length() == 0) {
-	                new registerBackground().execute();
-//	            	registerBackground();
-	            } else {
-	                Log.i("registration id", "registration id =====  " + regId);
-	                
-	                Preferences.setRegid(context, regId);
-	                Intent i = new Intent();
-	                i.setClass(context, MainActivity.class);
-	                finish();
-	                startActivity(i);
-	            }
-	     } else {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_splash_screen);
+        
+        PackageInfo info;
+        try {
+            info = getPackageManager().getPackageInfo("com.novitee.knightfrankacution", PackageManager.GET_SIGNATURES);
+            for (Signature signature : info.signatures) {
+                MessageDigest md;
+                md = MessageDigest.getInstance("SHA");
+                md.update(signature.toByteArray());
+                String something = new String(Base64.encode(md.digest(), 0));
+                //String something = new String(Base64.encodeBytes(md.digest()));
+                Log.e("hash key", something);
+            }
+        } catch (NameNotFoundException e1) {
+            Log.e("name not found", e1.toString());
+        } catch (NoSuchAlgorithmException e) {
+            Log.e("no such an algorithm", e.toString());
+        } catch (Exception e) {
+            Log.e("exception", e.toString());
+        }
+        
+        if (Preferences.getInstance(context).getRegid() == null) {
+                regId = getRegistrationId(getApplicationContext());
+                //regId="1856c20b587c402c00e0b1ff901ebcd5d3d";
+                
+                gcm = GoogleCloudMessaging.getInstance(this);
+                
+                if (regId.length() == 0) {
+                    new registerBackground().execute();
+//                  registerBackground();
+                } else {
+                    Log.i("registration id", "registration id =====  " + regId);
+                    
+                    new GenerateKey().execute();
+                    
+                    Preferences.getInstance(context).setRegid(regId);
+                    Intent i = new Intent();
+                    i.setClass(context, MainActivity.class);
+                    finish();
+                    startActivity(i);
+                }
+         } else {
             Thread logoTimer = new Thread() {
                 public void run() {
                     try {
@@ -64,6 +92,9 @@ public class SplashScreenActivity extends Activity {
                             logoTimer = logoTimer + 100;
 
                         }
+                        
+                        new GenerateKey().execute();
+                        
                         Intent i = new Intent();
                         i.setClass(context, MainActivity.class);
                         finish();
@@ -78,13 +109,13 @@ public class SplashScreenActivity extends Activity {
             };
             logoTimer.start();
         }
-	}
-	
-	private class registerBackground extends AsyncTask<Void, Void, Void> {
+    }
+    
+    private class registerBackground extends AsyncTask<Void, Void, Void> {
 
-		@Override
-		protected Void doInBackground(Void... params) {
-			// TODO Auto-generated method stub
+        @Override
+        protected Void doInBackground(Void... params) {
+            // TODO Auto-generated method stub
             try {
                 if (gcm == null) {
                     gcm = GoogleCloudMessaging.getInstance(context);
@@ -97,23 +128,23 @@ public class SplashScreenActivity extends Activity {
                 ex.getMessage();
             }
 
-			return null;
-		}
-		
-		@Override
-		protected void onPostExecute(Void result) {
-			// TODO Auto-generated method stub
-			super.onPostExecute(result);
-			
-			Intent i = new Intent();
+            return null;
+        }
+        
+        @Override
+        protected void onPostExecute(Void result) {
+            // TODO Auto-generated method stub
+            super.onPostExecute(result);
+            
+            Intent i = new Intent();
             i.setClass(context, MainActivity.class);
             finish();
             startActivity(i);
-		}
-		
-	}
-	
-	/**
+        }
+        
+    }
+    
+    /**
      * Gets the current registration id for application on GCM service.
      * <p>
      * If result is empty, the registration has failed.
@@ -146,7 +177,7 @@ public class SplashScreenActivity extends Activity {
     private SharedPreferences getGCMPreferences(Context context) {
         return getSharedPreferences(MainActivity.class.getSimpleName(), Context.MODE_PRIVATE);
     }
-	
+    
     /**
      * @return Application's version code from the {@code PackageManager}.
      */
@@ -193,40 +224,40 @@ public class SplashScreenActivity extends Activity {
         
         new GenerateKey().execute();
 
-        Preferences.setRegid(context, regId);
+        Preferences.getInstance(context).setRegid(regId);
     }
     
     private class GenerateKey extends AsyncTask<Void, Void, Void> {
 
-    	@Override
-		protected Void doInBackground(Void... params) {
-			// TODO Auto-generated method stub
-//			api = new KnightFrankAPI();
-			try {
-				KnightFrankAPI api = new KnightFrankAPI();
-				JSONObject json = new JSONObject();
-				json = api.generateKey("A", Preferences.getRegid(context));
-				int json_responseCode = json.getInt("statusCode");
-				int json_status = json.getInt("status");
-				
-				if(json_status == 1 && json_responseCode == 200){
-					String client_key = json.getString("key");
-					Preferences.setGenerateKey(context, client_key);
-				}
-				else if(json_status == 2 && json_responseCode == 401) {
-					String message = json.getString("message");
-					Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
-				}
-				else {
-					Toast.makeText(context, "Something went wrong", Toast.LENGTH_SHORT).show();
-				}
-				
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return null;
-		}
-    	
+        @Override
+        protected Void doInBackground(Void... params) {
+            // TODO Auto-generated method stub
+//          api = new KnightFrankAPI();
+            try {
+                KnightFrankAPI api = new KnightFrankAPI();
+                JSONObject json = new JSONObject();
+                json = api.generateKey("A", Preferences.getInstance(context).getRegid());
+                int json_responseCode = json.getInt("statusCode");
+                int json_status = json.getInt("status");
+                
+                if(json_status == 1 && json_responseCode == 200){
+                    String client_key = json.getString("key");
+                    Preferences.getInstance(context).setGenerateKey(client_key);
+                }
+                else if(json_status == 2 && json_responseCode == 401) {
+                    String message = json.getString("message");
+                    Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(context, "Something went wrong", Toast.LENGTH_SHORT).show();
+                }
+                
+            } catch (JSONException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            return null;
+        }
+        
     }
 }

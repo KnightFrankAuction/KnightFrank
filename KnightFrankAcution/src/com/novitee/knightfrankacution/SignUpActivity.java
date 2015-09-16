@@ -74,10 +74,6 @@ public class SignUpActivity extends BaseFragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_sign_up);
 		
-		fragmentTran = getSupportFragmentManager().beginTransaction();
-		fragmentTran.replace(R.id.login_frame, new FacebookLoginFragment());
-		fragmentTran.commit();
-		
 		edit_email = (EditText) findViewById(R.id.edit_email);
 		edit_username = (EditText) findViewById(R.id.edit_username);
 		edit_password = (EditText) findViewById(R.id.edit_password);
@@ -106,7 +102,7 @@ public class SignUpActivity extends BaseFragmentActivity {
 		}
 		
 		//testing
-		edit_email.setText("user@gmail.com");
+		/*edit_email.setText("user@gmail.com");
 		edit_username.setText("user");
 		edit_password.setText("user");
 		edit_phone.setText("093333333333");
@@ -116,9 +112,9 @@ public class SignUpActivity extends BaseFragmentActivity {
 		edit_unit_no.setText("666");
 		edit_postal_code.setText("2345");
 		edit_cea_no.setText("");
-		edit_company.setText("");
+		edit_company.setText("");*/
 		
-		String pref_email = Preferences.getUserName(context);
+		String pref_email = Preferences.getInstance(context).getUserName();
 		if(!pref_email.equals("")) {
 			edit_email.setText(pref_email);
 		}
@@ -199,7 +195,7 @@ public class SignUpActivity extends BaseFragmentActivity {
 				
 				//validate terms and conditions
 				if(validate_flag == true) {
-					if(chkTerms.isChecked() == false) {
+					if(chkTerms.isChecked() == false && type.equals("Public User")) {
 						AlertDialog.Builder builder = new AlertDialog.Builder(context);
 						builder.setTitle("Sign Up")
 							   .setMessage("Please agree to our terms and conditions.")
@@ -265,7 +261,7 @@ public class SignUpActivity extends BaseFragmentActivity {
 					subscribe = "1";
 				}
 				
-				jObj = api.signUp(email, username, password, phone, building_no, building_name, street, unit_no, postal_code, cea_no, company, userType, subscribe, pref.getGenerateKey(context));
+				jObj = api.signUp(email, username, password, phone, building_no, building_name, street, unit_no, postal_code, cea_no, company, userType, subscribe, Preferences.getInstance(context).getGenerateKey());
 				
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
@@ -287,11 +283,22 @@ public class SignUpActivity extends BaseFragmentActivity {
 				int status = jObj.getInt("status");				
 				
 				if(status == 1 && responseCode == 200){
-					Preferences.setUserName(context, email);
-					Preferences.setPassword(context, password);
+					Preferences.getInstance(context).setUserName(email);
+					Preferences.getInstance(context).setPassword(password);
 					
-					Intent intent = new Intent(context, MainActivity.class);
-					startActivity(intent);
+					AlertDialog.Builder builder = new AlertDialog.Builder(context);
+					builder.setMessage("Sign Up Successful! \nPlease log in with your Account Details.")
+					       .setCancelable(false)
+					       .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+					           public void onClick(DialogInterface dialog, int id) {
+					                //do things
+					        	   dialog.dismiss();
+					        	   Intent intent = new Intent(context, LoginActivity.class);
+								   startActivity(intent);
+					           }
+					       });
+					AlertDialog alert = builder.create();
+					alert.show();
 				}
 				else if(status == 2 && responseCode == 401) {
 					String message = jObj.getString("message");
@@ -326,7 +333,7 @@ public class SignUpActivity extends BaseFragmentActivity {
 		protected Void doInBackground(Void... params) {
 			// TODO Auto-generated method stub
 			try {
-				jObj = api.getTerms(pref.getGenerateKey(context));
+				jObj = api.getTerms(Preferences.getInstance(context).getGenerateKey());
 				
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block

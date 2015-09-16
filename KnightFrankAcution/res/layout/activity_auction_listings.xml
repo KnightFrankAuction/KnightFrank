@@ -73,23 +73,23 @@
         android:id="@+id/auction_venue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_above="@+id/venue"
         android:layout_marginLeft="15dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
         android:textColor="@color/black1"
         android:textSize="24sp"
         android:text="Auction Venue:"/>
     
     <TextView 
+        android:id="@+id/venue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_above="@+id/auction_listing_footer"
         android:layout_marginLeft="15dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
         android:textColor="@color/black1"
         android:textSize="24sp"
-        android:text="Amara Hotel, Connection Room 1, Level 3"/>
+        android:text=""/>
     
     <!-- Footer -->
     <FrameLayout 

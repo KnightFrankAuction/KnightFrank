@@ -14,7 +14,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/title_layout"
-        android:layout_above="@+id/filter_footer">
+        android:layout_above="@+id/filter_footer"
+        android:layout_marginBottom="5dp">
         
         <LinearLayout 
             android:layout_width="match_parent"
@@ -200,6 +201,42 @@
                 
             </RelativeLayout> <!-- Building Type -->
             
+            			<!-- DISTRICT -->
+            
+            <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:textSize="24sp"
+                android:textColor="@color/black1"
+                android:text="DISTRICT"/>
+            
+            <RelativeLayout 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white">
+                
+                <Spinner 
+	                android:id="@+id/spinner_district"
+	                android:layout_width="match_parent"
+	                android:layout_height="wrap_content"
+	                android:background="@color/white"
+	                android:layout_centerVertical="true"
+	                android:layout_alignParentLeft="true"
+	                android:gravity="left"
+	                android:layout_marginBottom="15dp"
+	                />
+                
+                <ImageView 
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="15dp"
+                    android:src="@drawable/down_arrow_gray"/>
+	                
+            </RelativeLayout>
+
             		<!-- FLOOR AREA -->
             
             <TextView 
@@ -259,6 +296,138 @@
                      android:hint="Not Set" />
                 
             </LinearLayout>
+            
+            			<!-- PRICE -->
+            
+            <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:textSize="24sp"
+                android:textColor="@color/black1"
+                android:text="PRICE"/>
+            
+            <LinearLayout 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:paddingBottom="5dp"
+                android:weightSum="2">
+                
+                 <TextView 
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    style="@style/FilterTextviewStyle"
+                    android:layout_weight="1"
+                    android:text="Min. Value"/>
+                 
+                 <EditText 
+                     android:id="@+id/edit_min_value"
+                     android:layout_width="0dp"
+                     android:layout_height="50dp"
+                     android:layout_weight="1"
+                     android:layout_marginTop="15dp"
+                     android:layout_marginRight="15dp"
+                     android:hint="Not Set" />
+                
+            </LinearLayout>
+            
+            <LinearLayout 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:paddingBottom="5dp"
+                android:weightSum="2">
+                
+                 <TextView 
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    style="@style/FilterTextviewStyle"
+                    android:layout_weight="1"
+                    android:text="Max. Value"/>
+                 
+                 <EditText 
+                     android:id="@+id/edit_max_value"
+                     android:layout_width="0dp"
+                     android:layout_height="50dp"
+                     android:layout_weight="1"
+                     android:layout_marginTop="15dp"
+                     android:layout_marginRight="15dp"
+                     android:hint="Not Set" />
+                
+            </LinearLayout>
+            
+            			<!-- SQFT SORTING -->
+            
+            <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:textSize="24sp"
+                android:textColor="@color/black1"
+                android:text="SQFT SORTING"/>
+            
+            <RelativeLayout 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:paddingBottom="10dp">
+                
+                <Spinner 
+	                android:id="@+id/spinner_sqft"
+	                android:layout_width="match_parent"
+	                android:layout_height="wrap_content"
+	                android:background="@color/white"
+	                android:layout_centerVertical="true"
+	                android:layout_alignParentLeft="true"
+	                android:gravity="left"
+	                android:layout_marginBottom="15dp"
+	                />
+                 
+                <ImageView 
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/down_arrow_gray"/>
+                 
+            </RelativeLayout>
+            
+            			<!-- PSF SORTING -->
+            
+            <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:textSize="24sp"
+                android:textColor="@color/black1"
+                android:text="PSF SORTING"/>
+            
+            <RelativeLayout 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:paddingBottom="10dp">
+                
+                 <Spinner 
+	                android:id="@+id/spinner_psf"
+	                android:layout_width="match_parent"
+	                android:layout_height="wrap_content"
+	                android:background="@color/white"
+	                android:layout_centerVertical="true"
+	                android:layout_alignParentLeft="true"
+	                android:gravity="left"
+	                android:layout_marginBottom="15dp"
+	                />
+                 
+                <ImageView 
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/down_arrow_gray"/>
+                 
+            </RelativeLayout>
             
         </LinearLayout>
         

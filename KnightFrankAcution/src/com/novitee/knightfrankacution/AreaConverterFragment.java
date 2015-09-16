@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class AreaConverterFragment extends BaseFragment {
 	
@@ -71,7 +72,13 @@ public class AreaConverterFragment extends BaseFragment {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				CalculateLoan();
+				if(valueArea.equals("") || valueArea.equals(null) ) {
+					
+					Toast.makeText(context, "You must fill all fields.", Toast.LENGTH_LONG).show();
+				}
+				else {
+					CalculateArea();
+				}
 			}
 		});
 		
@@ -127,7 +134,7 @@ public class AreaConverterFragment extends BaseFragment {
 		
 	}//showDialog
 	
-	private void CalculateLoan() {
+	private void CalculateArea() {
 		
 		float ans = (float) 0.0;
 		String st = valueArea.getText().toString();

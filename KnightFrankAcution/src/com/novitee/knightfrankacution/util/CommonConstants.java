@@ -18,12 +18,8 @@ public class CommonConstants {
 	/** Next Auction URL**/
 	public static final String NEXT_AUCTION_URL = "api/v1/nextevent";
 	
-	/** Login with Facebook URL**/
-	public static final String LOGIN_FACEBOOK_URL = "api/v1/facebook";
-	
 	/** Sign Up URL**/
 	public static final String SIGN_UP_URL = "api/v1/sign_up_public";
-	public static final String SIGN_UP_FB_URL = "api/v1/sign_up_fb";
 	
 	/** Advertisements URL**/
 	public static final String AD_URL = "api/v1/advertisements";
@@ -32,18 +28,16 @@ public class CommonConstants {
 	public static final String AUCTION_DATE_URL = "api/v1/auction_month";
 	public static final String AUCTION_LIST_URL = "api/v1/auction_date";
 	
-	/** Property URL**/
-	public static final String PROPERTY_DETAIL_URL = "api/v1/";
-	
 	/** Filter URL**/
-	public static final String FILTER_URL = "api/v1/";
+	public static final String FILTER_URL = "api/v1/propertyfilter";
+	public static final String DISTRICT_URL = "api/v1/district";
 	
 	/** Enquiry URL**/
 	public static final String ENQUIRY_URL = "api/v1/sendenquiry";
 	
 	/** Shortlist URL**/
 	public static final String SAVE_SHORTLIST_URL = "api/v1/save_shortlist";
-	public static final String DELETE_SHORTLIST_URL = "api/v1/save_shortlist";
+	public static final String DELETE_SHORTLIST_URL = "api/v1/delete_shortlist";
 	public static final String GET_ALL_SHORTLIST_URL = "api/v1/getshortlist";
 	
 	/** Starbuy / Project Listings URL**/
@@ -55,6 +49,9 @@ public class CommonConstants {
 	
 	/** Terms URL**/
 	public static final String TERMS_URL = "api/v1/terms";
+	
+	/** Search URL**/
+	public static final String SEARCH_URL = "api/v1/search/{session_token}";
 	
 }
 

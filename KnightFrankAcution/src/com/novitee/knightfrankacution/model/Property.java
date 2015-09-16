@@ -43,6 +43,7 @@ public class Property implements Serializable {
 	public String phone;
 	public String email;
 	public String date;
+	public String bgcolor;
 	
 	List<Photo> photo ;
 
@@ -80,6 +81,7 @@ public class Property implements Serializable {
 			phone = j.getString("phone");
 			email = j.getString("email");
 			date = j.getString("start_date");
+			bgcolor = "#FFFFFF";
 			
 			/*property_id = j.getString("property_id");
 			phone = j.getString("phone");
@@ -310,6 +312,12 @@ public class Property implements Serializable {
 	}
 	public void setPhoto(List<Photo> photo) {
 		this.photo = photo;
+	}
+	public String getBgcolor() {
+		return bgcolor;
+	}
+	public void setBgcolor(String bgcolor) {
+		this.bgcolor = bgcolor;
 	}	
 	
 }

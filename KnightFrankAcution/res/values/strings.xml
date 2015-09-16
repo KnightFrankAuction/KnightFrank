@@ -43,5 +43,11 @@
     <string name="title_activity_news">NewsActivity</string>
     <string name="title_activity_sign_up_facebook">SignUpFacebookActivity</string>
     <string name="title_activity_about_us">AboutUsActivity</string>
+    <string name="title_activity_logout">LogoutActivity</string>
+    <string name="title_activity_short_list">ShortListActivity</string>
+    <string name="title_activity_notification_settings">NotificationSettingsActivity</string>
+    <string name="title_activity_filter_list">FilterListActivity</string>
+    <string name="title_activity_search">SearchActivity</string>
+    <string name="title_activity_share">ShareActivity</string>
 
 </resources>

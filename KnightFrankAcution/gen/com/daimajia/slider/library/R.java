@@ -42,8 +42,8 @@ public final class R {
 		public static final int activity_vertical_margin = 0x7f090021;
 	}
 	public static final class drawable {
-		public static final int ic_launcher = 0x7f020038;
-		public static final int indicator_corner_bg = 0x7f02003d;
+		public static final int ic_launcher = 0x7f02003a;
+		public static final int indicator_corner_bg = 0x7f02003f;
 	}
 	public static final class id {
 		public static final int Accordion = 0x7f05002b;
@@ -62,33 +62,33 @@ public final class R {
 		public static final int ZoomIn = 0x7f050037;
 		public static final int ZoomOut = 0x7f050039;
 		public static final int ZoomOutSlide = 0x7f050038;
-		public static final int action_settings = 0x7f05012a;
-		public static final int daimajia_indicator_wrapper = 0x7f0500e2;
-		public static final int daimajia_slider_image = 0x7f05010f;
-		public static final int daimajia_slider_viewpager = 0x7f050115;
-		public static final int default_bottom_left_indicator = 0x7f050118;
-		public static final int default_bottom_right_indicator = 0x7f050117;
-		public static final int default_center_bottom_indicator = 0x7f050116;
-		public static final int default_center_top_indicator = 0x7f050119;
-		public static final int default_center_top_left_indicator = 0x7f05011b;
-		public static final int default_center_top_right_indicator = 0x7f05011a;
-		public static final int description = 0x7f050112;
-		public static final int description_layout = 0x7f050111;
+		public static final int action_settings = 0x7f05017e;
+		public static final int daimajia_indicator_wrapper = 0x7f050135;
+		public static final int daimajia_slider_image = 0x7f050162;
+		public static final int daimajia_slider_viewpager = 0x7f050168;
+		public static final int default_bottom_left_indicator = 0x7f05016b;
+		public static final int default_bottom_right_indicator = 0x7f05016a;
+		public static final int default_center_bottom_indicator = 0x7f050169;
+		public static final int default_center_top_indicator = 0x7f05016c;
+		public static final int default_center_top_left_indicator = 0x7f05016e;
+		public static final int default_center_top_right_indicator = 0x7f05016d;
+		public static final int description = 0x7f050165;
+		public static final int description_layout = 0x7f050164;
 		public static final int invisible = 0x7f050029;
-		public static final int loading_bar = 0x7f050110;
+		public static final int loading_bar = 0x7f050163;
 		public static final int oval = 0x7f05003a;
 		public static final int rect = 0x7f05003b;
 		public static final int visible = 0x7f050028;
 	}
 	public static final class layout {
-		public static final int activity_main = 0x7f03000a;
-		public static final int indicator_layout = 0x7f03001e;
-		public static final int render_type_default = 0x7f03002c;
-		public static final int render_type_text = 0x7f03002d;
-		public static final int slider_layout = 0x7f030030;
+		public static final int activity_main = 0x7f03000b;
+		public static final int indicator_layout = 0x7f030023;
+		public static final int render_type_default = 0x7f030031;
+		public static final int render_type_text = 0x7f030032;
+		public static final int slider_layout = 0x7f030036;
 	}
 	public static final class menu {
-		public static final int main = 0x7f0c000a;
+		public static final int main = 0x7f0c000c;
 	}
 	public static final class string {
 		public static final int action_settings = 0x7f06003a;

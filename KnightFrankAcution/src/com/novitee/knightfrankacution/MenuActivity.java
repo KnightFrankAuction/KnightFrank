@@ -9,9 +9,11 @@ import org.json.JSONObject;
 
 import com.novitee.knightfrankacution.model.Photo;
 import com.novitee.knightfrankacution.model.Property;
+import com.novitee.knightfrankacution.util.Preferences;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
@@ -38,6 +40,10 @@ public class MenuActivity extends AdvertisementsActivity implements OnClickListe
 	
 	String type;
 	
+	FragmentTransaction fragmentTran;
+	
+	int pageCount = 1;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -46,6 +52,10 @@ public class MenuActivity extends AdvertisementsActivity implements OnClickListe
 		//download advertisements image
 		new downloadAd().execute();
 		
+		fragmentTran = getSupportFragmentManager().beginTransaction();
+		fragmentTran.replace(R.id.menu_footer, new FooterFragment());
+		fragmentTran.commit();
+		
 		auction_listings = (LinearLayout) findViewById(R.id.auction_listings);
 		private_listings = (LinearLayout) findViewById(R.id.private_listings);
 		project_listings = (LinearLayout) findViewById(R.id.project_listings);
@@ -53,6 +63,11 @@ public class MenuActivity extends AdvertisementsActivity implements OnClickListe
 		info_news = (LinearLayout) findViewById(R.id.info_and_news);
 		tools = (LinearLayout) findViewById(R.id.tools);
 		document = (ImageView) findViewById(R.id.document);
+		
+		int user_type = Preferences.getInstance(context).getUserType();
+		if(user_type == 2) {
+			document.setVisibility(View.VISIBLE);
+		}
 		
 		listPro = new ArrayList<Property>();
 		listImage = new ArrayList<String>();
@@ -81,12 +96,14 @@ public class MenuActivity extends AdvertisementsActivity implements OnClickListe
 			startActivity(intent);
 		}
 		else if(v.getId() == project_listings.getId()) {
-			type = "Project Listings";
-			new GetAllList().execute();
+			Intent intent = new Intent();
+			intent = new Intent(context, ProjectListingsActivity.class);
+			startActivity(intent);
 		}
 		else if(v.getId() == starbuys.getId()) {
-			type = "Starbuys";
-			new GetAllList().execute();
+			Intent intent = new Intent();
+			intent = new Intent(context, StarbuysActivity.class);
+			startActivity(intent);
 		}
 		else if(v.getId() == info_news.getId()) {
 			Intent intent = new Intent();
@@ -124,7 +141,7 @@ public class MenuActivity extends AdvertisementsActivity implements OnClickListe
 		protected Void doInBackground(Void... params) {
 			// TODO Auto-generated method stub
 			try {
-				jObj = api.getAllList(pref.getSessionToken(context), type);
+				jObj = api.getAllList(Preferences.getInstance(context).getSessionToken(), type, pageCount);
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -168,7 +185,7 @@ public class MenuActivity extends AdvertisementsActivity implements OnClickListe
 						listImage.add(photo.getName());
 					}
 
-					Intent intent = new Intent(context, PropertyListActivity.class);
+					Intent intent = new Intent(context, AuctionPropertyListActivity.class);
 					intent.putExtra("title", type);
 					intent.putExtra("pList", listPro);
 					intent.putExtra("imageList", listImage);
@@ -191,11 +208,5 @@ public class MenuActivity extends AdvertisementsActivity implements OnClickListe
 		}//onPostExecute
 		
 	}//GetAllStarbuy
-	
-	@Override
-	public void onBackPressed() {
-		// TODO Auto-generated method stub
-		moveTaskToBack(true);
-	}
 
 }

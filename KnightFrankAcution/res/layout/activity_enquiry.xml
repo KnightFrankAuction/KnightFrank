@@ -13,8 +13,9 @@
     
     <ScrollView 
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/title_layout">
+        android:layout_height="match_parent"
+        android:layout_below="@+id/title_layout"
+        android:layout_above="@+id/enquiry_footer" >
         
         <LinearLayout 
             android:layout_width="match_parent"
@@ -111,10 +112,10 @@
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
                     android:layout_gravity="top|left"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="5dp"
                     android:layout_marginTop="5dp"
                     android:textColor="@color/black"
-                    android:textSize="24sp"
+                    android:textSize="20sp"
                     android:text="Remark"/>
                 
                 <EditText 
@@ -165,6 +166,7 @@
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="25dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
                 style="@style/TitleStyle"
                 android:text="Submit"/>
             

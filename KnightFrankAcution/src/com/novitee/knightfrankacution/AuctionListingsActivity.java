@@ -7,10 +7,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.novitee.knightfrankacution.model.Photo;
 import com.novitee.knightfrankacution.model.Property;
+import com.novitee.knightfrankacution.util.Preferences;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -38,6 +37,7 @@ public class AuctionListingsActivity extends AdvertisementsActivity {
 	ListView list_auction_date;
 	ImageView left;
 	ImageView right;
+	TextView venue;
 	TextView auctionMonth;
 	ProgressBar progress;
 	
@@ -65,6 +65,7 @@ public class AuctionListingsActivity extends AdvertisementsActivity {
 		left = (ImageView) findViewById(R.id.auction_left);
 		right = (ImageView) findViewById(R.id.auction_right);
 		auctionMonth = (TextView) findViewById(R.id.auctiion_month);
+		venue = (TextView) findViewById(R.id.venue);
 		progress = (ProgressBar) findViewById(R.id.progress_date_list);
 		
 		stDate = new ArrayList<String>();
@@ -89,8 +90,9 @@ public class AuctionListingsActivity extends AdvertisementsActivity {
 					long arg3) {
 				// TODO Auto-generated method stub
 				date = stDate.get(position);
-//				date = "August 2015";
-				new GetAutionList().execute();
+				Intent intent = new Intent(context, AuctionPropertyListActivity.class);
+				intent.putExtra("AuctionDate", date);
+				startActivity(intent);
 			}
 		});
 	}
@@ -103,7 +105,14 @@ public class AuctionListingsActivity extends AdvertisementsActivity {
 		
 		titleText2.setVisibility(View.GONE);
 		titleText.setText("Auction Listing");
-		titleImage.setBackgroundResource(R.drawable.notification_icon);
+		
+		int user_type = Preferences.getInstance(context).getUserType();
+		if(user_type == 2) {
+			titleImage.setBackgroundResource(R.drawable.document);
+		}
+		else {
+			titleImage.setVisibility(View.GONE);
+		}
 		
 		fragmentTran = getSupportFragmentManager().beginTransaction();
 		fragmentTran.replace(R.id.auction_listing_footer, new FooterFragment());
@@ -120,12 +129,6 @@ public class AuctionListingsActivity extends AdvertisementsActivity {
 		});
 	}//setTitleBarAndFooter
 	
-	@Override
-	public void onBackPressed() {
-		// TODO Auto-generated method stub
-		super.onBackPressed();
-	}
-
 	public class GetAuctionDate extends AsyncTask<Void, Void, Void> {
 		
 		JSONObject jObj;
@@ -141,7 +144,7 @@ public class AuctionListingsActivity extends AdvertisementsActivity {
 		protected Void doInBackground(Void... params) {
 			// TODO Auto-generated method stub
 			try {
-				jObj = api.getAuctionDate(pref.getSessionToken(context), "August 2015");
+				jObj = api.getAuctionDate(Preferences.getInstance(context).getSessionToken(), "August 2015");
 				
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
@@ -161,6 +164,9 @@ public class AuctionListingsActivity extends AdvertisementsActivity {
 				int json_status = jObj.getInt("status");
 				
 				if(json_status == 1 && json_responseCode == 200){
+					String stVenue = jObj.getString("venue");
+					venue.setText(stVenue);
+					
 					JSONArray data = jObj.getJSONArray("data");
 
 					stDate.clear();
@@ -188,85 +194,4 @@ public class AuctionListingsActivity extends AdvertisementsActivity {
 		
 	}//GetAuctionDate
 	
-	public class GetAutionList extends AsyncTask<Void, Void, Void> {
-		JSONObject jObj;
-		ProgressDialog pDialog;
-		
-		@Override
-		protected void onPreExecute() {
-			super.onPreExecute();
-			pDialog = new ProgressDialog(AuctionListingsActivity.this);
-            pDialog.setMessage("Please wait....");
-            pDialog.setCancelable(false);
-            pDialog.show();
-		}
-		
-		@Override
-		protected Void doInBackground(Void... params) {
-			// TODO Auto-generated method stub
-			try {
-				jObj = api.getAuctionList(pref.getSessionToken(context), date);
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return null;
-		}
-		
-		@Override
-		protected void onPostExecute(Void result) {
-			// TODO Auto-generated method stub
-			super.onPostExecute(result);
-			if(pDialog.isShowing()){
-				pDialog.dismiss();
-			}
-
-			try {
-				int json_responseCode = jObj.getInt("statusCode");
-				int json_status = jObj.getInt("status");
-				
-				if(json_status == 1 && json_responseCode == 200){
-					Property property;
-					JSONArray jArray = jObj.getJSONArray("property");
-					
-					listPro.clear();
-					Photo photo;
-					List<Photo> list = new ArrayList<Photo>();
-					
-					for (int i = 0; i < jArray.length(); i++) {
-						JSONObject json = jArray.getJSONObject(i);
-						property = new Property(json);
-						listPro.add(property);
-
-						list = property.getPhoto();
-						if(list.size() > 0) {
-							photo = list.get(0);
-						}
-						else {
-							photo = new Photo("");
-						}
-						
-						listImage.add(photo.getName());
-					}
-
-					Intent intent = new Intent(context, PropertyListActivity.class);
-//					intent.putExtra("auctionDate", date);
-					intent.putExtra("pList", listPro);
-					intent.putExtra("imageList", listImage);
-					startActivity(intent);
-				}
-				else if(json_status == 2 && json_responseCode == 401) {
-					String message = jObj.getString("message");
-					Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
-				}
-				else {
-					Toast.makeText(context, "Something went wrong", Toast.LENGTH_SHORT).show();
-				}
-				
-			} catch (JSONException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-		}
-	}
 }	

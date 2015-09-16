@@ -4,6 +4,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.novitee.knightfrankacution.base.BaseFragmentActivity;
+import com.novitee.knightfrankacution.util.Preferences;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -66,7 +67,6 @@ public class EnquiryActivity extends BaseFragmentActivity {
 
 				if(connectionManager.isConnected()) {			
 					new sendEnquiry().execute();
-					
 				}
 				else {
 					Toast.makeText(context, "No Internet Connection", Toast.LENGTH_SHORT).show();
@@ -109,10 +109,10 @@ public class EnquiryActivity extends BaseFragmentActivity {
 			// TODO Auto-generated method stub
 			try {
 				if(imageFilePath != null) {
-					jObj = api.sendEnquiryWithAttachment(email, contact, name, remark, attachment);
+					jObj = api.sendEnquiryWithAttachment(email, contact, name, remark, attachment, Preferences.getInstance(context).getSessionToken());
 				}
 				else {
-					jObj = api.sendEnquiry(email, contact, name, remark);
+					jObj = api.sendEnquiry(email, contact, name, remark, Preferences.getInstance(context).getSessionToken());
 				}
 				
 				
@@ -150,7 +150,8 @@ public class EnquiryActivity extends BaseFragmentActivity {
 					Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
 				}
 				else {
-					Toast.makeText(context, "Something went wrong", Toast.LENGTH_SHORT).show();
+					String message = jObj.getString("message");
+					Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
 				}
 				
 			} catch (JSONException e) {

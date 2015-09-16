@@ -1,0 +1,261 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+	android:background="@color/white"
+    tools:context=".NotificationSettingsActivity" >
+    
+    <include 
+        android:id="@+id/title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        layout="@layout/title_layout"/>
+
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@+id/title_layout">
+        
+        <!-- Mute Notification -->
+        <RelativeLayout 
+	        android:id="@+id/layout_mute_noti"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:background="@color/white">
+	        
+	        <TextView 
+	            android:id="@+id/txt_mute_noti"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            style="@style/FilterTextviewStyle"
+	            android:gravity="center_vertical"
+	            android:text="Mute Notification"/>
+	            
+	         <ToggleButton 
+	            android:id="@+id/toggle_mute_noti"
+	            android:layout_width="50dp"
+	            android:layout_height="30dp"
+	            style="@style/ToggleButtonStyle"/>
+	        
+	        <View 
+		        android:layout_width="match_parent"
+		        android:layout_height="2dp"
+		        android:layout_marginLeft="10dp"
+		        android:layout_marginRight="10dp"
+		        android:layout_marginTop="15dp"
+		        android:layout_marginBottom="15dp"
+		        android:layout_below="@+id/txt_mute_noti"
+		        android:background="@color/gray"/>
+	        
+	    </RelativeLayout>
+	    
+        <!-- New Listing -->
+        <RelativeLayout 
+	        android:id="@+id/layout_new_listing"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:background="@color/white">
+	        
+	        <TextView 
+	            android:id="@+id/txt_new_listing"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            style="@style/FilterTextviewStyle"
+	            android:gravity="center_vertical"
+	            android:text="New Listing"/>
+	            
+	         <ToggleButton 
+	            android:id="@+id/toggle_new_listing"
+	            android:layout_width="50dp"
+	            android:layout_height="30dp"
+	            style="@style/ToggleButtonStyle"/>
+	        
+	        <View 
+		        android:layout_width="match_parent"
+		        android:layout_height="2dp"
+		        android:layout_marginLeft="10dp"
+		        android:layout_marginRight="10dp"
+		        android:layout_marginTop="15dp"
+		        android:layout_marginBottom="15dp"
+		        android:layout_below="@+id/txt_new_listing"
+		        android:background="@color/gray"/>
+	        
+	    </RelativeLayout>
+	    
+        <!-- Update on Shortlist -->
+        <RelativeLayout 
+	        android:id="@+id/layout_update_shortlist"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:background="@color/white">
+	        
+	        <TextView 
+	            android:id="@+id/txt_update_shortlist"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            style="@style/FilterTextviewStyle"
+	            android:gravity="center_vertical"
+	            android:text="Update on Shortlist"/>
+	            
+	         <ToggleButton 
+	            android:id="@+id/toggle_update_shortlist"
+	            android:layout_width="50dp"
+	            android:layout_height="30dp"
+	            style="@style/ToggleButtonStyle"/>
+	        
+	        <View 
+		        android:layout_width="match_parent"
+		        android:layout_height="2dp"
+		        android:layout_marginLeft="10dp"
+		        android:layout_marginRight="10dp"
+		        android:layout_marginTop="15dp"
+		        android:layout_marginBottom="15dp"
+		        android:layout_below="@+id/txt_update_shortlist"
+		        android:background="@color/gray"/>
+	        
+	    </RelativeLayout>
+	    
+        <!-- New Star Buy -->
+        <RelativeLayout 
+	        android:id="@+id/layout_new_starbuy"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:background="@color/white">
+	        
+	        <TextView 
+	            android:id="@+id/txt_new_starbuy"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            style="@style/FilterTextviewStyle"
+	            android:gravity="center_vertical"
+	            android:text="New Star Buy"/>
+	            
+	         <ToggleButton 
+	            android:id="@+id/toggle_new_starbuy"
+	            android:layout_width="50dp"
+	            android:layout_height="30dp"
+	            style="@style/ToggleButtonStyle"/>
+	        
+	        <View 
+		        android:layout_width="match_parent"
+		        android:layout_height="2dp"
+		        android:layout_marginLeft="10dp"
+		        android:layout_marginRight="10dp"
+		        android:layout_marginTop="15dp"
+		        android:layout_marginBottom="15dp"
+		        android:layout_below="@+id/txt_new_starbuy"
+		        android:background="@color/gray"/>
+	        
+	    </RelativeLayout>
+	    
+        <!-- New News -->
+        <RelativeLayout 
+	        android:id="@+id/layout_new_news"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:background="@color/white">
+	        
+	        <TextView 
+	            android:id="@+id/txt_new_news"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            style="@style/FilterTextviewStyle"
+	            android:gravity="center_vertical"
+	            android:text="New News"/>
+	            
+	         <ToggleButton 
+	            android:id="@+id/toggle_new_news"
+	            android:layout_width="50dp"
+	            android:layout_height="30dp"
+	            style="@style/ToggleButtonStyle"/>
+	        
+	        <View 
+		        android:layout_width="match_parent"
+		        android:layout_height="2dp"
+		        android:layout_marginLeft="10dp"
+		        android:layout_marginRight="10dp"
+		        android:layout_marginTop="15dp"
+		        android:layout_marginBottom="15dp"
+		        android:layout_below="@+id/txt_new_news"
+		        android:background="@color/gray"/>
+	        
+	    </RelativeLayout>
+	    
+        <!-- Auction Remainder -->
+        <RelativeLayout 
+	        android:id="@+id/layout_auction_ramainder"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:background="@color/white">
+	        
+	        <TextView 
+	            android:id="@+id/txt_auction_ramainder"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            style="@style/FilterTextviewStyle"
+	            android:gravity="center_vertical"
+	            android:text="Auction Remainder"/>
+	            
+	         <ToggleButton 
+	            android:id="@+id/toggle_auction_ramainder"
+	            android:layout_width="50dp"
+	            android:layout_height="30dp"
+	            style="@style/ToggleButtonStyle"/>
+	        
+	        <View 
+		        android:layout_width="match_parent"
+		        android:layout_height="2dp"
+		        android:layout_marginLeft="10dp"
+		        android:layout_marginRight="10dp"
+		        android:layout_marginTop="15dp"
+		        android:layout_marginBottom="15dp"
+		        android:layout_below="@+id/txt_auction_ramainder"
+		        android:background="@color/gray"/>
+	        
+	    </RelativeLayout>
+	    
+        <!-- New Auctions -->
+        <RelativeLayout 
+	        android:id="@+id/layout_new_auctions"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:background="@color/white">
+	        
+	        <TextView 
+	            android:id="@+id/txt_new_auctions"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            style="@style/FilterTextviewStyle"
+	            android:gravity="center_vertical"
+	            android:text="New Auctions"/>
+	            
+	         <ToggleButton 
+	            android:id="@+id/toggle_new_auctions"
+	            android:layout_width="50dp"
+	            android:layout_height="30dp"
+	            style="@style/ToggleButtonStyle"/>
+	        
+	        <View 
+		        android:layout_width="match_parent"
+		        android:layout_height="2dp"
+		        android:layout_marginLeft="10dp"
+		        android:layout_marginRight="10dp"
+		        android:layout_marginTop="15dp"
+		        android:layout_marginBottom="15dp"
+		        android:layout_below="@+id/txt_new_auctions"
+		        android:background="@color/gray"/>
+	        
+	    </RelativeLayout>
+        
+    </LinearLayout>
+    
+    <!-- Footer -->
+    <FrameLayout 
+        android:id="@+id/noti_setting_footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>

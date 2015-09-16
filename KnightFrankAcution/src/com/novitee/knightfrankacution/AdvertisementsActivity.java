@@ -68,7 +68,8 @@ public class AdvertisementsActivity extends BaseFragmentActivity {
 					Set<String> set = new HashSet<String>();
 					set.addAll(ad_list);
 					
-					Preferences.setAdList(AdvertisementsActivity.this, set);
+//					Preferences.getInstance(context).getAdList().clear();
+					Preferences.getInstance(context).setAdList(set);
 				}
 				else {
 					String message = jObj.getString("message");
@@ -96,33 +97,36 @@ public class AdvertisementsActivity extends BaseFragmentActivity {
 	}//downloadAd
 	
 	public void showAD() {
-		Set<String> set = Preferences.getAdList(AdvertisementsActivity.this);
-		Object[] list = set.toArray();
+		Set<String> set = Preferences.getInstance(context).getAdList();
 		
-		int index = randomInt(list.length);
-		String ad_url = (String) list[index];
-		
-		final Dialog dialog = new Dialog(AdvertisementsActivity.this);
-		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		dialog.setContentView(R.layout.activity_advertisements);
-		
-		Picasso.with(AdvertisementsActivity.this)
-		.load(ad_url)
-		.error(R.drawable.ic_launcher)
-		.into((ImageView) dialog.findViewById(R.id.ad_image));
-		
-		close = (ImageView) dialog.findViewById(R.id.close_ad);
-		close.setOnClickListener(new OnClickListener() {
+		if(set != null) {
+			Object[] list = set.toArray();
 			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				dialog.dismiss();
-			}
-		});
-		
-		dialog.show();
-		
+			int index = randomInt(list.length);
+			String ad_url = (String) list[index];
+			
+			final Dialog dialog = new Dialog(AdvertisementsActivity.this);
+			dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+			dialog.setContentView(R.layout.activity_advertisements);
+			
+			Picasso.with(AdvertisementsActivity.this)
+			.load(ad_url)
+			.error(R.drawable.ic_launcher)
+			.into((ImageView) dialog.findViewById(R.id.ad_image));
+			
+			close = (ImageView) dialog.findViewById(R.id.close_ad);
+			close.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					dialog.dismiss();
+				}
+			});
+			
+			dialog.show();
+		}
+
 	}
 	
 	public int randomInt(int range) {

@@ -1,7 +1,6 @@
 package com.novitee.knightfrankacution;
 
 import com.novitee.knightfrankacution.adapter.ViewPagerAdapter;
-import com.novitee.knightfrankacution.util.Preferences;
 import com.viewpagerindicator.CirclePageIndicator;
 
 import android.content.Intent;
@@ -52,7 +51,6 @@ public class ViewPagerFragment extends Fragment {
 				// TODO Auto-generated method stub
 				Intent intent = new Intent(getActivity(), LoginActivity.class);
 				startActivity(intent);
-//				startLogin();
 			}
 		});
 		
@@ -69,9 +67,4 @@ public class ViewPagerFragment extends Fragment {
 		return view;
 	}
 
-	public void startLogin() {
-		fragmentTran = getActivity().getSupportFragmentManager().beginTransaction();
-		fragmentTran.replace(R.id.place_holder, new LoginFragment());
-		fragmentTran.commit();
-	}
 }

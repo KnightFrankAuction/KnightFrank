@@ -13,10 +13,11 @@
         android:drawableLeft="@drawable/search_icon"
         android:layout_marginRight="5dp"
         android:hint="Search"
-        android:layout_toLeftOf="@+id/search" />
+        android:focusable="false"
+        android:layout_toLeftOf="@+id/filter" />
     
     <ImageView 
-        android:id="@+id/search"
+        android:id="@+id/filter"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_alignParentRight="true"

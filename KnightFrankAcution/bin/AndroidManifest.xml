@@ -81,11 +81,13 @@
         </activity>
         <activity
             android:name="com.novitee.knightfrankacution.ProjectListingsActivity"
-            android:label="@string/title_activity_project_listings" >
+            android:label="@string/title_activity_project_listings"
+            android:windowSoftInputMode="stateHidden" >
         </activity>
         <activity
             android:name="com.novitee.knightfrankacution.StarbuysActivity"
-            android:label="@string/title_activity_starbuys" >
+            android:label="@string/title_activity_starbuys"
+            android:windowSoftInputMode="stateHidden" >
         </activity>
         <activity
             android:name="com.novitee.knightfrankacution.InfoNewsActivity"
@@ -110,7 +112,7 @@
             <!--
             <intent-filter>
                 <action android:name="android.intent.action.DIAL" />
-            </intent-filter>
+            </intent-filter>
             -->
 
         </activity>
@@ -133,11 +135,13 @@
         </activity>
         <activity
             android:name="com.novitee.knightfrankacution.FilterActivity"
-            android:label="@string/title_activity_filter" >
+            android:label="@string/title_activity_filter"
+            android:windowSoftInputMode="stateHidden" >
         </activity>
         <activity
-            android:name="com.novitee.knightfrankacution.PropertyListActivity"
-            android:label="@string/title_activity_property_list" >
+            android:name="com.novitee.knightfrankacution.AuctionPropertyListActivity"
+            android:label="@string/title_activity_property_list"
+            android:windowSoftInputMode="stateHidden" >
         </activity>
         <activity
             android:name="com.novitee.knightfrankacution.EnquiryActivity"
@@ -170,6 +174,44 @@
         <activity
             android:name="com.novitee.knightfrankacution.MoreActivity"
             android:label="@string/title_activity_about_us" >
+        </activity>
+        <activity
+            android:name="com.novitee.knightfrankacution.LogoutActivity"
+            android:label="@string/title_activity_logout" >
+        </activity>
+        <activity
+            android:name="com.novitee.knightfrankacution.ShortListActivity"
+            android:label="@string/title_activity_short_list"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+        <activity
+            android:name="com.novitee.knightfrankacution.NotificationSettingsActivity"
+            android:label="@string/title_activity_notification_settings" >
+        </activity>
+
+        <receiver
+            android:name="com.novitee.knightfrankacution.NotificationReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+
+                <category android:name="com.novitee.knightfrankacution" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name="com.novitee.knightfrankacution.PropertyListActivity"
+            android:label="@string/title_activity_filter_list"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+        <activity
+            android:name="com.novitee.knightfrankacution.SearchActivity"
+            android:label="@string/title_activity_search"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+        <activity
+            android:name="com.novitee.knightfrankacution.ShareWithEmail"
+            android:label="@string/title_activity_share" >
         </activity>
     </application>
 

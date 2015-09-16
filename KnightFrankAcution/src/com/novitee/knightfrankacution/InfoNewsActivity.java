@@ -7,6 +7,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.novitee.knightfrankacution.base.BaseFragmentActivity;
+import com.novitee.knightfrankacution.util.Preferences;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -140,7 +141,7 @@ public class InfoNewsActivity extends BaseFragmentActivity implements OnClickLis
 		protected Void doInBackground(Void... params) {
 			// TODO Auto-generated method stub
 			try {
-				jObj = api.getInfo(pref.getSessionToken(context));
+				jObj = api.getInfo(Preferences.getInstance(context).getSessionToken());
 				
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block

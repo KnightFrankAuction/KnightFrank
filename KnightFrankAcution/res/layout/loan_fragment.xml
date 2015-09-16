@@ -59,7 +59,7 @@
             android:layout_height="wrap_content"
             style="@style/FilterTextviewStyle"
             android:gravity="center_vertical"
-            android:text="Interest Rate"/>
+            android:text="Interest Rate (%)"/>
         
         <TextView 
             android:id="@+id/interest_rate"
