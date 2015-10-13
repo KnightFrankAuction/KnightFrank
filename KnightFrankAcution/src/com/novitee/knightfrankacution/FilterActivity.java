@@ -321,12 +321,12 @@ public class FilterActivity extends BaseFragmentActivity {
 	}//setTitleBarAndFooter
 	
 	private void setDistrictSpinner() {
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, R.layout.spinner_layout, stDistrict);
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, R.layout.kf_single_textview_layout, stDistrict);
 		district.setAdapter(adapter);
 	}
 	
 	private void setSpinner() {
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, R.layout.spinner_layout, stSpinner);
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, R.layout.kf_single_textview_layout, stSpinner);
 		sqft.setAdapter(adapter);
 		psf.setAdapter(adapter);
 	}

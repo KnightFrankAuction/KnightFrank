@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray"
+    tools:context=".Starbuys1Activity" >
+    
+    <include 
+        android:id="@+id/title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        layout="@layout/title_layout"/>
+    
+    <FrameLayout 
+        android:id="@+id/starbuys_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title_layout" />
+    
+    <ProgressBar 
+        android:id="@+id/starbuys_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/starbuys_search"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="5dp"/>
+    
+    <ListView 
+        android:id="@+id/starbuys_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/starbuys_search"
+        android:layout_above="@+id/starbuys_refresh"
+        android:layout_marginBottom="10dp"
+        android:visibility="gone" />
+    
+    <ProgressBar 
+        android:id="@+id/starbuys_refresh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/starbuys_footer"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"
+		android:visibility="gone"
+		style="?android:attr/progressBarStyleSmall"/>
+    
+    <TextView 
+        android:id="@+id/share_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/starbuys_footer"
+        style="@style/ShareBoxStyle" />
+    
+    <FrameLayout 
+        android:id="@+id/starbuys_footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>

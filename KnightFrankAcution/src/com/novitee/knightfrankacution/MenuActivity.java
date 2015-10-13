@@ -44,6 +44,8 @@ public class MenuActivity extends AdvertisementsActivity implements OnClickListe
 	
 	int pageCount = 1;
 	
+	FooterFragment footer_frg;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -52,8 +54,9 @@ public class MenuActivity extends AdvertisementsActivity implements OnClickListe
 		//download advertisements image
 		new downloadAd().execute();
 		
+		footer_frg = new FooterFragment();
 		fragmentTran = getSupportFragmentManager().beginTransaction();
-		fragmentTran.replace(R.id.menu_footer, new FooterFragment());
+		fragmentTran.replace(R.id.menu_footer, footer_frg);
 		fragmentTran.commit();
 		
 		auction_listings = (LinearLayout) findViewById(R.id.auction_listings);
@@ -79,6 +82,14 @@ public class MenuActivity extends AdvertisementsActivity implements OnClickListe
 		info_news.setOnClickListener(this);
 		tools.setOnClickListener(this);
 		document.setOnClickListener(this);
+	}
+	
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		
+		footer_frg.home.setImageResource(R.drawable.home_icon_pink);
 	}
 
 	@Override

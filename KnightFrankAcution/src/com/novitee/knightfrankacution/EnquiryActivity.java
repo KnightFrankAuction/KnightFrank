@@ -26,6 +26,7 @@ public class EnquiryActivity extends BaseFragmentActivity {
 	TextView titleText;
 	TextView titleText2;
 	ImageView titleImage;
+	FooterFragment footer_frg;
 	
 	FragmentTransaction fragmentTran;
 	
@@ -33,7 +34,6 @@ public class EnquiryActivity extends BaseFragmentActivity {
 	EditText editContact;
 	EditText editName;
 	EditText editRemark;
-//	EditText editAttachment;
 	TextView editAttachment;
 	Button btnSubmit;
 	
@@ -87,8 +87,40 @@ public class EnquiryActivity extends BaseFragmentActivity {
 			}
 		});
 		
-		
 	}//onCreate
+	
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		
+		footer_frg.enquiry.setImageResource(R.drawable.enquiry_icon_pink);
+	}
+	
+	public void setTitleBarAndFooter() {
+		//title bar
+		titleText = (TextView) findViewById(R.id.title_text);
+		titleText2 = (TextView) findViewById(R.id.title_text2);
+		titleImage = (ImageView) findViewById(R.id.title_image);
+		titleText2.setVisibility(View.GONE);
+		titleImage.setVisibility(View.GONE);
+		titleText.setText("Enquiry");
+		
+		footer_frg = new FooterFragment();
+		fragmentTran = getSupportFragmentManager().beginTransaction();
+		fragmentTran.replace(R.id.enquiry_footer, footer_frg);
+		fragmentTran.commit();
+
+		ImageView titleBack = (ImageView) findViewById(R.id.title_back);
+		titleBack.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				onBackPressed();
+			}
+		});
+	}//setTitleBarAndFooter
 	
 	public class sendEnquiry extends AsyncTask<Void, Void, Void> {
 		
@@ -162,37 +194,6 @@ public class EnquiryActivity extends BaseFragmentActivity {
 		}
 		
 	}//sendEnquiry
-	
-	public void setTitleBarAndFooter() {
-		//title bar
-		titleText = (TextView) findViewById(R.id.title_text);
-		titleText2 = (TextView) findViewById(R.id.title_text2);
-		titleImage = (ImageView) findViewById(R.id.title_image);
-		titleText2.setVisibility(View.GONE);
-		titleImage.setVisibility(View.GONE);
-		titleText.setText("Enquiry");
-		
-		fragmentTran = getSupportFragmentManager().beginTransaction();
-		fragmentTran.replace(R.id.enquiry_footer, new FooterFragment());
-		fragmentTran.commit();
-
-		ImageView titleBack = (ImageView) findViewById(R.id.title_back);
-		titleBack.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				onBackPressed();
-			}
-		});
-	}//setTitleBarAndFooter
-	
-	@Override
-	public void onBackPressed() {
-		// TODO Auto-generated method stub
-		super.onBackPressed();
-	}
-	
 	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {

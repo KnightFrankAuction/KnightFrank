@@ -1,6 +1,5 @@
 package com.novitee.knightfrankacution.adapter;
 
-import java.util.Random;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -25,12 +24,8 @@ import android.widget.Toast;
 
 public class ViewPagerAdapter extends FragmentPagerAdapter {
 	
-//	Pref pref = Pref.getInstance(getActivity());
-	
 	private int pagerCount = 3;
 	Fragment next_auction_fragment = new NextAuction();
-	
-	static String key = "zfDmWXAra1XqP1mElIIL3RyjJsMw81pxWsatGaag";
 	
 	public ViewPagerAdapter(FragmentManager fm) {
 		super(fm);
@@ -53,7 +48,6 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
 			
 		case 1:
 				frg = next_auction_fragment;
-//				frg = new NextAuction();
 				break;
 			
 		case 2:
@@ -134,8 +128,6 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
 				// TODO Auto-generated method stub
 				KnightFrankAPI api = new KnightFrankAPI();
 				try {
-//					String session = Preferences.getSessionToken(getActivity());
-//					jObj = api.getNextAuction(Preferences.getSessionToken(getActivity()));
 					jObj = api.getNextAuction();
 					
 				} catch (JSONException e) {
@@ -158,11 +150,13 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
 					if(status == 1 && responseCode == 200){
 						String date = jObj.getString("date");
 						String time = jObj.getString("time");
-						String venue = jObj.getString("Venue");
+						String vanue = jObj.getString("Venue");
 						
 						auction_date.setText(date);
 						auction_time.setText(time);
-						auction_venue.setText(venue);
+						auction_venue.setText(vanue);
+						
+						Preferences.getInstance(getActivity()).setVanue(vanue);
 					}
 					else if(status == 2 && responseCode == 401) {
 						String message = jObj.getString("message");

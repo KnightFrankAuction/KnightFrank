@@ -1,0 +1,1015 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+	android:background="@color/white"
+    tools:context=".AGTAuctionActivity" >
+
+    <include 
+        android:id="@+id/title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        layout="@layout/title_layout"/>
+    
+    <ScrollView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title_layout"
+        android:layout_above="@+id/footer_view" >
+        
+        <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            
+            <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:background="@color/gray"
+                android:textSize="24sp"
+                android:textColor="@color/black1"
+                android:text="General Information"/>
+            
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Correspondance Date"/>
+             
+             <EditText 
+                 android:id="@+id/agt_correspondance_date"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"
+                 android:focusable="false"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Owner's Name"/>
+             
+             <EditText 
+                 android:id="@+id/agt_owner_name"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Postal Code"/>
+             
+             <EditText 
+                 android:id="@+id/agt_postal_code"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Address 1"/>
+             
+             <EditText 
+                 android:id="@+id/agt_address1"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Address 2"/>
+             
+             <EditText 
+                 android:id="@+id/agt_address2"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Building Name"/>
+             
+             <EditText 
+                 android:id="@+id/agt_building_name"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:background="@color/gray"
+                android:textSize="24sp"
+                android:textColor="@color/black1"
+                android:text="Partner Agent"/>
+             
+             <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/DocumentTextviewStyle"
+                android:text="Display Partner Agent?"/>
+                 
+             <RadioGroup 
+                 android:id="@+id/agt_rd_dpa_gp"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:orientation="horizontal">
+                 
+                 <RadioButton 
+                     android:id="@+id/agt_rd_dpa_yes"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:checked="true"
+                     android:textSize="20sp"
+                     android:textColor="@color/black"
+                     android:text="Yes"/>
+                 
+                 <RadioButton 
+                     android:id="@+id/agt_rd_dpa_no"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:textSize="20sp"
+                     android:textColor="@color/black"
+                     android:text="No"/>
+                 
+             </RadioGroup>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Agent Name"/>
+             
+             <EditText 
+                 android:id="@+id/agt_pa_name"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Agent IC"/>
+             
+             <EditText 
+                 android:id="@+id/agt_pa_ic"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Agent Agency"/>
+             
+             <EditText 
+                 android:id="@+id/agt_pa_agency"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="10dp"/>
+             
+             <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:background="@color/gray"
+                android:textSize="24sp"
+                android:textColor="@color/black1"
+                android:text="Auction Information"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Date of Auction"/>
+             
+             <EditText 
+                 android:id="@+id/agt_auction_date"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"
+                 android:focusable="false"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Venue"/>
+             
+             <EditText 
+                 android:id="@+id/agt_auction_vanue"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"
+                 android:enabled="false"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Time"/>
+             
+             <EditText 
+                 android:id="@+id/agt_auction_time"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="10dp"/>
+             
+             <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:background="@color/gray"
+                android:textSize="24sp"
+                android:textColor="@color/black1"
+                android:text="Terms of Appoinment"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/FilterTextviewStyle"
+             	 android:text="Comission Fee"/>
+             
+             <View 
+		        android:layout_width="match_parent"
+		        android:layout_height="2dp"
+		        android:layout_margin="10dp"
+		        android:background="@color/gray"/>
+             
+             <TextView 
+             	android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/DocumentTextviewStyle"
+                android:text="Display comission fee?"/>
+             
+             <RadioGroup 
+                 android:id="@+id/agt_rd_dcf_gp"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:orientation="horizontal">
+                 
+                 <RadioButton 
+                     android:id="@+id/agt_rd_dcf_yes"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:checked="true"
+                     android:textSize="20sp"
+                     android:textColor="@color/black"
+                     android:text="Yes"/>
+                 
+                 <RadioButton 
+                     android:id="@+id/agt_rd_dcf_no"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:textSize="20sp"
+                     android:textColor="@color/black"
+                     android:text="No"/>
+                 
+             </RadioGroup>
+             
+             <TextView 
+                android:id="@+id/agt_dcf_info"
+             	android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/DocumentTextviewStyle"
+                android:layout_marginBottom="5dp"
+                android:text="@string/comission_text"/>
+             
+             <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:background="@color/gray"
+                android:textSize="24sp"
+                android:textColor="@color/black1"
+                android:text="Auction Service Fee"/>
+             
+             <TextView 
+             	android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/DocumentTextviewStyle"
+                android:text="Display service fee?"/>
+             
+             <RadioGroup 
+                 android:id="@+id/agt_rd_dsf_gp"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:orientation="horizontal">
+                 
+                 <RadioButton 
+                     android:id="@+id/agt_rd_dsf_yes"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:checked="true"
+                     android:textSize="20sp"
+                     android:textColor="@color/black"
+                     android:text="Yes"/>
+                 
+                 <RadioButton 
+                     android:id="@+id/agt_rd_dsf_no"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:textSize="20sp"
+                     android:textColor="@color/black"
+                     android:text="No"/>
+                 
+             </RadioGroup>
+             
+             <TextView 
+                android:id="@+id/agt_dsf_info"
+             	android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/DocumentTextviewStyle"
+                android:layout_marginBottom="5dp"
+                android:text="@string/service_text"/>
+             
+             <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:background="@color/gray"
+                android:textSize="24sp"
+                android:textColor="@color/black1"
+                android:text="Forfeiture"/>
+             
+             <TextView 
+             	android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/DocumentTextviewStyle"
+                android:text="Display forfeiture?"/>
+             
+             <RadioGroup 
+                 android:id="@+id/agt_rd_df_gp"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:orientation="horizontal">
+                 
+                 <RadioButton 
+                     android:id="@+id/agt_rd_df_yes"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:checked="true"
+                     android:textSize="20sp"
+                     android:textColor="@color/black"
+                     android:text="Yes"/>
+                 
+                 <RadioButton 
+                     android:id="@+id/agt_rd_df_no"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:textSize="20sp"
+                     android:textColor="@color/black"
+                     android:text="No"/>
+                 
+             </RadioGroup>
+             
+             <TextView 
+                android:id="@+id/agt_df_info"
+             	android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/DocumentTextviewStyle"
+                android:layout_marginBottom="5dp"
+                android:text="@string/forfeiture_text"/>
+             
+             <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:background="@color/gray"
+                android:textSize="24sp"
+                android:textColor="@color/black1"
+                android:text="Sole Rights"/>
+             
+             <TextView 
+             	android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/DocumentTextviewStyle"
+                android:text="Display sole rights?"/>
+             
+             <RadioGroup 
+                 android:id="@+id/agt_rd_dsr_gp"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:orientation="horizontal">
+                 
+                 <RadioButton 
+                     android:id="@+id/agt_rd_dsr_yes"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:checked="true"
+                     android:textSize="20sp"
+                     android:textColor="@color/black"
+                     android:text="Yes"/>
+                 
+                 <RadioButton 
+                     android:id="@+id/agt_rd_dsr_no"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:textSize="20sp"
+                     android:textColor="@color/black"
+                     android:text="No"/>
+                 
+             </RadioGroup>
+             
+             <TextView 
+                android:id="@+id/agt_dsr_info"
+             	android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/DocumentTextviewStyle"
+                android:layout_marginBottom="5dp"
+                android:text="@string/sole_rights_text"/>
+             
+             <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:background="@color/gray"
+                android:textSize="24sp"
+                android:textColor="@color/black1"
+                android:text="KFA Agent Sign Off"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Agent Name"/>
+             
+             <EditText 
+                 android:id="@+id/agt_edit_agent_so_name"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"
+                 android:enabled="false"
+                 android:text="Peter Tan Goe Lim"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Agent Position"/>
+             
+             <EditText 
+                 android:id="@+id/agt_edit_agent_so_position"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"
+                 android:enabled="false"
+                 android:text="Manager"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="CEA No."/>
+             
+             <EditText 
+                 android:id="@+id/agt_edit_agent_so_cea"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"
+                 android:enabled="false"
+                 android:text="12345"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Email"/>
+             
+             <EditText 
+                 android:id="@+id/agt_edit_agent_so_email"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"
+                 android:enabled="false"
+                 android:text="abc@gmail.com"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="DID"/>
+             
+             <EditText 
+                 android:id="@+id/agt_edit_agent_so_did"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"
+                 android:enabled="false"
+                 android:text="12345"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="HP"/>
+             
+             <EditText 
+                 android:id="@+id/agt_edit_agent_so_hp"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"
+                 android:enabled="false"
+                 android:text="123456"/>
+             
+             <LinearLayout 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_margin="10dp"
+                 android:orientation="horizontal"
+                 android:weightSum="3">
+                 
+                 <Button 
+                     android:id="@+id/btn_agt_agent_so_sign"
+                     android:layout_width="0dp"
+                     android:layout_height="50dp"
+                     android:layout_weight="2"
+                     android:background="@color/pink"
+                     style="@style/MenuTextviewStyle"
+                     android:text="Make Signature"/>
+                 
+                 <ImageView 
+                     android:id="@+id/img_agent_so_sign"
+                     android:layout_width="0dp"
+                     android:layout_height="50dp"
+                     android:layout_weight="1"
+                     android:src="@drawable/home_icon"/>
+                 
+             </LinearLayout>
+             
+             <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:background="@color/gray"
+                android:textSize="24sp"
+                android:textColor="@color/black1"
+                android:text="Appointment Information"/>
+             
+             <TextView 
+                android:id="@+id/agt_app_info_name"
+             	android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/DocumentTextviewStyle"
+                android:text="Peter Ong"/>
+             
+             <Button 
+                android:id="@+id/agt_btn_app_info_add"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_weight="2"
+                android:layout_margin="10dp"
+                android:background="@color/pink"
+                style="@style/MenuTextviewStyle"
+                android:text="Add more owner's names"/>
+             
+             <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:background="@color/gray"
+                android:textSize="24sp"
+                android:textColor="@color/black1"
+                android:text="Reserve Price"/>
+             
+             <TextView 
+             	android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/DocumentTextviewStyle"
+                android:text="Display reserve price?"/>
+             
+             <RadioGroup 
+                 android:id="@+id/agt_rd_drp_gp"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:orientation="horizontal">
+                 
+                 <RadioButton 
+                     android:id="@+id/agt_rd_drp_yes"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:checked="true"
+                     android:textSize="20sp"
+                     android:textColor="@color/black"
+                     android:text="Yes"/>
+                 
+                 <RadioButton 
+                     android:id="@+id/agt_rd_drp_no"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:textSize="20sp"
+                     android:textColor="@color/black"
+                     android:text="No"/>
+                 
+             </RadioGroup>
+             
+             <TextView 
+             	android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/DocumentTextviewStyle"
+                android:text="Reserve price"/>
+             
+             <EditText 
+                 android:id="@+id/agt_edit_reserve_price"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="10dp"/>
+             
+             <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:background="@color/gray"
+                android:textSize="24sp"
+                android:textColor="@color/black1"
+                android:text="Solicitors"/>
+             
+             <TextView 
+             	android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/DocumentTextviewStyle"
+                android:text="Display soliticors?"/>
+             
+             <RadioGroup 
+                 android:id="@+id/agt_rd_ds_gp"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:orientation="horizontal">
+                 
+                 <RadioButton 
+                     android:id="@+id/agt_rd_ds_yes"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:checked="true"
+                     android:textSize="20sp"
+                     android:textColor="@color/black"
+                     android:text="Yes"/>
+                 
+                 <RadioButton 
+                     android:id="@+id/agt_rd_ds_no"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:textSize="20sp"
+                     android:textColor="@color/black"
+                     android:text="No"/>
+                 
+             </RadioGroup>
+             
+             <TextView 
+             	android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/DocumentTextviewStyle"
+                android:text="ATTN"/>
+             
+             <EditText 
+                android:id="@+id/agt_edit_attn"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Address Postal Code"/>
+             
+             <EditText 
+                 android:id="@+id/agt_edit_ds_postal"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Address 1"/>
+             
+             <EditText 
+                 android:id="@+id/agt_edit_ds_address1"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Address 2"/>
+             
+             <EditText 
+                 android:id="@+id/agt_edit_ds_address2"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Building Name"/>
+             
+             <EditText 
+                 android:id="@+id/agt_edit_ds_building_name"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Contact No"/>
+             
+             <EditText 
+                 android:id="@+id/agt_edit_ds_contact"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:background="@color/gray"
+                android:textSize="24sp"
+                android:textColor="@color/black1"
+                android:text="Client Sign Off"/>
+             
+             <TextView 
+                 android:id="@+id/agt_client_name"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Peter Ong"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="NRIC / Passport"/>
+             
+             <EditText 
+                 android:id="@+id/agt_edit_client_ic"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <LinearLayout 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_margin="10dp"
+                 android:orientation="horizontal"
+                 android:weightSum="3">
+                 
+                 <Button 
+                     android:id="@+id/btn_agt_client_sign"
+                     android:layout_width="0dp"
+                     android:layout_height="50dp"
+                     android:layout_weight="2"
+                     android:background="@color/pink"
+                     style="@style/MenuTextviewStyle"
+                     android:text="Make Signature"/>
+                 
+                 <ImageView 
+                     android:id="@+id/img_agt_client_sign"
+                     android:layout_width="0dp"
+                     android:layout_height="50dp"
+                     android:layout_weight="1"
+                     android:src="@drawable/home_icon"/>
+                 
+             </LinearLayout>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Owner's name 2"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="NRIC / Passport"/>
+             
+             <EditText 
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <LinearLayout 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_margin="10dp"
+                 android:orientation="horizontal"
+                 android:weightSum="3">
+                 
+                 <Button 
+                     android:layout_width="0dp"
+                     android:layout_height="50dp"
+                     android:layout_weight="2"
+                     android:background="@color/pink"
+                     style="@style/MenuTextviewStyle"
+                     android:text="Make Signature"/>
+                 
+                 <ImageView 
+                     android:layout_width="0dp"
+                     android:layout_height="50dp"
+                     android:layout_weight="1"
+                     android:src="@drawable/home_icon"/>
+                 
+             </LinearLayout>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Mailing Address"/>
+             
+             <View 
+		        android:layout_width="match_parent"
+		        android:layout_height="2dp"
+		        android:layout_margin="10dp"
+		        android:background="@color/gray"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Postal Code"/>
+             
+             <EditText 
+                 android:id="@+id/agt_edit_mailing_postal"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Address 1"/>
+             
+             <EditText 
+                 android:id="@+id/agt_edit_mailing_address1"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Address 2"/>
+             
+             <EditText 
+                 android:id="@+id/agt_edit_mailing_address2"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Building Name"/>
+             
+             <EditText 
+                 android:id="@+id/agt_edit_mailing_building_name"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Contact No"/>
+             
+             <EditText 
+                 android:id="@+id/agt_edit_mailing_contact"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Email Address"/>
+             
+             <EditText
+                 android:id="@+id/agt_edit_mailing_email" 
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Date"/>
+             
+             <EditText 
+                 android:id="@+id/agt_edit_mailing_date"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:background="@color/gray"
+                android:textSize="24sp"
+                android:textColor="@color/black1"
+                android:text="Indeminty Information"/>
+             
+             <TextView 
+                 android:id="@+id/agt_indeminty_name"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Peter Ong"/>
+
+             <LinearLayout 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_margin="10dp"
+                 android:orientation="horizontal"
+                 android:weightSum="3">
+                 
+                 <Button 
+                     android:id="@+id/btn_agt_indeminty_sign"
+                     android:layout_width="0dp"
+                     android:layout_height="50dp"
+                     android:layout_weight="2"
+                     android:background="@color/pink"
+                     style="@style/MenuTextviewStyle"
+                     android:text="Make Signature"/>
+                 
+                 <ImageView 
+                     android:id="@+id/img_agt_indeminty_sign"
+                     android:layout_width="0dp"
+                     android:layout_height="50dp"
+                     android:layout_weight="1"
+                     android:src="@drawable/home_icon"/>
+                 
+             </LinearLayout>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="On behalf of"/>
+             
+             <EditText 
+                 android:id="@+id/agt_edit_on_behalf"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <Button 
+                 android:id="@+id/agt_submit"
+                 android:layout_width="100dp"
+                 android:layout_height="40dp"
+                 android:layout_weight="2"
+                 android:background="@color/pink"
+                 style="@style/MenuTextviewStyle"
+                 android:layout_gravity="center_horizontal"
+                 android:layout_marginBottom="10dp"
+                 android:text="Submit"/>
+             
+        </LinearLayout>
+        
+    </ScrollView>
+    
+    
+    <View 
+        android:id="@+id/footer_view"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@color/gray"
+        android:layout_above="@+id/agt_footer"/>
+    
+    <!-- Footer -->
+    <FrameLayout 
+        android:id="@+id/agt_footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>

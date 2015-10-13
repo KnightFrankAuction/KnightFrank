@@ -18,8 +18,15 @@ public class Preferences {
   public static String GENERATE_KEY = "generate_key";
   public String USER_TYPE = "user_type";
   public String USER_NAME = "user_name";
+  public String EMAIL = "email";
   public String PASSWORD = "";
   public String AD_LIST = "ad_list";
+  public String VANUE = "vanue";
+  public String POSITION = "position";
+  public String CEA = "123";
+  public String DID = "123";
+  public String HP = "123";
+  public String LOGO = "logo";
   
   public Preferences(Context context) {
     this.mContext = context;
@@ -110,6 +117,76 @@ public class Preferences {
   public void setAdList(Set<String> mList) {
     SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
     prefs.edit().putStringSet(AD_LIST, mList).commit();
+  }
+  
+  public String getVanue() {
+    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
+    return prefs.getString(VANUE, "");
+  }
+
+  public void setVanue(String vanue) {
+    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
+    prefs.edit().putString(VANUE, vanue).commit();
+  }
+  
+  public String getEmail() {
+    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
+    return prefs.getString(EMAIL, "");
+  }
+
+  public void setEmail(String email) {
+    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
+    prefs.edit().putString(EMAIL, email).commit();
+  }
+  
+  public String getPosition() {
+    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
+    return prefs.getString(POSITION, "");
+  }
+
+  public void setPosition(String position) {
+    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
+    prefs.edit().putString(POSITION, position).commit();
+  }
+  
+  public String getCEA() {
+    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
+    return prefs.getString(CEA, "");
+  }
+
+  public void setCEA(String cea) {
+    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
+    prefs.edit().putString(CEA, cea).commit();
+  }
+  
+  public String getDID() {
+    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
+    return prefs.getString(DID, "");
+  }
+
+  public void setDID(String did) {
+    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
+    prefs.edit().putString(DID, did).commit();
+  }
+  
+  public String getHP() {
+    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
+    return prefs.getString(HP, "");
+  }
+
+  public void setHP(String hp) {
+    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
+    prefs.edit().putString(HP, hp).commit();
+  }
+
+  public String getLogo() {
+    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
+    return prefs.getString(LOGO, "");
+  }
+
+  public void setLogo(String logo) {
+    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
+    prefs.edit().putString(LOGO, logo).commit();
   }
 
 }

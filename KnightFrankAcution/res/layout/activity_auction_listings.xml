@@ -30,13 +30,13 @@
             android:src="@drawable/left_arrow"/>
         
         <TextView 
-            android:id="@+id/auctiion_month"
+            android:id="@+id/auction_month"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/auction_left"
             android:layout_toLeftOf="@+id/auction_right"
             style="@style/TitleStyle"
-            android:text="August 2015"/>
+            android:text=""/>
         
         <ImageView 
             android:id="@+id/auction_right"
@@ -58,7 +58,9 @@
         android:layout_marginRight="20dp"
         android:layout_marginBottom="15dp"
         android:background="@color/white"
-        android:layout_below="@+id/layout_auction_month" />
+        android:layout_below="@+id/layout_auction_month"
+        />
+            <!-- android:layout_above="@+id/auction_venue"  -->
     
     <ProgressBar 
         android:id="@+id/progress_date_list"

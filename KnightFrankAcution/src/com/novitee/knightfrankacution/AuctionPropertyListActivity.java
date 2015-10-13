@@ -309,8 +309,13 @@ public class AuctionPropertyListActivity extends BaseFragmentActivity {
             TextView bed_bath = (TextView) row.findViewById(R.id.listview_bed_bath);
             TextView tenure = (TextView) row.findViewById(R.id.listview_tenure);
             TextView psf = (TextView) row.findViewById(R.id.listview_psf);
+            TextView txtStatus = (TextView) row.findViewById(R.id.txt_unavailable);
             
             property = propertyList.get(position);
+            if(!property.getStatus().equals("Active")) {
+            	txtStatus.setVisibility(View.VISIBLE);
+            }
+            
             if(property.getBuilding_name().length() > 0) {
             	buildingName.setText(property.getBuilding_name());
             } else {
@@ -389,7 +394,8 @@ public class AuctionPropertyListActivity extends BaseFragmentActivity {
 					// TODO Auto-generated method stub
 					View parentRow = (View) v.getParent();
 					LinearLayout linearRow = (LinearLayout) parentRow.getParent();
-					ListView listView = (ListView) linearRow.getParent();
+					LinearLayout linearRow1 = (LinearLayout) linearRow.getParent();
+					ListView listView = (ListView) linearRow1.getParent();
 					shortlist_position = listView.getPositionForView(parentRow);
 					shortlist_property = propertyList.get(shortlist_position);
 					shortlist = (ImageView) linearRow.findViewById(R.id.listview_shortlist);

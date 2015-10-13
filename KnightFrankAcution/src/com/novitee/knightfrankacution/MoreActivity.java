@@ -23,6 +23,8 @@ public class MoreActivity extends BaseFragmentActivity implements OnClickListene
 	TextView documents;
 	TextView search;
 	TextView logout;
+	
+	FooterFragment footer_frg;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +44,14 @@ public class MoreActivity extends BaseFragmentActivity implements OnClickListene
 		logout.setOnClickListener(this);
 		
 		setTitleBarAndFooter();
+	}//onCreate
+	
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		
+		footer_frg.more.setImageResource(R.drawable.more_icon_pink);
 	}
 	
 	public void setTitleBarAndFooter() {
@@ -54,8 +64,9 @@ public class MoreActivity extends BaseFragmentActivity implements OnClickListene
 		titleText.setText("More");
 		titleImage.setVisibility(View.GONE);
 		
+		footer_frg = new FooterFragment();
 		fragmentTran = getSupportFragmentManager().beginTransaction();
-		fragmentTran.replace(R.id.more_footer, new FooterFragment());
+		fragmentTran.replace(R.id.more_footer, footer_frg);
 		fragmentTran.commit();
 		
 		ImageView titleBack = (ImageView) findViewById(R.id.title_back);
@@ -82,6 +93,10 @@ public class MoreActivity extends BaseFragmentActivity implements OnClickListene
 		}
 		else if (v.getId() == documents.getId()) {
 			Intent intent = new Intent(context, DocumentsActivity.class);
+			startActivity(intent);
+		}
+		else if (v.getId() == search.getId()) {
+			Intent intent = new Intent(context, SearchActivity.class);
 			startActivity(intent);
 		}
 	}//onClick

@@ -1,0 +1,644 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".ExclusiveAuthorityActivity" >
+    
+    <include 
+        android:id="@+id/title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        layout="@layout/title_layout"/>
+    
+    <ScrollView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title_layout"
+        android:layout_above="@+id/footer_view" >
+        
+        <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            
+            <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:background="@color/gray"
+                android:textSize="24sp"
+                android:textColor="@color/black1"
+                android:text="Description of property"/>
+            
+            <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:layout_marginTop="10dp"
+                 android:text="Property Address"/>
+            
+            <View 
+		        android:layout_width="match_parent"
+		        android:layout_height="2dp"
+		        android:layout_margin="10dp"
+		        android:background="@color/gray"/>
+            
+            <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Postal Code"/>
+             
+             <EditText 
+                 android:id="@+id/ex_edit_property_postal"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Address 1"/>
+             
+             <EditText 
+                 android:id="@+id/ex_edit_property_address1"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Address 2"/>
+             
+             <EditText 
+                 android:id="@+id/ex_edit_property_address2"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Building Name"/>
+             
+             <EditText 
+                 android:id="@+id/ex_edit_property_building_name"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Property Type"/>
+             
+             <EditText 
+                 android:id="@+id/ex_edit_property_type"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Floor Area"/>
+             
+             <EditText 
+                 android:id="@+id/ex_edit_property_floor_area"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Land Area"/>
+             
+             <EditText 
+                 android:id="@+id/ex_edit_property_land_area"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="No. of rooms"/>
+             
+             <EditText 
+                 android:id="@+id/ex_edit_property_rooms"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <RadioGroup 
+                 android:id="@+id/ex_rd_holder_gp"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:orientation="horizontal">
+                 
+                 <RadioButton 
+                     android:id="@+id/ex_rd_holder_free"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:checked="true"
+                     android:textSize="20sp"
+                     android:textColor="@color/black"
+                     android:text="Freehold"/>
+                 
+                 <RadioButton 
+                     android:id="@+id/ex_rd_holder_lead"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:textSize="20sp"
+                     android:textColor="@color/black"
+                     android:text="Leadhold"/>
+                 
+             </RadioGroup>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="No. of years"/>
+             
+             <EditText 
+                 android:id="@+id/ex_edit_property_years"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+            
+             <RadioGroup 
+                 android:id="@+id/ex_rd_possession_gp"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:orientation="vertical">
+                 
+                 <RadioButton 
+                     android:id="@+id/ex_rd_possession_vacant"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:checked="true"
+                     android:textSize="20sp"
+                     android:textColor="@color/black"
+                     android:text="Vacant possession"/>
+                 
+                 <RadioButton 
+                     android:id="@+id/ex_rd_possession_tenacy"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:textSize="20sp"
+                     android:textColor="@color/black"
+                     android:text="Tenacy Expiring"/>
+                 
+             </RadioGroup>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Expiry date"/>
+             
+             <EditText 
+                 android:id="@+id/ex_edit_property_expiry"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"
+                 android:focusable="false"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Monthly rent $"/>
+             
+             <EditText 
+                 android:id="@+id/ex_edit_property_rent"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:background="@color/gray"
+                android:textSize="24sp"
+                android:textColor="@color/black1"
+                android:text="Agent Information"/>
+             
+             <TextView 
+                 android:id="@+id/ex_agent_name"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Agent Name: Peter Tay"/>
+             
+             <TextView 
+                 android:id="@+id/ex_agent_license"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="License No: 123456"/>
+             
+             <TextView 
+                 android:id="@+id/ex_agent_company"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:layout_marginBottom="10dp"
+                 android:text="Agent Company: Knight Frank Pte Ltd."/>
+             
+             <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:background="@color/gray"
+                android:textSize="24sp"
+                android:textColor="@color/black1"
+                android:text="Terms and Conditions"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Commencement Date"/>
+             
+             <EditText 
+                 android:id="@+id/ex_edit_terms_commencement"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"
+                 android:focusable="false"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Expiry date"/>
+             
+             <EditText 
+                 android:id="@+id/ex_edit_terms_expiry"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"
+                 android:focusable="false"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Expected Sale price $"/>
+             
+             <EditText 
+                 android:id="@+id/ex_edit_terms_expected_sale"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Fee percentage of sale price %"/>
+             
+             <EditText 
+                 android:id="@+id/ex_edit_terms_fee_sale"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Fee percentage of expected sale price %"/>
+             
+             <EditText 
+                 android:id="@+id/ex_edit_terms_fee_expected_sale"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:background="@color/gray"
+                android:textSize="24sp"
+                android:textColor="@color/black1"
+                android:text="Sign Off"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Interpreted language"/>
+             
+             <EditText 
+                 android:id="@+id/ex_edit_so_language"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:background="@color/gray"
+                android:textSize="24sp"
+                android:textColor="@color/black1"
+                android:text="Owner 1's information"/>
+             
+             <LinearLayout 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_margin="10dp"
+                 android:orientation="horizontal"
+                 android:weightSum="3">
+                 
+                 <Button 
+                     android:id="@+id/ex_owner1_sign"
+                     android:layout_width="0dp"
+                     android:layout_height="50dp"
+                     android:layout_weight="2"
+                     android:background="@color/pink"
+                     style="@style/MenuTextviewStyle"
+                     android:text="Make Signature"/>
+                 
+                 <ImageView 
+                     android:id="@+id/ex_owner1_img"
+                     android:layout_width="0dp"
+                     android:layout_height="50dp"
+                     android:layout_weight="1"
+                     android:src="@drawable/home_icon"/>
+                 
+             </LinearLayout>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Owner's name"/>
+             
+             <EditText 
+                 android:id="@+id/ex_owner1_name"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="NRIC No"/>
+             
+             <EditText 
+                 android:id="@+id/ex_owner1_nric"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Postal Code"/>
+             
+             <EditText 
+                 android:id="@+id/ex_owner1_postal"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Address 1"/>
+             
+             <EditText 
+                 android:id="@+id/ex_owner1_address1"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Address 2"/>
+             
+             <EditText 
+                 android:id="@+id/ex_owner1_address2"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Building Name"/>
+             
+             <EditText 
+                 android:id="@+id/ex_owner1_building_name"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:background="@color/gray"
+                android:textSize="24sp"
+                android:textColor="@color/black1"
+                android:text="Owner 2's information"/>
+             
+             <LinearLayout 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_margin="10dp"
+                 android:orientation="horizontal"
+                 android:weightSum="3">
+                 
+                 <Button 
+                     android:id="@+id/ex_owner2_sign"
+                     android:layout_width="0dp"
+                     android:layout_height="50dp"
+                     android:layout_weight="2"
+                     android:background="@color/pink"
+                     style="@style/MenuTextviewStyle"
+                     android:text="Make Signature"/>
+                 
+                 <ImageView 
+                     android:id="@+id/ex_owner2_img"
+                     android:layout_width="0dp"
+                     android:layout_height="50dp"
+                     android:layout_weight="1"
+                     android:src="@drawable/home_icon"/>
+                 
+             </LinearLayout>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Owner's name"/>
+             
+             <EditText 
+                 android:id="@+id/ex_owner2_name"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="NRIC No"/>
+             
+             <EditText 
+                 android:id="@+id/ex_owner2_nric"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Postal Code"/>
+             
+             <EditText 
+                 android:id="@+id/ex_owner2_postal"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Address 1"/>
+             
+             <EditText 
+                 android:id="@+id/ex_owner2_address1"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Address 2"/>
+             
+             <EditText 
+                 android:id="@+id/ex_owner2_address2"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Building Name"/>
+             
+             <EditText 
+                 android:id="@+id/ex_owner2_building_name"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:background="@color/gray"
+                android:textSize="24sp"
+                android:textColor="@color/black1"
+                android:text="Saleperson's Information"/>
+             
+             <LinearLayout 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_margin="10dp"
+                 android:orientation="horizontal"
+                 android:weightSum="3">
+                 
+                 <Button 
+                     android:id="@+id/ex_sale_sign"
+                     android:layout_width="0dp"
+                     android:layout_height="50dp"
+                     android:layout_weight="2"
+                     android:background="@color/pink"
+                     style="@style/MenuTextviewStyle"
+                     android:text="Make Signature"/>
+                 
+                 <ImageView 
+                     android:id="@+id/ex_sale_img"
+                     android:layout_width="0dp"
+                     android:layout_height="50dp"
+                     android:layout_weight="1"
+                     android:src="@drawable/home_icon"/>
+                 
+             </LinearLayout>
+             
+             <TextView 
+                 android:id="@+id/ex_sale_name"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Agent's name: Peter Tay"/>
+             
+             <TextView 
+                 android:id="@+id/ex_sale_license"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Licence No: 123456"/>
+             
+             <Button 
+                 android:id="@+id/ex_submit"
+                 android:layout_width="100dp"
+                 android:layout_height="40dp"
+                 android:layout_weight="2"
+                 android:background="@color/pink"
+                 style="@style/MenuTextviewStyle"
+                 android:layout_gravity="center_horizontal"
+                 android:layout_marginTop="10dp"
+                 android:layout_marginBottom="10dp"
+                 android:text="Submit"/>
+             
+        </LinearLayout>
+        
+    </ScrollView>
+
+    <View 
+        android:id="@+id/footer_view"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@color/gray"
+        android:layout_above="@+id/exclusive_authority_footer"/>
+    
+    <!-- Footer -->
+    <FrameLayout 
+        android:id="@+id/exclusive_authority_footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>

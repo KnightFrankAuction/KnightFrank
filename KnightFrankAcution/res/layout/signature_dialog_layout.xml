@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white" >
+    
+    <LinearLayout 
+        android:id="@+id/layout_btnSign"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="3">
+        
+        <Button 
+            android:id="@+id/btnSignCancle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:layout_margin="5dp"
+            android:background="@color/pink"
+			style="@style/TitleStyle"
+			android:text="Cancel"/>
+        
+        <Button 
+            android:id="@+id/btnSignClear"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:layout_margin="5dp"
+            android:background="@color/pink"
+			style="@style/TitleStyle"
+			android:text="Clear"/>
+        
+        <Button 
+            android:id="@+id/btnSignSave"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:layout_margin="5dp"
+            android:background="@color/pink"
+			style="@style/TitleStyle"
+			android:text="Save"/>
+        
+    </LinearLayout>
+    
+    <TextView 
+        android:id="@+id/txt_sign_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/DocumentTextviewStyle"
+        android:layout_below="@+id/layout_btnSign"
+        android:text="Your name:"/>
+    
+    <EditText 
+        android:id="@+id/edit_sign_name"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:layout_below="@+id/txt_sign_name"/>
+    
+    <TextView 
+        android:id="@+id/txtSign"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/DocumentTextviewStyle"
+        android:layout_below="@+id/edit_sign_name"
+        android:layout_marginBottom="5dp"
+        android:text="Please sign below . . ."/>
+    
+    <com.javacodegeeks.androidcanvasexample.CanvasView
+        android:id="@+id/signature_canvas"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/txtSign"
+        android:layout_margin="2dp"
+        android:background="@drawable/browse_border" />
+
+</RelativeLayout>

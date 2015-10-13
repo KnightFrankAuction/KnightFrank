@@ -185,7 +185,7 @@ public class SearchActivity extends BaseFragmentActivity {
 		protected Void doInBackground(Void... params) {
 			// TODO Auto-generated method stub
 			try {
-				jObj = api.Search(pref.getSessionToken(), building_name, listing_type, building_type, type_of_sale, bedroom, bathroom, min_size, max_price, listed_on);
+				jObj = api.Search(pref.getSessionToken(), building_name, listing_type, building_type, type_of_sale, bedroom, bathroom, min_size, max_price, listed_on, "1"); //"1" for page_count
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -218,24 +218,20 @@ public class SearchActivity extends BaseFragmentActivity {
 						property = new Property(json);
 						listPro.add(property);
 
-						/*list = property.getPhoto();
-						photo = list.get(0);
-						listImage.add(photo.getName());*/
 						if(property.getPhoto().size() > 0) {
 							list = property.getPhoto();
 							photo = list.get(0);
 							listImage.add(photo.getName());
 						}
 						else {
-//							photoList.add(new Photo(""));
 							listImage.add("");
 						}
 					}
 
-					Intent intent = new Intent(context, PropertyListActivity.class);
+//					Intent intent = new Intent(context, PropertyListActivity.class);
+					Intent intent = new Intent(context, AuctionPropertyListActivity.class);
 					intent.putExtra("pList", listPro);
 					intent.putExtra("imageList", listImage);
-//					intent.putExtra("title", rdString);
 					startActivity(intent);
 					
 				}
@@ -252,7 +248,7 @@ public class SearchActivity extends BaseFragmentActivity {
 				e.printStackTrace();
 			}
 		}//onPostExecute
-	}//GetSpinnerData
+	}//Search
 	
 	private class GetSpinnerData extends AsyncTask<Void, Void, Void> {
 		JSONObject jObj;
@@ -325,25 +321,25 @@ public class SearchActivity extends BaseFragmentActivity {
 	private void setSpinner() {
 		ArrayAdapter<String> adapter;
 		
-		adapter = new ArrayAdapter<String>(context, R.layout.spinner_layout, stListingType);
+		adapter = new ArrayAdapter<String>(context, R.layout.kf_single_textview_layout, stListingType);
 		spListing.setAdapter(adapter);
 		
-		adapter = new ArrayAdapter<String>(context, R.layout.spinner_layout, stBuildingType);
+		adapter = new ArrayAdapter<String>(context, R.layout.kf_single_textview_layout, stBuildingType);
 		spBuilding.setAdapter(adapter);
 		
-		adapter = new ArrayAdapter<String>(context, R.layout.spinner_layout, stTypeOfSale);
+		adapter = new ArrayAdapter<String>(context, R.layout.kf_single_textview_layout, stTypeOfSale);
 		spTypeOfSale.setAdapter(adapter);
 		
-		adapter = new ArrayAdapter<String>(context, R.layout.spinner_layout, stBedBath);
+		adapter = new ArrayAdapter<String>(context, R.layout.kf_single_textview_layout, stBedBath);
 		spBedroom.setAdapter(adapter);
 		
-		adapter = new ArrayAdapter<String>(context, R.layout.spinner_layout, stBedBath);
+		adapter = new ArrayAdapter<String>(context, R.layout.kf_single_textview_layout, stBedBath);
 		spBathroom.setAdapter(adapter);
 		
-		adapter = new ArrayAdapter<String>(context, R.layout.spinner_layout, stMinSize);
+		adapter = new ArrayAdapter<String>(context, R.layout.kf_single_textview_layout, stMinSize);
 		spMinSize.setAdapter(adapter);
 		
-		adapter = new ArrayAdapter<String>(context, R.layout.spinner_layout, stMaxPrice);
+		adapter = new ArrayAdapter<String>(context, R.layout.kf_single_textview_layout, stMaxPrice);
 		spMaxPrice.setAdapter(adapter);
 		
 	}//setSpinner

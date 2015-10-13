@@ -2,15 +2,161 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/white"
     tools:context=".DocumentsActivity" >
 
-    <TextView
-        android:layout_width="wrap_content"
+    <include 
+        android:id="@+id/title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        layout="@layout/title_layout"/>
+    
+    <ScrollView 
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:layout_below="@+id/title_layout"
+        android:layout_above="@+id/footer_view" >
+        
+        <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            
+            <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:background="@color/gray"
+                android:textSize="24sp"
+                android:textColor="@color/black1"
+                android:text="Sample PDF"/>
+            
+            <TextView 
+                android:id="@+id/sample_pdf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:drawableRight="@drawable/right_arrow_gray"
+                android:textSize="22sp"
+                android:textColor="@color/black1"
+                android:text="Cos Specimen Blank"/>
+            
+            <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:background="@color/gray"
+                android:textSize="24sp"
+                android:textColor="@color/black1"
+                android:text="Send PDF"/>
+            
+            <TextView 
+                android:id="@+id/agt_auction"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:drawableRight="@drawable/right_arrow_gray"
+                android:textSize="22sp"
+                android:textColor="@color/black1"
+                android:text="AGT Auction Proposal"/>
+            
+            <View 
+		        android:layout_width="match_parent"
+		        android:layout_height="2dp"
+		        android:layout_margin="5dp"
+		        android:background="@color/gray"/>
+            
+            <TextView 
+                android:id="@+id/exclusive_estate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:drawableRight="@drawable/right_arrow_gray"
+                android:textSize="22sp"
+                android:textColor="@color/black1"
+                android:text="CEA Exclusive Estate Agency Agreement for the Sale"/>
+
+            <View 
+		        android:layout_width="match_parent"
+		        android:layout_height="2dp"
+		        android:layout_margin="5dp"
+		        android:background="@color/gray"/>
+            
+            <TextView 
+                android:id="@+id/exclusive_authority"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:drawableRight="@drawable/right_arrow_gray"
+                android:textSize="22sp"
+                android:textColor="@color/black1"
+                android:text="Exclusive authority to sell"/>
+
+            <View 
+		        android:layout_width="match_parent"
+		        android:layout_height="2dp"
+		        android:layout_margin="5dp"
+		        android:background="@color/gray"/>
+            
+            <TextView 
+                android:id="@+id/non_exclusive_cea"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:drawableRight="@drawable/right_arrow_gray"
+                android:textSize="22sp"
+                android:textColor="@color/black1"
+                android:text="Non-Exclusive CEA Estate Agency agreement for residential"/>
+
+            <View 
+		        android:layout_width="match_parent"
+		        android:layout_height="2dp"
+		        android:layout_margin="5dp"
+		        android:background="@color/gray"/>
+            
+            <TextView 
+                android:id="@+id/non_exclusive_authority"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:drawableRight="@drawable/right_arrow_gray"
+                android:textSize="22sp"
+                android:textColor="@color/black1"
+                android:text="Non-Exclusive Authority to sell"/>
+
+            <View 
+		        android:layout_width="match_parent"
+		        android:layout_height="2dp"
+		        android:layout_margin="5dp"
+		        android:background="@color/gray"/>
+            
+            <TextView 
+                android:id="@+id/offer_purchase"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:drawableRight="@drawable/right_arrow_gray"
+                android:textSize="22sp"
+                android:textColor="@color/black1"
+                android:text="Offer to purchase"/>
+            
+        </LinearLayout>
+        
+    </ScrollView>
+    
+    <View 
+        android:id="@+id/footer_view"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@color/gray"
+        android:layout_above="@+id/documents_footer"/>
+    
+    <!-- Footer -->
+    <FrameLayout 
+        android:id="@+id/documents_footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        android:layout_alignParentBottom="true" />
 
 </RelativeLayout>

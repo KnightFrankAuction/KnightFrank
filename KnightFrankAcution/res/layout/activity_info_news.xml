@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     tools:context=".InfoNewsActivity" >
-    
+
     <LinearLayout 
         android:id="@+id/news_layout"
         android:layout_width="match_parent"
@@ -23,68 +23,43 @@
 	         android:layout_height="wrap_content"
 	         style="@style/FilterTextviewStyle"
 	         android:text="KnightFrank News"/>
-	     
-	     <View 
-	         android:layout_width="match_parent"
-	         android:layout_height="1dp"
-	         android:background="@color/gray"
-	         android:layout_marginTop="15dp"
-	         android:layout_marginLeft="15dp"
-	         android:layout_marginRight="15dp"/>
-	     
-	     <TextView 
-	         android:id="@+id/what_is_auction"
-	         android:layout_width="match_parent"
-	         android:layout_height="wrap_content"
-	         style="@style/FilterTextviewStyle"
-	         android:text="What is Auction?"/>
-	     
-	     <View 
-	         android:layout_width="match_parent"
-	         android:layout_height="1dp"
-	         android:background="@color/gray"
-	         android:layout_marginTop="15dp"
-	         android:layout_marginLeft="15dp"
-	         android:layout_marginRight="15dp"/>
-	     
-	     <TextView 
-	         android:id="@+id/why_auction"
-	         android:layout_width="match_parent"
-	         android:layout_height="wrap_content"
-	         style="@style/FilterTextviewStyle"
-	         android:text="Why Auction?"/>
-	     
-	     <View 
-	         android:layout_width="match_parent"
-	         android:layout_height="1dp"
-	         android:background="@color/gray"
-	         android:layout_marginTop="15dp"
-	         android:layout_marginLeft="15dp"
-	         android:layout_marginRight="15dp"/>
-	     
-	     <TextView 
-	         android:id="@+id/buyer_guide"
-	         android:layout_width="match_parent"
-	         android:layout_height="wrap_content"
-	         style="@style/FilterTextviewStyle"
-	         android:text="Buyer's Guide"/>
-	     
-	     <View 
-	         android:layout_width="match_parent"
-	         android:layout_height="1dp"
-	         android:background="@color/gray"
-	         android:layout_marginTop="15dp"
-	         android:layout_marginLeft="15dp"
-	         android:layout_marginRight="15dp"/>
-	     
-	     <TextView 
-	         android:id="@+id/seller_guide"
-	         android:layout_width="match_parent"
-	         android:layout_height="wrap_content"
-	         style="@style/FilterTextviewStyle"
-	         android:text="Seller's Guide"/>
+	    
+	    <View 
+	        android:layout_width="match_parent"
+	        android:layout_height="2dp"
+	        android:layout_marginLeft="10dp"
+	        android:layout_marginRight="10dp"
+	        android:layout_marginTop="15dp"
+	        android:background="@color/gray"/>
+	    
+	    <ExpandableListView 
+	        android:id="@+id/info_expandable_list"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_below="@+id/title_layout" />
 	     
 	</LinearLayout>
+	
+    <RelativeLayout 
+        android:id="@+id/info_image_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:background="@color/black">
+        
+        <ImageView 
+            android:id="@+id/info_image_back"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/back_arrow"/>
+        
+        <ImageView 
+	        android:id="@+id/info_image"
+	        android:layout_width="400dp"
+	        android:layout_height="300dp"
+	        android:layout_centerInParent="true" />
+        
+    </RelativeLayout>
 
     <!-- Footer -->
     <FrameLayout 

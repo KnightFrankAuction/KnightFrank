@@ -15,11 +15,11 @@ import com.novitee.knightfrankacution.model.Property;
 
 public class FooterFragment extends BaseFragment implements OnClickListener {
 	
-	ImageView home;
-	ImageView shortlist;
-	ImageView about;
-	ImageView enquiry;
-	ImageView more;
+	public ImageView home;
+	public ImageView shortlist;
+	public ImageView about;
+	public ImageView enquiry;
+	public ImageView more;
 	
 	ArrayList<Property> listPro;
 	ArrayList<String> listImage;
@@ -60,11 +60,10 @@ public class FooterFragment extends BaseFragment implements OnClickListener {
 		else if(v.getId() == shortlist.getId()) {
 			intent = new Intent(getActivity(), ShortListActivity.class);
 			startActivity(intent);
-//			new GetAllShortList().execute();
 		}
 		else if(v.getId() == about.getId()) {
-//			intent = new Intent(getActivity(), MoreActivity.class);
-//			startActivity(intent);
+			intent = new Intent(getActivity(), AboutActivity.class);
+			startActivity(intent);
 		}
 		else if(v.getId() == enquiry.getId()) {
 			intent = new Intent(getActivity(), EnquiryActivity.class);
@@ -76,5 +75,5 @@ public class FooterFragment extends BaseFragment implements OnClickListener {
 		}
 		
 	}//onClick
-
+	
 }

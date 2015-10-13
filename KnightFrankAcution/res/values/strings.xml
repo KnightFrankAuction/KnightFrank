@@ -49,5 +49,33 @@
     <string name="title_activity_filter_list">FilterListActivity</string>
     <string name="title_activity_search">SearchActivity</string>
     <string name="title_activity_share">ShareActivity</string>
+    <string name="title_activity_agtauction">AGTAuctionActivity</string>
+    <string name="comission_text">        If the property is sold before, during, at or after the auction (i.e. during our sole agency period), our commission shall be XX % of the sale price (plus GST).  We are prepared to share our Nett Fee with the external agent for the successful sale of the property.
+        \nOnce the property is sold at our auction, the commission due to us will be deducted from the sale deposit.  </string>
+    <string name="service_text">        Auction Service fees amounting to $ XXXXXXXXX/- (plus GST) per property to defray operations costs and etc. (shall be paid immediately upon confirmation of our appointment).  </string>
+    <string name="forfeiture_text">        If a prospective purchaser shall fail to sign or execute the agreement or complete the sale, and any sum of money paid by the purchaser is forfeited to the owners, we shall be entitled to 50% of the forfeited sum or the agreed sales commission whichever is lower.   </string>
+    <string name="sole_rights_text">        We shall have the sole right to market the subject property effective immediately upon the date of our appointment as your auctioneer to X months after the actual date of auction (the sole agency period).  During this period, all enquiries made to you directly or referred by other estate agents should be channelled to us.
+
+		\nIf an option is granted or a contract of sale is made/executed by you during this period, the commission as per clause 3 of the sale price shall be payable to us whether or not the sale is/was effected as a result of our efforts.
+
+		\nIn the event that the subject property is not put up for auction, our sole agency remains valid until X  months after the proposed/intended date of auction.
+		\nWe shall have the sole right to market the subject property effective immediately upon the date of our appointment as your auctioneer to X months after the actual date of auction (the sole agency period).  During this period, all enquiries made to you directly or referred by other estate agents should be channelled to us.
+
+		\nIf an option is granted or a contract of sale is made/executed by you during this period, the commission as per clause 3 of the sale price shall be payable to us whether or not the sale is/was effected as a result of our efforts.
+
+		\nIn the event that the subject property is not put up for auction, our sole agency remains valid until X  months after the proposed/intended date of auction.
+		\nWe shall have the sole right to market the subject property effective immediately upon the date of our appointment as your auctioneer to X months after the actual date of auction (the sole agency period).  During this period, all enquiries made to you directly or referred by other estate agents should be channelled to us.
+
+		\nIf an option is granted or a contract of sale is made/executed by you during this period, the commission as per clause 3 of the sale price shall be payable to us whether or not the sale is/was effected as a result of our efforts.
+
+		\nIn the event that the subject property is not put up for auction, our sole agency remains valid until X  months after the proposed/intended date of auction.   </string>
+    <string name="title_activity_excluseive_authority">ExcluseiveAuthorityActivity</string>
+    <string name="title_activity_non_exclusive_cea">NonExclusiveCeaActivity</string>
+    <string name="title_activity_cea_exclusive_estate">CeaExclusiveEstateActivity</string>
+    <string name="title_activity_non_exclusive_authority">NonExclusiveAuthorityActivity</string>
+    <string name="title_activity_offer_to_purchase">OfferToPurchaseActivity</string>
+    <string name="title_activity_pdf">PDFActivity</string>
+    <string name="title_activity_project_listings_list">ProjectListingsListActivity</string>
+    <string name="title_activity_about">AboutActivity</string>
 
 </resources>

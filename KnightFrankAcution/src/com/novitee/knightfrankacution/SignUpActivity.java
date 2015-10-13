@@ -114,7 +114,7 @@ public class SignUpActivity extends BaseFragmentActivity {
 		edit_cea_no.setText("");
 		edit_company.setText("");*/
 		
-		String pref_email = Preferences.getInstance(context).getUserName();
+		String pref_email = Preferences.getInstance(context).getEmail();
 		if(!pref_email.equals("")) {
 			edit_email.setText(pref_email);
 		}
@@ -283,7 +283,7 @@ public class SignUpActivity extends BaseFragmentActivity {
 				int status = jObj.getInt("status");				
 				
 				if(status == 1 && responseCode == 200){
-					Preferences.getInstance(context).setUserName(email);
+					Preferences.getInstance(context).setEmail(email);
 					Preferences.getInstance(context).setPassword(password);
 					
 					AlertDialog.Builder builder = new AlertDialog.Builder(context);

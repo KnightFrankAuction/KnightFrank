@@ -1,15 +1,22 @@
 package com.novitee.knightfrankacution;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.novitee.knightfrankacution.base.BaseFragmentActivity;
+import com.novitee.knightfrankacution.model.Photo;
+import com.novitee.knightfrankacution.util.CommonConstants;
 import com.novitee.knightfrankacution.util.Preferences;
+import com.squareup.picasso.Picasso;
 
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
+import android.widget.ImageView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
@@ -18,17 +25,20 @@ public class MainActivity extends BaseFragmentActivity {
 	ViewFlipper mViewFlipper;
 	
 	FragmentTransaction fragmentTran;
-	String pref_username;
+	String pref_email;
 	String pref_password;
 	
+	List<Photo> bgList;
+	
+	@SuppressWarnings("unchecked")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		pref_username = Preferences.getInstance(context).getUserName();
-		pref_password = Preferences.getInstance(context).getPassword();
-		if(!pref_username.equals("") && !pref_password.equals("")) {
+		pref_email = pref.getEmail();
+		pref_password = pref.getPassword();
+		if(!pref_email.equals("") && !pref_password.equals("")) {
 			if(connectionManager.isConnected()) {
 				new Login().execute();
 			}
@@ -38,16 +48,33 @@ public class MainActivity extends BaseFragmentActivity {
 			}
 		}
 		
-		//Start ViewFlipper
-		mViewFlipper = (ViewFlipper) findViewById(R.id.view_flipper);
-		mViewFlipper.setAutoStart(true);
-		mViewFlipper.setFlipInterval(4000);
-		mViewFlipper.startFlipping();
+		bgList = (ArrayList<Photo>) getIntent().getSerializableExtra("BgPhoto");
+		
+		makeViewFlipper();
 		
 		fragmentTran = getSupportFragmentManager().beginTransaction();
 		fragmentTran.replace(R.id.place_holder, new ViewPagerFragment());
 		fragmentTran.commit();
 
+	}//onCreate
+
+	private void makeViewFlipper() {
+		// TODO Auto-generated method stub
+		
+		//Start ViewFlipper
+		mViewFlipper = (ViewFlipper) findViewById(R.id.view_flipper);
+		String url;
+		ImageView imgFlipper;
+		for (int i = 0; i < bgList.size(); i++) {
+			url = CommonConstants.HOST + bgList.get(i).getName();
+			imgFlipper = new ImageView(context);
+			Picasso.with(context).load(url).into(imgFlipper);
+			mViewFlipper.addView(imgFlipper);
+		}
+		
+		mViewFlipper.setAutoStart(true);
+		mViewFlipper.setFlipInterval(4000);
+		mViewFlipper.startFlipping();
 	}
 
 	private class Login extends AsyncTask<Void, Void, Void> {
@@ -58,7 +85,7 @@ public class MainActivity extends BaseFragmentActivity {
 		protected Void doInBackground(Void... params) {
 			// TODO Auto-generated method stub
 			try {
-				jObj = api.login(pref_username, pref_password, Preferences.getInstance(context).getGenerateKey());
+				jObj = api.login(pref_email, pref_password, Preferences.getInstance(context).getGenerateKey());
 				
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
@@ -66,6 +93,8 @@ public class MainActivity extends BaseFragmentActivity {
 			}
 			return null;
 		}
+		
+		
 		
 		@Override
 		protected void onPostExecute(Void result) {
@@ -80,7 +109,7 @@ public class MainActivity extends BaseFragmentActivity {
 					int user_type = jObj.getInt("type");
 					String session_token = jObj.getString("session_token");
 					
-					Preferences.getInstance(context).setUserName(pref_username);
+					Preferences.getInstance(context).setEmail(pref_email);
 					Preferences.getInstance(context).setPassword(pref_password);
 					Preferences.getInstance(context).setUserType(user_type);
 					Preferences.getInstance(context).setSessionToken(session_token);
@@ -96,7 +125,7 @@ public class MainActivity extends BaseFragmentActivity {
 					String message = jObj.getString("message");
 					Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
 					
-					Preferences.getInstance(context).setUserName(pref_username);
+					Preferences.getInstance(context).setEmail(pref_email);
 					
 					Intent intent = new Intent(context, SignUpActivity.class);
 					startActivity(intent);
@@ -109,4 +138,5 @@ public class MainActivity extends BaseFragmentActivity {
 		}
 		
 	}//Login
+
 }

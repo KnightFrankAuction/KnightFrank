@@ -91,7 +91,6 @@ public class AdvertisementsActivity extends BaseFragmentActivity {
 			for (int j = 0; j < ad_list.size(); j++) {		
 				Picasso.with(AdvertisementsActivity.this).load(ad_list.get(j)).into(load);
 			}
-//			showAD();
 		}
 		
 	}//downloadAd

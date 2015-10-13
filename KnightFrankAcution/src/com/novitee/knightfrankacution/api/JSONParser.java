@@ -171,4 +171,49 @@ public class JSONParser {
 		}
 		return jObj;
 	}
+	
+	public JSONObject uploadPdfFile(String url, List<NameValuePair> params, List<NameValuePair> signList){
+		
+		HttpClient httpClient = new DefaultHttpClient();
+		HttpPost httpost = new HttpPost(url);
+		try {
+			MultipartEntity multipartEntity = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE);
+//			multipartEntity.addPart("file", new FileBody(new File(path)));
+			
+			for(int i=0; i<signList.size(); i++) {
+				multipartEntity.addPart(signList.get(i).getName(), new FileBody(new File(signList.get(i).getValue())));
+			}
+			
+			for (int i = 0; i < params.size(); i++) {
+				multipartEntity.addPart(params.get(i).getName(), new StringBody(params.get(i).getValue()));
+			}
+			
+			httpost.setEntity(multipartEntity);
+			HttpResponse response = httpClient.execute(httpost);
+			StatusCode = response.getStatusLine().getStatusCode();
+			is = response.getEntity().getContent();
+		} catch (ClientProtocolException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			BufferedReader reader = new BufferedReader(new InputStreamReader(is, "iso-8859-1"), 8);
+			StringBuilder sb = new StringBuilder();
+			String line = null;
+			while ((line = reader.readLine()) != null) {
+				sb.append(line + "\n");
+			}
+			is.close();
+			json = sb.toString();
+			jObj = new JSONObject(json);
+			jObj.put("statusCode", StatusCode);
+			System.out.println(json);
+		} catch (Exception e) {
+			Log.e("Buffer Error", "Error converting result " + e.toString());
+			jObj = null;
+		}
+		return jObj;
+	}
 }

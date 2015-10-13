@@ -1,0 +1,1418 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".CeaExclusiveEstateActivity" >
+    
+    <include 
+        android:id="@+id/title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        layout="@layout/title_layout"/>
+    
+    <ScrollView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title_layout"
+        android:layout_above="@+id/footer_view" >
+        
+        <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            
+            <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:background="@color/gray"
+                android:textSize="24sp"
+                android:textColor="@color/black1"
+                android:text="Parties to agreement"/>
+            
+            <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Type of Agreement"/>
+            
+            <RadioGroup 
+                 android:id="@+id/rd_cee_agree_gp"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:orientation="horizontal">
+                 
+                 <RadioButton 
+                     android:id="@+id/rd_cee_agree_original"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:checked="true"
+                     android:textSize="20sp"
+                     android:textColor="@color/black"
+                     android:text="Original"/>
+                 
+                 <RadioButton 
+                     android:id="@+id/rd_cee_agree_renewal"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:textSize="20sp"
+                     android:textColor="@color/black"
+                     android:text="Renewal"/>
+                 
+             </RadioGroup>
+            
+            <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Agreement Date"/>
+             
+             <EditText 
+                 android:id="@+id/cee_edit_aggrement_date"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"
+                 android:focusable="false"/>
+             
+             <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:background="@color/gray"
+                android:textSize="24sp"
+                android:textColor="@color/black1"
+                android:text="Seller 1's Information"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Seller's Name"/>
+             
+             <EditText 
+                 android:id="@+id/cee_edit_seller1_name"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="NRIC No"/>
+             
+             <EditText 
+                 android:id="@+id/cee_edit_seller1_ic"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Postal Code"/>
+             
+             <EditText 
+                 android:id="@+id/cee_edit_seller1_postal"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Address 1"/>
+             
+             <EditText 
+                 android:id="@+id/cee_edit_seller1_address1"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Address 2"/>
+             
+             <EditText 
+                 android:id="@+id/cee_edit_seller1_address2"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Building Name"/>
+             
+             <EditText 
+                 android:id="@+id/cee_edit_seller1_building_name"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+            
+             <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:background="@color/gray"
+                android:textSize="24sp"
+                android:textColor="@color/black1"
+                android:text="Seller 2's Information"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Seller's Name"/>
+             
+             <EditText 
+                 android:id="@+id/cee_edit_seller2_name"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="NRIC No"/>
+             
+             <EditText 
+                 android:id="@+id/cee_edit_seller2_ic"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Postal Code"/>
+             
+             <EditText 
+                 android:id="@+id/cee_edit_seller2_postal"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Address 1"/>
+             
+             <EditText 
+                 android:id="@+id/cee_edit_seller2_address1"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Address 2"/>
+             
+             <EditText 
+                 android:id="@+id/cee_edit_seller2_address2"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Building Name"/>
+             
+             <EditText 
+                 android:id="@+id/cee_edit_seller2_building_name"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:background="@color/gray"
+                android:textSize="24sp"
+                android:textColor="@color/black1"
+                android:text="Seller 3's Information"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Seller's Name"/>
+             
+             <EditText 
+                 android:id="@+id/cee_edit_seller3_name"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="NRIC No"/>
+             
+             <EditText 
+                 android:id="@+id/cee_edit_seller3_ic"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Postal Code"/>
+             
+             <EditText 
+                 android:id="@+id/cee_edit_seller3_postal"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Address 1"/>
+             
+             <EditText 
+                 android:id="@+id/cee_edit_seller3_address1"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Address 2"/>
+             
+             <EditText 
+                 android:id="@+id/cee_edit_seller3_address2"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Building Name"/>
+             
+             <EditText 
+                 android:id="@+id/cee_edit_seller3_building_name"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:background="@color/gray"
+                android:textSize="24sp"
+                android:textColor="@color/black1"
+                android:text="Seller 4's Information"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Seller's Name"/>
+             
+             <EditText 
+                 android:id="@+id/cee_edit_seller4_name"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="NRIC No"/>
+             
+             <EditText 
+                 android:id="@+id/cee_edit_seller4_ic"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Postal Code"/>
+             
+             <EditText 
+                 android:id="@+id/cee_edit_seller4_postal"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Address 1"/>
+             
+             <EditText 
+                 android:id="@+id/cee_edit_seller4_address1"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Address 2"/>
+             
+             <EditText 
+                 android:id="@+id/cee_edit_seller4_address2"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Building Name"/>
+             
+             <EditText 
+                 android:id="@+id/cee_edit_seller4_building_name"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:background="@color/gray"
+                android:textSize="24sp"
+                android:textColor="@color/black1"
+                android:text="Estate agent information"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Seller's Name"/>
+             
+             <EditText 
+                 android:id="@+id/cee_edit_agent_name"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"
+                 android:text="Knight Frank Pte Ltd."/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Licence No"/>
+             
+             <EditText 
+                 android:id="@+id/cee_edit_agent_licence"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Postal Code"/>
+             
+             <EditText 
+                 android:id="@+id/cee_edit_agent_postal"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Address 1"/>
+             
+             <EditText 
+                 android:id="@+id/cee_edit_agent_address1"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Address 2"/>
+             
+             <EditText 
+                 android:id="@+id/cee_edit_agent_address2"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Building Name"/>
+             
+             <EditText 
+                 android:id="@+id/cee_edit_agent_building_name"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:background="@color/gray"
+                android:textSize="24sp"
+                android:textColor="@color/black1"
+                android:text="Appoinment of Estate Agent by Seller"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Property's address"/>
+             
+             <View 
+		        android:layout_width="match_parent"
+		        android:layout_height="2dp"
+		        android:layout_margin="10dp"
+		        android:background="@color/gray"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Postal Code"/>
+             
+             <EditText 
+                 android:id="@+id/cee_edit_property_postal"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Address 1"/>
+             
+             <EditText 
+                 android:id="@+id/cee_edit_property_address1"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Address 2"/>
+             
+             <EditText 
+                 android:id="@+id/cee_edit_property_address2"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Building Name"/>
+             
+             <EditText 
+                 android:id="@+id/cee_edit_property_building_name"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:background="@color/gray"
+                android:textSize="24sp"
+                android:textColor="@color/black1"
+                android:text="Validity period / renewal"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Commencement Date"/>
+             
+             <EditText 
+                 android:id="@+id/cee_edit_validity_commencement"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"
+                 android:focusable="false"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Expiry Date"/>
+             
+             <EditText 
+                 android:id="@+id/cee_edit_validity_expiry"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"
+                 android:focusable="false"/>
+             
+             <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:background="@color/gray"
+                android:textSize="24sp"
+                android:textColor="@color/black1"
+                android:text="Expected Sale Price"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Expected Sale Price - Spelling"/>
+             
+             <EditText 
+                 android:id="@+id/cee_edit_price_spelling"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Expected Sale Price - Numbers"/>
+             
+             <EditText
+                 android:id="@+id/cee_edit_price_numbers" 
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:background="@color/gray"
+                android:textSize="24sp"
+                android:textColor="@color/black1"
+                android:text="Comission"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Comission dollar S$"/>
+             
+             <EditText 
+                 android:id="@+id/cee_edit_comission_dollar"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Comission percentage %"/>
+             
+             <EditText 
+                 android:id="@+id/cee_edit_comission_percent"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="GST payable"/>
+             
+             <RadioGroup 
+                 android:id="@+id/rd_cee_gst_gp"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:orientation="horizontal">
+                 
+                 <RadioButton 
+                     android:id="@+id/rd_cee_gst_yes"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:checked="true"
+                     android:textSize="20sp"
+                     android:textColor="@color/black"
+                     android:text="Yes"/>
+                 
+                 <RadioButton 
+                     android:id="@+id/rd_cee_gst_no"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:textSize="20sp"
+                     android:textColor="@color/black"
+                     android:text="No"/>
+                 
+             </RadioGroup>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="GST type ?"/>
+             
+             <RadioGroup 
+                 android:id="@+id/rd_cee_gst_type_gp"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:orientation="horizontal">
+                 
+                 <RadioButton 
+                     android:id="@+id/rd_cee_gst_type_inclusive"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:checked="true"
+                     android:textSize="20sp"
+                     android:textColor="@color/black"
+                     android:text="Inclusive"/>
+                 
+                 <RadioButton 
+                     android:id="@+id/rd_cee_gst_type_exclusive"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:textSize="20sp"
+                     android:textColor="@color/black"
+                     android:text="Exclusive"/>
+                 
+             </RadioGroup>
+             
+             <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:background="@color/gray"
+                android:textSize="24sp"
+                android:textColor="@color/black1"
+                android:text="Disclosure requirement"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Conflict of interest"/>
+             
+             <RadioGroup 
+                 android:id="@+id/rd_cee_conflict_gp"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:orientation="horizontal">
+                 
+                 <RadioButton 
+                     android:id="@+id/rd_cee_conflict_not"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:checked="true"
+                     android:textSize="20sp"
+                     android:textColor="@color/black"
+                     android:text="Does not"/>
+                 
+                 <RadioButton 
+                     android:id="@+id/rd_cee_conflict_have"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:textSize="20sp"
+                     android:textColor="@color/black"
+                     android:text="Have"/>
+                 
+             </RadioGroup>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Reason for Conflict"/>
+             
+             <EditText 
+                 android:id="@+id/cee_edit_conflict_reason"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:maxLines="5"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:background="@color/gray"
+                android:textSize="24sp"
+                android:textColor="@color/black1"
+                android:text="Property Inspection and Co-broking"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Co-broke"/>
+             
+             <RadioGroup 
+                 android:id="@+id/rd_cee_broke_gp"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:orientation="horizontal">
+                 
+                 <RadioButton 
+                     android:id="@+id/rd_cee_broke_may"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:checked="true"
+                     android:textSize="20sp"
+                     android:textColor="@color/black"
+                     android:text="May"/>
+                 
+                 <RadioButton 
+                     android:id="@+id/rd_cee_broke_not"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:textSize="20sp"
+                     android:textColor="@color/black"
+                     android:text="May not"/>
+                 
+             </RadioGroup>
+             
+             <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:background="@color/gray"
+                android:textSize="24sp"
+                android:textColor="@color/black1"
+                android:text="Warranty of Seller"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Seller Warrant"/>
+             
+             <RadioGroup 
+                 android:id="@+id/rd_cee_warrant_gp"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:orientation="horizontal">
+                 
+                 <RadioButton 
+                     android:id="@+id/rd_cee_warrant_owner"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:checked="true"
+                     android:textSize="20sp"
+                     android:textColor="@color/black"
+                     android:text="The owner of"/>
+                 
+                 <RadioButton 
+                     android:id="@+id/rd_cee_warrant_duty"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:textSize="20sp"
+                     android:textColor="@color/black"
+                     android:text="duty authorized"/>
+                 
+             </RadioGroup>
+             
+             <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:background="@color/gray"
+                android:textSize="24sp"
+                android:textColor="@color/black1"
+                android:text="Additional terms"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Another sales person from KF to represent"/>
+             
+              <RadioGroup 
+                  android:id="@+id/rd_cee_represent_gp"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:orientation="horizontal">
+                 
+                 <RadioButton 
+                     android:id="@+id/rd_cee_warrant_buyer"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:checked="true"
+                     android:textSize="20sp"
+                     android:textColor="@color/black"
+                     android:text="Buyer"/>
+                 
+                 <RadioButton 
+                     android:id="@+id/rd_cee_warrant_seller"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:textSize="20sp"
+                     android:textColor="@color/black"
+                     android:text="Seller"/>
+                 
+             </RadioGroup>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Another sales person details"/>
+             
+             <EditText 
+                 android:id="@+id/cee_edit_person_detail"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:maxLines="5"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Bank Referral Fees"/>
+             
+             <EditText 
+                 android:id="@+id/cee_edit_bank_fees"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:maxLines="5"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:background="@color/gray"
+                android:textSize="24sp"
+                android:textColor="@color/black1"
+                android:text="Sellers / Estate agent Signature"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Seller 1's Information"/>
+             
+             <View 
+		        android:layout_width="match_parent"
+		        android:layout_height="2dp"
+		        android:layout_margin="10dp"
+		        android:background="@color/gray"/>
+             
+             <LinearLayout 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_margin="10dp"
+                 android:orientation="horizontal"
+                 android:weightSum="3">
+                 
+                 <Button 
+                     android:id="@+id/btn_cee_seller1_sign"
+                     android:layout_width="0dp"
+                     android:layout_height="50dp"
+                     android:layout_weight="2"
+                     android:background="@color/pink"
+                     style="@style/MenuTextviewStyle"
+                     android:text="Make Signature"/>
+                 
+                 <ImageView 
+                     android:id="@+id/img_cee_seller1_sign"
+                     android:layout_width="0dp"
+                     android:layout_height="50dp"
+                     android:layout_weight="1"
+                     android:src="@drawable/home_icon"/>
+                 
+             </LinearLayout>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Interpreter Name"/>
+             
+             <EditText 
+                 android:id="@+id/cee_edit_interpreter1_name"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:maxLines="5"
+                 android:layout_margin="10dp"/>
+             
+             <LinearLayout 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_margin="10dp"
+                 android:orientation="horizontal"
+                 android:weightSum="3">
+                 
+                 <Button 
+                     android:id="@+id/btn_cee_interpreter1_sign"
+                     android:layout_width="0dp"
+                     android:layout_height="50dp"
+                     android:layout_weight="2"
+                     android:background="@color/pink"
+                     style="@style/MenuTextviewStyle"
+                     android:text="Make Signature"/>
+                 
+                 <ImageView 
+                     android:id="@+id/img_cee_interpreter1_sign"
+                     android:layout_width="0dp"
+                     android:layout_height="50dp"
+                     android:layout_weight="1"
+                     android:src="@drawable/home_icon"/>
+                 
+             </LinearLayout>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Interpreter NRIC No"/>
+             
+             <EditText 
+                 android:id="@+id/cee_edit_interpreter1_ic"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:maxLines="5"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Seller 2's Information"/>
+             
+             <View 
+		        android:layout_width="match_parent"
+		        android:layout_height="2dp"
+		        android:layout_margin="10dp"
+		        android:background="@color/gray"/>
+             
+             <LinearLayout 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_margin="10dp"
+                 android:orientation="horizontal"
+                 android:weightSum="3">
+                 
+                 <Button 
+                     android:id="@+id/btn_cee_seller2_sign"
+                     android:layout_width="0dp"
+                     android:layout_height="50dp"
+                     android:layout_weight="2"
+                     android:background="@color/pink"
+                     style="@style/MenuTextviewStyle"
+                     android:text="Make Signature"/>
+                 
+                 <ImageView 
+                     android:id="@+id/img_cee_seller2_sign"
+                     android:layout_width="0dp"
+                     android:layout_height="50dp"
+                     android:layout_weight="1"
+                     android:src="@drawable/home_icon"/>
+                 
+             </LinearLayout>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Interpreter Name"/>
+             
+             <EditText 
+                 android:id="@+id/cee_edit_interpreter2_name"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:maxLines="5"
+                 android:layout_margin="10dp"/>
+             
+             <LinearLayout 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_margin="10dp"
+                 android:orientation="horizontal"
+                 android:weightSum="3">
+                 
+                 <Button 
+                     android:id="@+id/btn_cee_interpreter2_sign"
+                     android:layout_width="0dp"
+                     android:layout_height="50dp"
+                     android:layout_weight="2"
+                     android:background="@color/pink"
+                     style="@style/MenuTextviewStyle"
+                     android:text="Make Signature"/>
+                 
+                 <ImageView 
+                     android:id="@+id/img_cee_interpreter2_sign"
+                     android:layout_width="0dp"
+                     android:layout_height="50dp"
+                     android:layout_weight="1"
+                     android:src="@drawable/home_icon"/>
+                 
+             </LinearLayout>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Interpreter NRIC No"/>
+             
+             <EditText 
+                 android:id="@+id/cee_edit_interpreter2_ic"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:maxLines="5"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Seller 3's Information"/>
+             
+             <View 
+		        android:layout_width="match_parent"
+		        android:layout_height="2dp"
+		        android:layout_margin="10dp"
+		        android:background="@color/gray"/>
+             
+             <LinearLayout 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_margin="10dp"
+                 android:orientation="horizontal"
+                 android:weightSum="3">
+                 
+                 <Button 
+                     android:id="@+id/btn_cee_seller3_sign"
+                     android:layout_width="0dp"
+                     android:layout_height="50dp"
+                     android:layout_weight="2"
+                     android:background="@color/pink"
+                     style="@style/MenuTextviewStyle"
+                     android:text="Make Signature"/>
+                 
+                 <ImageView 
+                     android:id="@+id/img_cee_seller3_sign"
+                     android:layout_width="0dp"
+                     android:layout_height="50dp"
+                     android:layout_weight="1"
+                     android:src="@drawable/home_icon"/>
+                 
+             </LinearLayout>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Interpreter Name"/>
+             
+             <EditText 
+                 android:id="@+id/cee_edit_interpreter3_name"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:maxLines="5"
+                 android:layout_margin="10dp"/>
+             
+             <LinearLayout 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_margin="10dp"
+                 android:orientation="horizontal"
+                 android:weightSum="3">
+                 
+                 <Button 
+                     android:id="@+id/btn_cee_interpreter3_sign"
+                     android:layout_width="0dp"
+                     android:layout_height="50dp"
+                     android:layout_weight="2"
+                     android:background="@color/pink"
+                     style="@style/MenuTextviewStyle"
+                     android:text="Make Signature"/>
+                 
+                 <ImageView 
+                     android:id="@+id/img_cee_interpreter3_sign"
+                     android:layout_width="0dp"
+                     android:layout_height="50dp"
+                     android:layout_weight="1"
+                     android:src="@drawable/home_icon"/>
+                 
+             </LinearLayout>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Interpreter NRIC No"/>
+             
+             <EditText 
+                 android:id="@+id/cee_edit_interpreter3_ic"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:maxLines="5"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Seller 4's Information"/>
+             
+             <View 
+		        android:layout_width="match_parent"
+		        android:layout_height="2dp"
+		        android:layout_margin="10dp"
+		        android:background="@color/gray"/>
+             
+             <LinearLayout 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_margin="10dp"
+                 android:orientation="horizontal"
+                 android:weightSum="3">
+                 
+                 <Button 
+                     android:id="@+id/btn_cee_seller4_sign"
+                     android:layout_width="0dp"
+                     android:layout_height="50dp"
+                     android:layout_weight="2"
+                     android:background="@color/pink"
+                     style="@style/MenuTextviewStyle"
+                     android:text="Make Signature"/>
+                 
+                 <ImageView 
+                     android:id="@+id/img_cee_seller4_sign"
+                     android:layout_width="0dp"
+                     android:layout_height="50dp"
+                     android:layout_weight="1"
+                     android:src="@drawable/home_icon"/>
+                 
+             </LinearLayout>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Interpreter Name"/>
+             
+             <EditText 
+                 android:id="@+id/cee_edit_interpreter4_name"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:maxLines="5"
+                 android:layout_margin="10dp"/>
+             
+             <LinearLayout 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_margin="10dp"
+                 android:orientation="horizontal"
+                 android:weightSum="3">
+                 
+                 <Button 
+                     android:id="@+id/btn_cee_interpreter4_sign"
+                     android:layout_width="0dp"
+                     android:layout_height="50dp"
+                     android:layout_weight="2"
+                     android:background="@color/pink"
+                     style="@style/MenuTextviewStyle"
+                     android:text="Make Signature"/>
+                 
+                 <ImageView 
+                     android:id="@+id/img_cee_interpreter4_sign"
+                     android:layout_width="0dp"
+                     android:layout_height="50dp"
+                     android:layout_weight="1"
+                     android:src="@drawable/home_icon"/>
+                 
+             </LinearLayout>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Interpreter NRIC No"/>
+             
+             <EditText 
+                 android:id="@+id/cee_edit_interpreter4_ic"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:maxLines="5"
+                 android:layout_margin="10dp"/>
+
+             <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:background="@color/gray"
+                android:textSize="24sp"
+                android:textColor="@color/black1"
+                android:text="Sales person / agent information"/>
+             
+             <LinearLayout 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_margin="10dp"
+                 android:orientation="horizontal"
+                 android:weightSum="3">
+                 
+                 <Button 
+                     android:id="@+id/btn_cee_agent_sign"
+                     android:layout_width="0dp"
+                     android:layout_height="50dp"
+                     android:layout_weight="2"
+                     android:background="@color/pink"
+                     style="@style/MenuTextviewStyle"
+                     android:text="Make Signature"/>
+                 
+                 <ImageView 
+                     android:id="@+id/img_cee_agent_sign"
+                     android:layout_width="0dp"
+                     android:layout_height="50dp"
+                     android:layout_weight="1"
+                     android:src="@drawable/home_icon"/>
+                 
+             </LinearLayout>
+             
+             <TextView 
+                 android:id="@+id/cee_txt_sagent_name"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Kelvin Chua"/>
+             
+             <TextView 
+                 android:id="@+id/cee_txt_sagent_ic"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="NRIC: G123456"/>
+             
+            <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Postal Code"/>
+             
+             <EditText 
+                 android:id="@+id/cee_edit_sagent_postal"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Address 1"/>
+             
+             <EditText 
+                 android:id="@+id/cee_edit_sagent_address1"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Address 2"/>
+             
+             <EditText 
+                 android:id="@+id/cee_edit_sagent_address2"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/>
+             
+             <TextView 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Building Name"/>
+             
+             <EditText 
+                 android:id="@+id/cee_edit_sagent_building_name"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_margin="10dp"/> 
+             
+             <TextView 
+                 android:id="@+id/cee_txt_sagent_cea"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="CEA License No: 1234"/>
+             
+             <TextView 
+                 android:id="@+id/cee_txt_sagent_tel"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 style="@style/DocumentTextviewStyle"
+                 android:text="Tel No: 123456"/>
+             
+             <Button 
+                 android:id="@+id/cee_submit"
+                 android:layout_width="100dp"
+                 android:layout_height="40dp"
+                 android:background="@color/pink"
+                 style="@style/MenuTextviewStyle"
+                 android:layout_gravity="center_horizontal"
+                 android:layout_marginTop="10dp"
+                 android:layout_marginBottom="10dp"
+                 android:text="Submit"/>
+
+         </LinearLayout>
+         
+	</ScrollView>
+    
+    <View 
+        android:id="@+id/footer_view"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@color/gray"
+        android:layout_above="@+id/cea_exclusive_footer"/>
+    
+    <!-- Footer -->
+    <FrameLayout 
+        android:id="@+id/cea_exclusive_footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        android:layout_alignParentBottom="true" />
+    
+
+</RelativeLayout>

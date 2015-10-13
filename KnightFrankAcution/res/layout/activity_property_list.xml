@@ -18,6 +18,14 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/title_layout" />
     
+    <ProgressBar 
+        android:id="@+id/filter_list_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/filter_list_search"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="5dp"/>
+    
     <ListView 
         android:id="@+id/filter_list"
         android:layout_width="match_parent"
@@ -25,6 +33,20 @@
         android:layout_below="@+id/filter_list_search"
         android:layout_above="@+id/filter_list_footer"
         android:layout_marginBottom="10dp" />
+    
+    <ProgressBar 
+        android:id="@+id/filter_list_refresh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/filter_list"
+        android:visibility="gone"/>
+    
+    <TextView 
+        android:id="@+id/filter_share_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/filter_list_footer"
+        style="@style/ShareBoxStyle" />
     
     <FrameLayout 
         android:id="@+id/filter_list_footer"

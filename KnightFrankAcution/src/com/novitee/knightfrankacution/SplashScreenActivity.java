@@ -4,14 +4,18 @@ import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
-import com.novitee.knightfrankacution.api.KnightFrankAPI;
+
 import com.novitee.knightfrankacution.base.BaseActivity;
-import com.novitee.knightfrankacution.util.Preferences;
+import com.novitee.knightfrankacution.model.Photo;
+import com.novitee.knightfrankacution.util.CommonConstants;
+import com.squareup.picasso.Picasso;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -24,11 +28,14 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.Signature;
 import android.util.Base64;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 public class SplashScreenActivity extends BaseActivity {
     
     Context context = this;
+    
+    ImageView imgLogo;
     
     //GCM
     String regId;
@@ -37,6 +44,7 @@ public class SplashScreenActivity extends BaseActivity {
     private static final String PROPERTY_APP_VERSION = "appVersion";
     private static final String PROPERTY_ON_SERVER_EXPIRATION_TIME = "onServerExpirationTimeMs";
     public static final long REGISTRATION_EXPIRY_TIME_MS = 1000 * 3600 * 24 * 7;
+    boolean call_flag = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,9 +70,18 @@ public class SplashScreenActivity extends BaseActivity {
             Log.e("exception", e.toString());
         }
         
-        if (Preferences.getInstance(context).getRegid() == null) {
+        imgLogo = (ImageView) findViewById(R.id.logo);
+        if(connectionManager.isConnected()) {
+        	new GetLogo().execute();
+		}
+		else {
+			Toast.makeText(context, "No Internet Connection", Toast.LENGTH_SHORT).show();
+			finish();
+		}
+
+        if (pref.getRegid() == null) {
                 regId = getRegistrationId(getApplicationContext());
-                //regId="1856c20b587c402c00e0b1ff901ebcd5d3d";
+//                regId = "1856c20b587c402c00e0b1ff901ebcd5d3d";
                 
                 gcm = GoogleCloudMessaging.getInstance(this);
                 
@@ -76,11 +93,12 @@ public class SplashScreenActivity extends BaseActivity {
                     
                     new GenerateKey().execute();
                     
-                    Preferences.getInstance(context).setRegid(regId);
-                    Intent i = new Intent();
+                    pref.setRegid(regId);
+                    /*Intent i = new Intent();
                     i.setClass(context, MainActivity.class);
                     finish();
-                    startActivity(i);
+                    startActivity(i);*/
+                    new GetData().execute();
                 }
          } else {
             Thread logoTimer = new Thread() {
@@ -92,13 +110,14 @@ public class SplashScreenActivity extends BaseActivity {
                             logoTimer = logoTimer + 100;
 
                         }
-                        
+//                        call_flag = true;
                         new GenerateKey().execute();
                         
-                        Intent i = new Intent();
-                        i.setClass(context, MainActivity.class);
-                        finish();
-                        startActivity(i);
+//                        Intent i = new Intent();
+//                        i.setClass(context, MainActivity.class);
+//                        finish();
+//                        startActivity(i);
+                        new GetData().execute();
                         
                     } catch (InterruptedException e) {
                         e.printStackTrace();
@@ -136,10 +155,11 @@ public class SplashScreenActivity extends BaseActivity {
             // TODO Auto-generated method stub
             super.onPostExecute(result);
             
-            Intent i = new Intent();
-            i.setClass(context, MainActivity.class);
+            /*Intent i = new Intent();
+            i.setClass(context, MainActivity.class)
             finish();
-            startActivity(i);
+            startActivity(i);*/
+            new GetData().execute();
         }
         
     }
@@ -224,7 +244,7 @@ public class SplashScreenActivity extends BaseActivity {
         
         new GenerateKey().execute();
 
-        Preferences.getInstance(context).setRegid(regId);
+        pref.setRegid(regId);
     }
     
     private class GenerateKey extends AsyncTask<Void, Void, Void> {
@@ -232,17 +252,22 @@ public class SplashScreenActivity extends BaseActivity {
         @Override
         protected Void doInBackground(Void... params) {
             // TODO Auto-generated method stub
-//          api = new KnightFrankAPI();
+
             try {
-                KnightFrankAPI api = new KnightFrankAPI();
                 JSONObject json = new JSONObject();
-                json = api.generateKey("A", Preferences.getInstance(context).getRegid());
+
+                json = api.generateKey("A", pref.getRegid());
                 int json_responseCode = json.getInt("statusCode");
                 int json_status = json.getInt("status");
                 
                 if(json_status == 1 && json_responseCode == 200){
                     String client_key = json.getString("key");
-                    Preferences.getInstance(context).setGenerateKey(client_key);
+                    pref.setGenerateKey(client_key);
+                    
+                    if(call_flag == true) {
+                    	new GetData().execute();
+                    }
+
                 }
                 else if(json_status == 2 && json_responseCode == 401) {
                     String message = json.getString("message");
@@ -259,5 +284,103 @@ public class SplashScreenActivity extends BaseActivity {
             return null;
         }
         
+    }//GenerateKey
+    
+    private class GetData extends AsyncTask<Void, Void, Void> {
+    	
+    	@Override
+        protected Void doInBackground(Void... params) {
+            // TODO Auto-generated method stub
+
+            try {
+                JSONObject json = new JSONObject();
+
+                json = api.getData(pref.getGenerateKey());
+                int json_responseCode = json.getInt("statusCode");
+                int json_status = json.getInt("status");
+                
+                if(json_status == 1 && json_responseCode == 200){
+                	//get Logo
+                	String pinkLogo = json.getString("pink_logo");
+                	pref.setLogo(pinkLogo);
+                	
+                	//get Background photo
+                	JSONArray jArray = json.getJSONArray("bg_photo");
+                	ArrayList<Photo> bgList = new ArrayList<Photo>();
+                	Photo photo;
+                	for (int i = 0; i < jArray.length(); i++) {
+						photo = new Photo(jArray.getJSONObject(i));
+						bgList.add(photo);
+					}
+                	
+                	Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
+                	intent.putExtra("BgPhoto", bgList);
+                	startActivity(intent);
+                	
+                }
+                else if(json_status == 2 && json_responseCode == 401) {
+                    String message = json.getString("message");
+                    Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(context, "Something went wrong", Toast.LENGTH_SHORT).show();
+                }
+                
+            } catch (JSONException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            return null;
+        }
+    	
+    }
+    
+    private class GetLogo extends AsyncTask<Void, Void, Void> {
+    	JSONObject json;
+    	
+    	@Override
+        protected Void doInBackground(Void... params) {
+            // TODO Auto-generated method stub
+
+            try {
+               json = new JSONObject();
+               json = api.getLogo();
+                
+                
+            } catch (JSONException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            return null;
+        }
+    	
+    	@Override
+    	protected void onPostExecute(Void result) {
+    		// TODO Auto-generated method stub
+    		super.onPostExecute(result);
+    		
+    		try {
+	    		int json_responseCode = json.getInt("statusCode");
+	            int json_status = json.getInt("status");
+			
+	            if(json_status == 1 && json_responseCode == 200){
+	            	//get Logo
+	            	String logo_url = CommonConstants.HOST + json.getString("white_logo");
+	    			Picasso.with(context).load(logo_url).into(imgLogo);
+	            }
+	            else if(json_status == 2 && json_responseCode == 401) {
+	                String message = json.getString("message");
+	                Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+	            }
+	            else {
+	                Toast.makeText(context, "Something went wrong", Toast.LENGTH_SHORT).show();
+	            }
+            
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	}
+    	
     }
 }

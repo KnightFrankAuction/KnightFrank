@@ -8,7 +8,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.util.Log;
 
 public class Property implements Serializable {
 	
@@ -44,6 +43,8 @@ public class Property implements Serializable {
 	public String email;
 	public String date;
 	public String bgcolor;
+	public String status;
+	public String video;
 	
 	List<Photo> photo ;
 
@@ -82,6 +83,8 @@ public class Property implements Serializable {
 			email = j.getString("email");
 			date = j.getString("start_date");
 			bgcolor = "#FFFFFF";
+			status = j.getString("status");
+			video = j.getString("video");
 			
 			/*property_id = j.getString("property_id");
 			phone = j.getString("phone");
@@ -120,7 +123,7 @@ public class Property implements Serializable {
 			for (int i = 0; i < jArray.length(); i++) {
 				photo.add(new Photo(jArray.getJSONObject(i)));
 			}
-			Log.d("dsfsd", "sd");
+			
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -318,6 +321,19 @@ public class Property implements Serializable {
 	}
 	public void setBgcolor(String bgcolor) {
 		this.bgcolor = bgcolor;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public String getVideo() {
+		return video;
+	}
+	public void setVideo(String video) {
+		this.video = video;
 	}	
+	
 	
 }

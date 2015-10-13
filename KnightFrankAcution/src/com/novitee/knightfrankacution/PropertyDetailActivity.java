@@ -2,11 +2,11 @@ package com.novitee.knightfrankacution;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
+import com.daimajia.slider.library.SliderTypes.BaseSliderView.OnSliderClickListener;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
@@ -22,9 +22,7 @@ import com.squareup.picasso.Picasso;
 import android.location.Address;
 import android.location.Geocoder;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -34,9 +32,12 @@ import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.app.ProgressDialog;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.LabeledIntent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 
 public class PropertyDetailActivity extends BaseFragmentActivity {
 	Context context = this;
@@ -50,7 +51,6 @@ public class PropertyDetailActivity extends BaseFragmentActivity {
 	
 	ImageView default_image;
 	ImageView starbuy;
-//	TextView buildingName;
 	TextView titlePrice;
 	TextView titleBedroom;
 	TextView titleBathroom;
@@ -84,23 +84,17 @@ public class PropertyDetailActivity extends BaseFragmentActivity {
 	List<String> facList;
 	
 	Property property;
-	ProgressDialog pDialog;
+	int video_flag = 0;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_property_detail);
-		
-		pDialog = new ProgressDialog(PropertyDetailActivity.this);
-        pDialog.setMessage("Please wait....");
-        pDialog.setCancelable(false);
-        pDialog.show();
-		
+
 		setTitleBarAndFooter();
 		
 		default_image = (ImageView) findViewById(R.id.default_image);
 		starbuy = (ImageView) findViewById(R.id.property_starbuy);
-//		buildingName = (TextView) findViewById(R.id.building_name);
 		titlePrice = (TextView) findViewById(R.id.txtPrice);
 		titleBedroom = (TextView) findViewById(R.id.txtBedroom);
 		titleBathroom = (TextView) findViewById(R.id.txtBathroom);
@@ -132,14 +126,8 @@ public class PropertyDetailActivity extends BaseFragmentActivity {
 		
 		property = (Property) getIntent().getSerializableExtra("Property");
 		
-		new Handler().postDelayed(new Runnable() {
-			
-			@Override
-			public void run() {
-				new AsyncShowProperty().execute();
-			}
-		}, 1000);
-		
+		showProperty();
+
 		makeCall.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -182,10 +170,7 @@ public class PropertyDetailActivity extends BaseFragmentActivity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				ShareWithEmail activity = new ShareWithEmail();
-				activity.shareDetailProperty(property, context);	
-//				FacebookShareContentFragment shareContent = new FacebookShareContentFragment();
-//				shareContent.share(PropertyDetailActivity.this);
+				shareClick(v);
 			}
 		});
 
@@ -199,12 +184,6 @@ public class PropertyDetailActivity extends BaseFragmentActivity {
 			}
 		});
 	}//setTitleBarAndFooter
-	
-	@Override
-	public void onBackPressed() {
-		// TODO Auto-generated method stub
-		super.onBackPressed();
-	}
 	
 	public void showProperty() {
 		titleText.setText(property.getBuilding_name());
@@ -246,6 +225,12 @@ public class PropertyDetailActivity extends BaseFragmentActivity {
 		
 		photoList.clear();
 		photoList = property.getPhoto();
+		
+		if(!property.getVideo().equals("")) {
+			Photo photo = new Photo(CommonConstants.VIDEO_IMAGE);
+			photoList.add(photo);
+			video_flag = 1;
+		}
 		
 		String starbuy_flag = property.getStarbuy_flag();
 		
@@ -305,7 +290,12 @@ public class PropertyDetailActivity extends BaseFragmentActivity {
 		}
 
 		//add Image to slider
-		if(photoList.size() == 1) {
+		if(photoList.size() == 0 && !property.getVideo().equals("")) {
+			default_image.setScaleType(ScaleType.FIT_XY);
+			String url = property.getVideo();
+			Picasso.with(context).load(url).into(default_image);
+		}
+		else if(photoList.size() == 1) {
 			default_image.setScaleType(ScaleType.FIT_XY);
 			String url = CommonConstants.HOST + photoList.get(0).getName();
             Picasso.with(context).load(url).into(default_image);
@@ -326,25 +316,48 @@ public class PropertyDetailActivity extends BaseFragmentActivity {
 	}//showProperty
 
 	public void addImagetoSlider() {
-		HashMap<String,String> url_maps = new HashMap<String, String>();
+		final String count = String.valueOf(photoList.size() - 1);
 		
-		for (int j = 0; j < photoList.size(); j++) {
-			url_maps.put(String.valueOf(j), CommonConstants.HOST + photoList.get(j).getName());
-		}
-		
-		for(String name : url_maps.keySet()) {
-			TextSliderView textSliderView = new TextSliderView(context);
-			textSliderView
-						.image(url_maps.get(name))
-						.setScaleType(BaseSliderView.ScaleType.Fit);
+		for (int i = 0; i < photoList.size(); i++) {
+			String name = CommonConstants.HOST + photoList.get(i).getName();;
+			
+			/*if(video_flag == 1 && Integer.parseInt(count) == i) {
+				name = photoList.get(i).getName();
+			}
+			else {
+				name = CommonConstants.HOST + photoList.get(i).getName();
+			}*/
+			
+			TextSliderView textSliderView = new TextSliderView(PropertyDetailActivity.this);
+			textSliderView.bundle(new Bundle());
+			
+			textSliderView.image(name)
+				   		  .setScaleType(BaseSliderView.ScaleType.Fit)
+				   		  .setOnSliderClickListener(new OnSliderClickListener() {
+								
+								@Override
+								public void onSliderClick(BaseSliderView slider) {
+//									Toast.makeText(context,slider.getBundle().get("Extra") + "",Toast.LENGTH_LONG).show();
+									
+									if(count.equals(slider.getBundle().getString("Extra")) && video_flag == 1) {
+//										Toast.makeText(context, "Show Video", Toast.LENGTH_LONG).show();
+										Uri uri = Uri.parse(property.getVideo());
+										Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uri);
+										startActivity(launchBrowser);
+									}
+								}
+								
+							});
+			textSliderView.getBundle().putString("Extra", Integer.toString(i));
 			
 			detailSlider.addSlider(textSliderView);
+
 		}
 		
 		detailSlider.setPresetTransformer(SliderLayout.Transformer.Accordion);
 		detailSlider.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
         detailSlider.setDuration(4000);
-		
+
 	}
 	
 	/**
@@ -363,8 +376,8 @@ public class PropertyDetailActivity extends BaseFragmentActivity {
         }
         else {
         	//set location in google map
-//        	locationFromPostCode(postal_code);
-        	locationFromPostCode("308215");
+        	locationFromPostCode(postal_code);
+//        	locationFromPostCode("308215");
         }
     }//initilizeMap
  
@@ -418,28 +431,6 @@ public class PropertyDetailActivity extends BaseFragmentActivity {
     	googleMap.setMapType(GoogleMap.MAP_TYPE_NONE);*/
     	
 	}//setLocationMarker
-	
-	public class AsyncShowProperty extends AsyncTask<Void, Void, Void> {
-
-		@Override
-		protected Void doInBackground(Void... params) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		protected void onPostExecute(Void result) {
-			// TODO Auto-generated method stub
-			super.onPostExecute(result);
-			
-			showProperty();
-			
-			if(pDialog.isShowing()){
-				pDialog.dismiss();
-			}
-		}
-		
-	}//AsyncShowProperty
 
 	public void addTextViewFeature(String text) {
 		TextView txt = new TextView(context);
@@ -459,6 +450,71 @@ public class PropertyDetailActivity extends BaseFragmentActivity {
 		txt.setPadding(10, 10, 10, 10);
 		txt.setCompoundDrawablesWithIntrinsicBounds(R.drawable.check, 0, 0, 0);
 		facilitiesLayout.addView(txt);
+	}
+	
+	private void shareClick(View v) {
+		// TODO Auto-generated method stub
+		
+		String body = "Hi,\n\nI would like to share the following property from KnightFrank action app with you:\n\n";
+
+		body = body + "1.";
+		body = body + property.getBuilding_name() +"\n";
+		body = body + property.getDistrict() +" / "+ property.getAuction_type() +" / "+ property.getBuilding_type() +"\n";
+		body = body + property.getFloor_area() +" Sqft / "+ property.getBedroom() +" Bedroom, "+ property.getBath() +" Bath\n";
+		body = body + property.getPrice() +" / $"+ property.getPsf() +" psf" +"\n";
+		body = body + property.getTenure() +"\n";
+		body = body + "Postal Code "+ property.getTenure() +"\n\n\n";
+		
+		body = body + "This email is generated via KnightFrank Auction App \n\n";
+		
+			
+		Intent emailIntent = new Intent();
+	    emailIntent.setAction(Intent.ACTION_SEND);
+	    // Native email client doesn't currently support HTML, but it doesn't hurt to try in case they fix it
+	    emailIntent.putExtra(Intent.EXTRA_TEXT, body);
+	    emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Title");
+	    emailIntent.setType("message/rfc822");
+	    
+	    PackageManager pm = getPackageManager();
+	    Intent sendIntent = new Intent(Intent.ACTION_SEND);     
+	    sendIntent.setType("text/plain");
+	    
+	    Intent openInChooser = Intent.createChooser(emailIntent, "Share");
+	    List<ResolveInfo> resInfo = pm.queryIntentActivities(sendIntent, 0);
+	    List<LabeledIntent> intentList = new ArrayList<LabeledIntent>();        
+	    for (int i = 0; i < resInfo.size(); i++) {
+	        // Extract the label, append it, and repackage it in a LabeledIntent
+	        ResolveInfo ri = resInfo.get(i);
+	        String packageName = ri.activityInfo.packageName;
+	        if(packageName.contains("android.email")) {
+	            emailIntent.setPackage(packageName);
+	        } else if(packageName.contains("mms") || packageName.contains("android.gm")||packageName.contains("whatsapp")||packageName.contains("com.tencent.mm")) {
+	            Intent intent = new Intent();
+	            intent.setComponent(new ComponentName(packageName, ri.activityInfo.name));
+	            intent.setAction(Intent.ACTION_SEND);
+	            intent.setType("text/plain");
+	            
+	            if(packageName.contains("mms")) {
+	                intent.putExtra(Intent.EXTRA_TEXT, body);
+	            } else if(packageName.contains("android.gm")) { // If Gmail shows up twice, try removing this else-if clause and the reference to "android.gm" above
+	                intent.putExtra(Intent.EXTRA_TEXT, body);
+	                intent.putExtra(Intent.EXTRA_SUBJECT, "Gmail");               
+	                intent.setType("message/rfc822");
+	            } else if (packageName.contains("whatsapp")) {
+	                intent.putExtra(Intent.EXTRA_TEXT, body);		                   
+	            } else if (packageName.contains("com.tencent.mm")) {
+	                intent.putExtra(Intent.EXTRA_TEXT, body);		                   
+	            }
+
+	            intentList.add(new LabeledIntent(intent, packageName, ri.loadLabel(pm), ri.icon));
+	        }
+	    }
+
+	    // convert intentList to array
+	    LabeledIntent[] extraIntents = intentList.toArray( new LabeledIntent[ intentList.size() ]);
+
+	    openInChooser.putExtra(Intent.EXTRA_INITIAL_INTENTS, extraIntents);
+	    startActivity(openInChooser); 
 	}
 	
 }

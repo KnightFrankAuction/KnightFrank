@@ -19,6 +19,10 @@ public class NotificationReceiver extends BroadcastReceiver {
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		// TODO Auto-generated method stub
+		Bundle msg = intent.getExtras();
+		if(msg != null){
+			showNotification(context, msg);
+		}
 		
 	}//onReceive
 	
@@ -26,14 +30,20 @@ public class NotificationReceiver extends BroadcastReceiver {
     	Intent intent = null;
 		NotificationManager notiManager = (NotificationManager) 
 				context.getSystemService(Context.NOTIFICATION_SERVICE);
+		/*NotificationCompat.Builder notiBuilder = new NotificationCompat.Builder(context)
+												.setContentTitle("title")
+												.setContentText("message")
+												.setAutoCancel(true)
+												.setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
+*/
 		NotificationCompat.Builder notiBuilder = new NotificationCompat.Builder(context)
 											.setContentTitle(msg.getString("title"))
 											.setContentText(msg.getString("message"))
 											.setAutoCancel(true)
 											.setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
-		if(msg.getString("type").equalsIgnoreCase("Starbuys")){
+		if(msg.getString("type").equalsIgnoreCase("UpdateShortlist")){
 //			notiBuilder.setSmallIcon(R.drawable.ic_wheel);
-			intent = new Intent(context,StarbuysActivity.class);
+			intent = new Intent(context,ShortListActivity.class);
 		}
 		/*else if(msg.getString("type").equalsIgnoreCase("competency_wheel")){
 			notiBuilder.setSmallIcon(R.drawable.ic_wheel);

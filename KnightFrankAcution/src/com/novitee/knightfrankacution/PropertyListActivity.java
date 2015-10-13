@@ -14,9 +14,13 @@ import com.squareup.picasso.Picasso;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +32,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -46,9 +51,21 @@ public class PropertyListActivity extends BaseFragmentActivity {
 	String title = null;
 	
 	ListView listProperty;
+	ProgressBar refresh;
+	ProgressBar loading;
+	TextView shareView;
+	
 	Property shortlist_property;
 	ImageView shortlist;
 	int shortlist_position;
+	CustomList customList;
+	Property property;
+	
+	//Share
+	boolean share_flag = false;
+	int layout_color;
+	int share_count = 0;
+	View row;
 	
 	@SuppressWarnings("unchecked")
 	@Override
@@ -58,6 +75,9 @@ public class PropertyListActivity extends BaseFragmentActivity {
 		setContentView(R.layout.activity_property_list);
 		
 		listProperty = (ListView) findViewById(R.id.filter_list);
+		refresh = (ProgressBar) findViewById(R.id.filter_list_refresh);
+		loading = (ProgressBar) findViewById(R.id.filter_list_loading);
+		shareView = (TextView) findViewById(R.id.filter_share_view);
 		
 		imageNameList = (ArrayList<String>) getIntent().getStringArrayListExtra("imageList");
 		propertyList = (ArrayList<Property>) getIntent().getSerializableExtra("pList");
@@ -66,7 +86,7 @@ public class PropertyListActivity extends BaseFragmentActivity {
 		setTitleBarAndFooter();
 		
 		if(propertyList.size() > 0) {
-			CustomList customList = new CustomList(context, R.layout.property_listview_layout, propertyList);
+			customList = new CustomList(context, R.layout.property_listview_layout, propertyList);
 			listProperty.setAdapter(customList);
 		}
 		else  {
@@ -76,14 +96,20 @@ public class PropertyListActivity extends BaseFragmentActivity {
 		listProperty.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int position,
+			public void onItemClick(AdapterView<?> arg0, View v, int position,
 					long arg3) {
 				// TODO Auto-generated method stub
-
-				Property p = propertyList.get(position);
-				Intent intent = new Intent(context, PropertyDetailActivity.class);
-				intent.putExtra("Property", p);
-				startActivity(intent);
+				
+				if(share_flag == false) {
+					Property p = propertyList.get(position);
+					Intent intent = new Intent(context, PropertyDetailActivity.class);
+					intent.putExtra("Property", p);
+					startActivity(intent);
+				}
+				else { // in share mode, share_flag == true
+					checkBgColor(v, position);
+				}
+				
 			}
 		});
 	}
@@ -91,6 +117,12 @@ public class PropertyListActivity extends BaseFragmentActivity {
 	public void setTitleBarAndFooter() {
 		//title bar
 		titleText = (TextView) findViewById(R.id.title_text);
+		titleText2 = (TextView) findViewById(R.id.title_text2);
+		titleImage = (ImageView) findViewById(R.id.title_image);
+		
+		titleText.setText(title);
+		titleText2.setVisibility(View.GONE);
+		titleImage.setBackgroundResource(R.drawable.share_circle);
 
 		if(title != null) {
 			titleText.setText(title);
@@ -110,7 +142,38 @@ public class PropertyListActivity extends BaseFragmentActivity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				onBackPressed();
+				if(share_flag == false) {
+					onBackPressed();
+				}
+				else {
+					removeShare();
+				}
+			}
+		});
+		
+		titleImage.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				shareView.setVisibility(View.VISIBLE);
+				share_flag = true;
+				
+				titleImage.setVisibility(View.GONE);
+				titleText.setText("");
+				titleText2.setVisibility(View.VISIBLE);
+				titleText2.setText("Share");
+			}
+		});
+		
+		titleText2.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				ShareWithEmail activity = new ShareWithEmail();
+				activity.shareProperty(propertyList, context);		
+				removeShare();
 			}
 		});
 	}//setTitleBarAndFooter
@@ -127,7 +190,7 @@ public class PropertyListActivity extends BaseFragmentActivity {
 		
 		@Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            LayoutInflater inflator = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			LayoutInflater inflator = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View row = inflator.inflate(R.layout.property_listview_layout, parent, false);
             
             ImageView propertyImage = (ImageView) row.findViewById(R.id.listview_image);
@@ -142,21 +205,70 @@ public class PropertyListActivity extends BaseFragmentActivity {
             TextView bed_bath = (TextView) row.findViewById(R.id.listview_bed_bath);
             TextView tenure = (TextView) row.findViewById(R.id.listview_tenure);
             TextView psf = (TextView) row.findViewById(R.id.listview_psf);
+            TextView txtStatus = (TextView) row.findViewById(R.id.txt_unavailable);
             
-            Property property = propertyList.get(position);
-            buildingName.setText(property.getBuilding_name());
-            price.setText(property.getPrice());
-            district.setText(property.getDistrict());
-            auctionType.setText(property.getAuction_type());
-            buildingType.setText(property.getBuilding_type());
-            floor_area.setText(property.getFloor_area() + " sqft");
-            bed_bath.setText(property.getBedroom() + " bedroom, " + property.getBath() + " bathroom");
-            tenure.setText(property.getTenure());
-            psf.setText("$"+ property.getPsf() + " psft");
+            property = propertyList.get(position);
+            if(!property.getStatus().equals("Active")) {
+            	txtStatus.setVisibility(View.VISIBLE);
+            }
+            
+            if(property.getBuilding_name().length() > 0) {
+            	buildingName.setText(property.getBuilding_name());
+            } else {
+            	buildingName.setVisibility(View.GONE);
+            }
+
+            if(property.getBuilding_name().length() > 0) {
+            	price.setText(property.getPrice());
+            } else {
+            	price.setVisibility(View.GONE);
+            }
+
+            if(property.getBuilding_name().length() > 0) {
+            	district.setText(property.getDistrict());
+            } else {
+            	district.setVisibility(View.GONE);
+            }
+
+            if(property.getBuilding_name().length() > 0) {
+            	auctionType.setText(property.getAuction_type());
+            } else {
+            	auctionType.setVisibility(View.GONE);
+            }
+
+            if(property.getBuilding_name().length() > 0) {
+            	buildingType.setText(property.getBuilding_type());
+            } else {
+            	buildingType.setVisibility(View.GONE);
+            }
+
+            if(property.getBuilding_name().length() > 0) {
+            	floor_area.setText(property.getFloor_area() + " sqft");
+            } else {
+            	floor_area.setVisibility(View.GONE);
+            }
+
+            if(property.getBuilding_name().length() > 0) {
+            	bed_bath.setText(property.getBedroom() + " bedroom, " + property.getBath() + " bathroom");
+            } else {
+            	bed_bath.setVisibility(View.GONE);
+            }
+
+            if(property.getBuilding_name().length() > 0) {
+            	tenure.setText(property.getTenure());
+            } else {
+            	tenure.setVisibility(View.GONE);
+            }
+
+            if(property.getBuilding_name().length() > 0) {
+            	psf.setText("$"+ property.getPsf() + " psft");
+            } else {
+            	psf.setVisibility(View.GONE);
+            }
 
             String image_name = imageNameList.get(position);
             if(image_name.length() > 0) {
-            	String url = CommonConstants.HOST + imageNameList.get(position);
+            	String url = CommonConstants.HOST + image_name;
                 Picasso.with(context).load(url).into(propertyImage);
             }
             
@@ -166,6 +278,11 @@ public class PropertyListActivity extends BaseFragmentActivity {
             	shortlist.setImageResource(R.drawable.shortlist_check);
     		}
             
+            //select share color
+            if(!property.getBgcolor().equals("#FFFFFF")) {
+            	row.setBackgroundColor(getResources().getColor(R.color.blue));
+            }
+            
             shortlistLayout.setOnClickListener(new OnClickListener() {
 				
 				@Override
@@ -173,7 +290,8 @@ public class PropertyListActivity extends BaseFragmentActivity {
 					// TODO Auto-generated method stub
 					View parentRow = (View) v.getParent();
 					LinearLayout linearRow = (LinearLayout) parentRow.getParent();
-					ListView listView = (ListView) linearRow.getParent();
+					LinearLayout linearRow1 = (LinearLayout) linearRow.getParent();
+					ListView listView = (ListView) linearRow1.getParent();
 					shortlist_position = listView.getPositionForView(parentRow);
 					shortlist_property = propertyList.get(shortlist_position);
 					shortlist = (ImageView) linearRow.findViewById(R.id.listview_shortlist);
@@ -307,5 +425,60 @@ public class deleteShortlist extends AsyncTask<Void, Void, Void> {
 		}
 		
 	}//deleteShortlist
+
+	/************** SHARE *****************/
+	private void checkBgColor(View v, int pos) {
+		layout_color = ((ColorDrawable) v.getBackground()).getColor();
+		Property p = propertyList.get(pos);
+		
+		if(layout_color == Color.parseColor("#FFFFFF")) {
+			if(share_count < 10) {
+				share_count++;
+				p.setBgcolor("#000000");
+				v.setBackgroundColor(getResources().getColor(R.color.blue));
+			}
+			else {
+				AlertDialog.Builder builder = new AlertDialog.Builder(context);
+				builder.setTitle("Share")
+					   .setMessage("Allow only 10 property to share.")
+				       .setCancelable(false)
+				       .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+				           public void onClick(DialogInterface dialog, int id) {
+				                //do things
+				        	   dialog.dismiss();
+				           }
+				       });
+				AlertDialog alert = builder.create();
+				alert.show();
+			}
+		}
+		else {
+			share_count--;
+			
+			p.setBgcolor("#FFFFFF");
+			v.setBackgroundColor(getResources().getColor(R.color.white));
+		}
+		
+		shareView.setText(share_count + " select to share");
+	}
+	
+	private void removeShare() {
+		titleText.setText("Project Listings");
+		titleText2.setVisibility(View.GONE);
+		titleImage.setVisibility(View.VISIBLE);
+		titleImage.setBackgroundResource(R.drawable.share_circle);
+		share_flag = false;
+		share_count = 0;
+		shareView.setText("0 select to share");
+		shareView.setVisibility(View.GONE);
+		
+		for(Property p : propertyList) {
+			if(p.getBgcolor().equals("#000000")) {
+				p.setBgcolor("#FFFFFF");
+			}
+		}
+		
+		customList.notifyDataSetChanged();
+	}
 
 }

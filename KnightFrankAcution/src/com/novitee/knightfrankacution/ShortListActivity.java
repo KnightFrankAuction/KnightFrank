@@ -43,6 +43,7 @@ public class ShortListActivity extends AdvertisementsActivity {
 	TextView titleText;
 	TextView titleText2;
 	ImageView titleImage;
+	FooterFragment footer_frg;
 
 	ListView listShortlist;
 	Property property;
@@ -58,7 +59,7 @@ public class ShortListActivity extends AdvertisementsActivity {
 	ArrayList<Property> propertyList;
 	List<Photo> photoList;
 	int end_flag; //check more properties exist or not
-
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -66,6 +67,8 @@ public class ShortListActivity extends AdvertisementsActivity {
 		
 		showAD();
 		setTitleBarAndFooter();
+//		FooterFragment.shortlist.setImageResource(R.drawable.shortlist_icon_pink);
+//		footer_frg.shortlist.setImageResource(R.drawable.shortlist_icon_pink);
 		
 		listShortlist = (ListView) findViewById(R.id.shortlist_list);
 		refresh = (ProgressBar) findViewById(R.id.shortlist_refresh);
@@ -98,6 +101,14 @@ public class ShortListActivity extends AdvertisementsActivity {
 		});
 		
 	}//onCreate
+	
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		
+		footer_frg.shortlist.setImageResource(R.drawable.shortlist_icon_pink);
+	}
 
 	public void setTitleBarAndFooter() {
 		//title bar
@@ -108,8 +119,9 @@ public class ShortListActivity extends AdvertisementsActivity {
 		fragmentTran.replace(R.id.shortlist_search, new SearchFragment());
 		fragmentTran.commit();
 		
+		footer_frg = new FooterFragment();
 		fragmentTran = getSupportFragmentManager().beginTransaction();
-		fragmentTran.replace(R.id.shortlist_footer, new FooterFragment());
+		fragmentTran.replace(R.id.shortlist_footer,footer_frg);
 		fragmentTran.commit();
 	
 		ImageView titleBack = (ImageView) findViewById(R.id.title_back);
@@ -253,8 +265,13 @@ public class ShortListActivity extends AdvertisementsActivity {
             TextView bed_bath = (TextView) row.findViewById(R.id.listview_bed_bath);
             TextView tenure = (TextView) row.findViewById(R.id.listview_tenure);
             TextView psf = (TextView) row.findViewById(R.id.listview_psf);
+            TextView txtStatus = (TextView) row.findViewById(R.id.txt_unavailable);
             
             property = propertyList.get(position);
+            if(!property.getStatus().equals("Active")) {
+            	txtStatus.setVisibility(View.VISIBLE);
+            }
+            
             if(property.getBuilding_name().length() > 0) {
             	buildingName.setText(property.getBuilding_name());
             } else {
@@ -328,7 +345,8 @@ public class ShortListActivity extends AdvertisementsActivity {
 					// TODO Auto-generated method stub
 					View parentRow = (View) v.getParent();
 					LinearLayout linearRow = (LinearLayout) parentRow.getParent();
-					ListView listView = (ListView) linearRow.getParent();
+					LinearLayout linearRow1 = (LinearLayout) linearRow.getParent();
+					ListView listView = (ListView) linearRow1.getParent();
 					shortlist_position = listView.getPositionForView(parentRow);
 					shortlist_property = propertyList.get(shortlist_position);
 					shortlist = (ImageView) linearRow.findViewById(R.id.listview_shortlist);

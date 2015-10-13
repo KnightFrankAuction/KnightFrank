@@ -6,6 +6,7 @@ import org.json.JSONObject;
 import com.novitee.knightfrankacution.base.BaseFragmentActivity;
 import com.novitee.knightfrankacution.util.Preferences;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -16,6 +17,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
@@ -27,10 +29,12 @@ public class LoginActivity extends BaseFragmentActivity {
 	EditText password;
 	Button btnLogin;
 	ImageView back;
+	TextView forgetPwd;
 	
-	String userName, passWord;
+	String email, passWord;
 
 	ViewFlipper mViewFlipper;
+	TextView txtForgetEmail;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +51,9 @@ public class LoginActivity extends BaseFragmentActivity {
 		password = (EditText) findViewById(R.id.password);
 		btnLogin = (Button) findViewById(R.id.btnLogIn);
 		back = (ImageView) findViewById(R.id.login_back);
-
-		String pref_username = Preferences.getInstance(context).getUserName();
+		forgetPwd = (TextView) findViewById(R.id.txt_forget_pwd);
+		
+		String pref_username = Preferences.getInstance(context).getEmail();
 		String pref_password = Preferences.getInstance(context).getPassword();
 		if(!pref_username.equals("")) {
 			username.setText(pref_username);
@@ -61,7 +66,7 @@ public class LoginActivity extends BaseFragmentActivity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				if(connectionManager.isConnected()) {
-					userName = username.getText().toString();
+					email = username.getText().toString();
 					passWord = password.getText().toString();
 					new Login().execute();
 				}
@@ -79,14 +84,42 @@ public class LoginActivity extends BaseFragmentActivity {
 				onBackPressed();
 			}
 		});
-	}//onCreate
-	
-	@Override
-	public void onBackPressed() {
-		// TODO Auto-generated method stub
-		super.onBackPressed();
-	}
+		
+		forgetPwd.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				forgetPassword();
+			}
 
+		});
+		
+	}//onCreate
+
+	private void forgetPassword() {
+		// TODO Auto-generated method stub
+		final Dialog dialog = new Dialog(LoginActivity.this);
+//		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		dialog.setTitle("Forget Password");
+		dialog.setContentView(R.layout.forget_password);
+		
+		txtForgetEmail = (TextView) dialog.findViewById(R.id.forget_email);
+		Button btnForgetEmail = (Button) dialog.findViewById(R.id.btn_forget_email);
+		
+		btnForgetEmail.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				dialog.dismiss();
+				new ForgetPassword().execute();
+			}
+		});
+		
+		dialog.show();
+	}
+	
 	private class Login extends AsyncTask<Void, Void, Void> {
 		
 		JSONObject jObj;
@@ -105,7 +138,7 @@ public class LoginActivity extends BaseFragmentActivity {
 		protected Void doInBackground(Void... params) {
 			// TODO Auto-generated method stub
 			try {
-				jObj = api.login(userName, passWord, Preferences.getInstance(context).getGenerateKey());
+				jObj = api.login(email, passWord, pref.getGenerateKey());
 				
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
@@ -130,7 +163,7 @@ public class LoginActivity extends BaseFragmentActivity {
 					int user_type = jObj.getInt("type");
 					String session_token = jObj.getString("session_token");
 					
-					Preferences.getInstance(context).setUserName(userName);
+					Preferences.getInstance(context).setEmail(email);
 					Preferences.getInstance(context).setPassword(passWord);
 					Preferences.getInstance(context).setUserType(user_type);
 					Preferences.getInstance(context).setSessionToken(session_token);
@@ -148,7 +181,7 @@ public class LoginActivity extends BaseFragmentActivity {
 					String message = jObj.getString("message");
 					Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
 					
-					Preferences.getInstance(context).setUserName(userName);
+					Preferences.getInstance(context).setEmail(email);
 					
 					Intent intent = new Intent(context, SignUpActivity.class);
 					startActivity(intent);
@@ -161,4 +194,65 @@ public class LoginActivity extends BaseFragmentActivity {
 		}
 		
 	}//Login
+	
+	private class ForgetPassword extends AsyncTask<Void, Void, Void> {
+		JSONObject jObj;
+		ProgressDialog pDialog;
+		
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			pDialog = new ProgressDialog(context);
+            pDialog.setMessage("Please wait....");
+            pDialog.setCancelable(false);
+            pDialog.show();
+		}
+
+		@Override
+		protected Void doInBackground(Void... params) {
+			// TODO Auto-generated method stub
+			try {
+				jObj = api.forgetPassword(pref.getSessionToken());
+				
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return null;
+		}
+		
+		@Override
+		protected void onPostExecute(Void result) {
+			// TODO Auto-generated method stub
+			super.onPostExecute(result);
+			if(pDialog.isShowing()){
+				pDialog.dismiss();
+			}
+			
+			try {
+				int responseCode = jObj.getInt("statusCode");
+				int status = jObj.getInt("status");	
+				String message = jObj.getString("message");
+				
+				if(status == 1 && responseCode == 200){
+					Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+				}
+				else if(status == 2 && responseCode == 401) {
+					Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+				}
+				else if(status == 3 && responseCode == 401) {
+					Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+					
+					Preferences.getInstance(context).setEmail(email);
+					
+					Intent intent = new Intent(context, SignUpActivity.class);
+					startActivity(intent);
+				}
+				
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			};
+		}
+	}//ForgetPassword
 }
