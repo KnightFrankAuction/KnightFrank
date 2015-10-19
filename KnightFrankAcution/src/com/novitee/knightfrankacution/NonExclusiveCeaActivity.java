@@ -62,7 +62,7 @@ public class NonExclusiveCeaActivity extends BaseFragmentActivity implements OnC
 	//Signature
 	Button btnSeller1Sign, btnSeller2Sign, btnSeller3Sign, btnSeller4Sign, btnInterpreter1Sign, btnInterpreter2Sign, btnInterpreter3Sign, btnInterpreter4Sign, btnSAgentSign;
 	ImageView imgSeller1Sign, imgSeller2Sign, imgSeller3Sign, imgSeller4Sign, imgInterpreter1Sign, imgInterpreter2Sign, imgInterpreter3Sign, imgInterpreter4Sign, imgSAgentSign;
-	String stSeller1Sign, stSeller2Sign, stSeller3Sign, stSeller4Sign, stInterpreter1Sign, stInterpreter2Sign, stInterpreter3Sign, stInterpreter4Sign, stAgentSign;
+	String stSeller1Sign = "", stSeller2Sign = "", stSeller3Sign = "", stSeller4Sign = "", stInterpreter1Sign = "", stInterpreter2Sign = "", stInterpreter3Sign = "", stInterpreter4Sign = "", stAgentSign = "";
 	
 	//datePicker
 	Calendar myCalendar = Calendar.getInstance();

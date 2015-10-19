@@ -23,7 +23,7 @@
 		suscipit massa in tempus. Aliquam
 		vestibulum, nulla in finibus gravida, diam ex
 		sagittis eros, ut eleifend nulla diam non elit.	</string>
-    <string name="check_box_tems">I agree to the terms and conditions of Use, Privacy Policy and Mobile Terms.</string>
+    <string name="check_box_terms"><u>By singning up, you agree to <b>Terms and Conditions</b> </u></string>
     <string name="check_box_news_letter">Sign me up for Newsletter</string>
     <string name="title_activity_sign_up">SignUpActivity</string>
     <string name="title_activity_menu">MenuActivity</string>

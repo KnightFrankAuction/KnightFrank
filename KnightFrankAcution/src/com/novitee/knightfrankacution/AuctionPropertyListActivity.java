@@ -172,8 +172,10 @@ public class AuctionPropertyListActivity extends BaseFragmentActivity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				ShareWithEmail activity = new ShareWithEmail();
-				activity.shareProperty(propertyList, context);		
+				if(share_count > 0) {
+					ShareWithEmail activity = new ShareWithEmail();
+					activity.shareProperty(propertyList, context);		
+				}
 				removeShare();
 			}
 		});

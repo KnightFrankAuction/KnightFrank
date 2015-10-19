@@ -3,14 +3,11 @@ package com.novitee.knightfrankacution;
 import com.novitee.knightfrankacution.adapter.ViewPagerAdapter;
 import com.novitee.knightfrankacution.base.BaseFragment;
 import com.novitee.knightfrankacution.util.CommonConstants;
-import com.novitee.knightfrankacution.util.Preferences;
 import com.squareup.picasso.Picasso;
 import com.viewpagerindicator.CirclePageIndicator;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.preference.Preference;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -43,7 +40,7 @@ public class ViewPagerFragment extends BaseFragment {
 		imgLogo = (ImageView) view.findViewById(R.id.knight_frank_logo);
 		
 		String url = CommonConstants.HOST + pref.getLogo();
-		Picasso.with(getActivity()).load(url).into(imgLogo);
+		Picasso.with(getActivity()).load(url).placeholder(R.drawable.knight_frank_logo).into(imgLogo);
 		
 		ViewPagerAdapter viewpagerAdapter = new ViewPagerAdapter(((MainActivity)getActivity()).getSupportFragmentManager());
 		viewPager.setAdapter(viewpagerAdapter);

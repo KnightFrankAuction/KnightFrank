@@ -224,7 +224,6 @@
 				        android:gravity="center"
 				        android:layout_weight="1"
 				        android:textColor="@color/black"
-				        android:textSize="20sp"
 				        android:text="Details"/>
 				    
 				    <TextView 
@@ -233,7 +232,6 @@
 				        android:gravity="center"
 				        android:layout_weight="1"
 				        android:textColor="@color/black"
-				        android:textSize="20sp"
 				        android:text="Highlights"/>
 				    
 				    <TextView 
@@ -242,7 +240,6 @@
 				        android:gravity="center"
 				        android:layout_weight="1"
 				        android:textColor="@color/black"
-				        android:textSize="20sp"
 				        android:text="Map"/>
 				    
 				    <TextView 
@@ -251,7 +248,6 @@
 				        android:gravity="center"
 				        android:layout_weight="1"
 				        android:textColor="@color/black"
-				        android:textSize="20sp"
 				        android:text="Contact"/>
 				    
 				</LinearLayout>//detail title
@@ -696,7 +692,7 @@
 			        android:textColor="@color/black"
 			        android:text=""/>
 			    
-			    <TextView 
+			    <!-- <TextView 
 			        android:id="@+id/company_name"
 			        android:layout_width="match_parent"
 			        android:layout_height="wrap_content"
@@ -704,7 +700,7 @@
 			        android:layout_marginTop="10dp"
 			        android:textSize="20sp"
 			        android:textColor="@color/black"
-			        android:text=""/>
+			        android:text=""/> -->
 			    
 			    <LinearLayout 
 			        android:layout_width="match_parent"

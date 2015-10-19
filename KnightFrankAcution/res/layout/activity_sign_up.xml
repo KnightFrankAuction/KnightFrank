@@ -37,14 +37,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/login_action_bar"
-        android:paddingBottom="40dp">
+        android:paddingBottom="20dp">
     
 	    <LinearLayout 
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
-	        android:layout_margin="20dp"
-	        android:orientation="vertical"
-	        android:paddingBottom="20dp">
+	        android:orientation="vertical" >
 
 		    <LinearLayout 
 		        android:id="@+id/first_box"
@@ -52,7 +50,7 @@
 		        android:layout_height="wrap_content"
 		        android:orientation="vertical"
 		        android:background="@color/white"
-		        android:layout_margin="15dp">
+		        android:layout_margin="10dp">
 		        
 		        <LinearLayout 
 		            android:layout_width="match_parent"
@@ -152,7 +150,7 @@
 		        android:layout_height="50dp"
 		        android:orientation="horizontal"
 		        android:background="@color/white"
-		        android:layout_margin="15dp">
+		        android:layout_margin="10dp">
 		            
 	            <TextView 
 	                android:layout_width="150dp"
@@ -174,7 +172,7 @@
 		        android:id="@+id/agent_box"
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
-		        android:layout_margin="15dp"
+		        android:layout_margin="10dp"
 		        android:background="@color/white"
 		        android:visibility="gone"
 		        android:orientation="vertical" >
@@ -235,8 +233,8 @@
 			        android:layout_width="match_parent"
 			        android:layout_height="wrap_content"
 			        android:textSize="22sp"
-			        android:layout_marginTop="15dp"
-			        android:layout_marginLeft="15dp"
+			        android:layout_marginTop="10dp"
+			        android:layout_marginLeft="10dp"
 			        android:textColor="@color/black"
 			        android:text="MAILING ADDRESS"/>
 			    
@@ -246,7 +244,7 @@
 			        android:layout_height="wrap_content"
 			        android:orientation="vertical"
 			        android:background="@color/white"
-			        android:layout_margin="15dp">
+			        android:layout_margin="10dp">
 			        
 			        <LinearLayout 
 			            android:layout_width="match_parent"
@@ -363,8 +361,8 @@
 			        android:layout_width="match_parent"
 			        android:layout_height="wrap_content"
 			        android:textSize="22sp"
-			        android:layout_marginTop="15dp"
-			        android:layout_marginLeft="15dp"
+			        android:layout_marginTop="10dp"
+			        android:layout_marginLeft="10dp"
 			        android:textColor="@color/black"
 			        android:text="TERMS AND CONDITIONS"/>
 			    
@@ -372,34 +370,9 @@
 			        android:id="@+id/terms_and_conds"
 			        android:layout_width="match_parent"
 			        android:layout_height="wrap_content"
-			        android:orientation="vertical"
 			        android:background="@color/white"
-			        android:layout_margin="15dp">
-			        
-			        <ScrollView 
-			            android:layout_width="match_parent"
-			            android:layout_height="100dp"
-			            android:layout_margin="10dp">
-			            
-			            <TextView 
-			                android:id="@+id/txtTerms"
-			                android:layout_width="match_parent"
-			                android:layout_height="wrap_content"
-			                android:textSize="16sp"
-			                android:textColor="@color/black"
-			                />
-			            <!-- android:text="@string/text_terms"
-			            	 android:scrollbars="vertical" -->
-			            
-			        </ScrollView>
-			        
-			        <CheckBox 
-			            android:id="@+id/chk_terms"
-			            android:layout_width="match_parent"
-			            android:layout_height="wrap_content"
-			            android:layout_margin="7dp"
-			            android:textColor="#000"
-			            android:text="@string/check_box_tems"/>
+			        android:orientation="vertical"
+			        android:layout_margin="10dp">
 			        
 			        <CheckBox 
 			            android:id="@+id/chk_subscribe"
@@ -409,7 +382,33 @@
 			            android:textColor="#000"
 			            android:text="@string/check_box_news_letter"/>
 			        
-				</LinearLayout>	
+			        <LinearLayout 
+			            android:layout_width="match_parent"
+			            android:layout_height="wrap_content"
+			            android:orientation="horizontal">
+			            
+			            <CheckBox 
+				            android:id="@+id/chk_terms"
+				            android:layout_width="wrap_content"
+				            android:layout_height="match_parent"
+				            android:gravity="center_vertical"
+				            android:layout_margin="7dp"
+				            android:textColor="#000" />
+			            
+			            <TextView 
+				            android:id="@+id/txtTerms"
+			                android:layout_width="wrap_content"
+			                android:layout_height="match_parent"
+			                android:layout_marginTop="5dp"
+			                android:gravity="center_vertical"
+			                android:singleLine="false"
+			                android:textSize="16sp"
+		                	android:textColor="@color/black"
+			                android:text="@string/check_box_terms"/>
+			            
+			        </LinearLayout>
+			        
+				</LinearLayout>
 				
 			</LinearLayout>//user box	        
 		    
@@ -417,7 +416,7 @@
 		        android:id="@+id/btnSignUp"
 		        android:layout_width="match_parent"
 		        android:layout_height="50dp"
-		        android:layout_marginTop="20dp"
+		        android:layout_marginTop="5dp"
 		        android:layout_marginLeft="30dp"
 		        android:layout_marginRight="30dp"
 		        android:layout_gravity="center"

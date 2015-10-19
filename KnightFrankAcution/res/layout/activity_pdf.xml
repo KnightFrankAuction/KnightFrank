@@ -12,12 +12,15 @@
         android:layout_alignParentTop="true"
         android:layout_above="@+id/pdf_draft"/>
     
-    <Button 
+    <TextView 
         android:id="@+id/pdf_draft"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_above="@+id/pdf_complete"
+        android:gravity="center_horizontal"
         android:layout_margin="10dp"
+        android:textColor="@color/pink"
+        android:textSize="20sp"
         android:text="Send as Draft"/>
     
     <Button 
@@ -26,6 +29,8 @@
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:layout_margin="10dp"
+        android:background="@color/pink"
+        style="@style/TitleStyle"
         android:text="Send complete form to email"/>
 
 </RelativeLayout>

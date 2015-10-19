@@ -50,13 +50,21 @@ public class MainActivity extends BaseFragmentActivity {
 		
 		bgList = (ArrayList<Photo>) getIntent().getSerializableExtra("BgPhoto");
 		
-		makeViewFlipper();
+		if(bgList != null) {
+			makeViewFlipper();
+		}
 		
 		fragmentTran = getSupportFragmentManager().beginTransaction();
 		fragmentTran.replace(R.id.place_holder, new ViewPagerFragment());
 		fragmentTran.commit();
 
 	}//onCreate
+	
+	@Override
+	public void onBackPressed() {
+		// TODO Auto-generated method stub
+		moveTaskToBack(true);
+	}
 
 	private void makeViewFlipper() {
 		// TODO Auto-generated method stub

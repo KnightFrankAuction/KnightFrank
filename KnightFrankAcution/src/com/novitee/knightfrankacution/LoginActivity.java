@@ -1,5 +1,7 @@
 package com.novitee.knightfrankacution;
 
+import java.util.regex.Pattern;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -12,8 +14,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -34,7 +38,7 @@ public class LoginActivity extends BaseFragmentActivity {
 	String email, passWord;
 
 	ViewFlipper mViewFlipper;
-	TextView txtForgetEmail;
+	EditText editForgetEmail;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -53,8 +57,8 @@ public class LoginActivity extends BaseFragmentActivity {
 		back = (ImageView) findViewById(R.id.login_back);
 		forgetPwd = (TextView) findViewById(R.id.txt_forget_pwd);
 		
-		String pref_username = Preferences.getInstance(context).getEmail();
-		String pref_password = Preferences.getInstance(context).getPassword();
+		String pref_username = pref.getEmail();
+		String pref_password = pref.getPassword();
 		if(!pref_username.equals("")) {
 			username.setText(pref_username);
 			password.setText(pref_password);
@@ -103,8 +107,9 @@ public class LoginActivity extends BaseFragmentActivity {
 //		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		dialog.setTitle("Forget Password");
 		dialog.setContentView(R.layout.forget_password);
+		dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 		
-		txtForgetEmail = (TextView) dialog.findViewById(R.id.forget_email);
+		editForgetEmail = (EditText) dialog.findViewById(R.id.forget_email);
 		Button btnForgetEmail = (Button) dialog.findViewById(R.id.btn_forget_email);
 		
 		btnForgetEmail.setOnClickListener(new OnClickListener() {
@@ -112,8 +117,16 @@ public class LoginActivity extends BaseFragmentActivity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				dialog.dismiss();
-				new ForgetPassword().execute();
+				Pattern pattern = Patterns.EMAIL_ADDRESS;
+			    boolean valid = pattern.matcher(editForgetEmail.getText().toString()).matches();
+			    if(!valid) {
+			    	Toast.makeText(context, "Enter invalid email", Toast.LENGTH_LONG).show();
+			    }
+			    else {
+			    	dialog.dismiss();
+					new ForgetPassword().execute();
+			    }
+				
 			}
 		});
 		
@@ -212,7 +225,7 @@ public class LoginActivity extends BaseFragmentActivity {
 		protected Void doInBackground(Void... params) {
 			// TODO Auto-generated method stub
 			try {
-				jObj = api.forgetPassword(pref.getSessionToken());
+				jObj = api.forgetPassword(editForgetEmail.getText().toString());
 				
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block

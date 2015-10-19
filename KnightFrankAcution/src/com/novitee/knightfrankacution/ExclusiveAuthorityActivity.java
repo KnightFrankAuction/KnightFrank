@@ -58,7 +58,7 @@ public class ExclusiveAuthorityActivity extends BaseFragmentActivity implements 
 	//Signature
 	Button btnOwner1Sign, btnOwner2Sign, btnSalePersonSign;
 	ImageView imgOwner1Sign, imgOwner2Sign, imgSalePersonSign;
-	String stOwner1Sign, stOwner2Sign, stSalePersonSign;
+	String stOwner1Sign = "", stOwner2Sign = "", stSalePersonSign = "";
 	List<NameValuePair> signList;
 	String sign_flag;
 	

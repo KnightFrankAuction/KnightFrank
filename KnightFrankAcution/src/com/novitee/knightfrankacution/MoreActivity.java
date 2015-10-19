@@ -23,6 +23,7 @@ public class MoreActivity extends BaseFragmentActivity implements OnClickListene
 	TextView documents;
 	TextView search;
 	TextView logout;
+	View document_view;
 	
 	FooterFragment footer_frg;
 
@@ -36,6 +37,12 @@ public class MoreActivity extends BaseFragmentActivity implements OnClickListene
 		documents = (TextView) findViewById(R.id.Documents);
 		search = (TextView) findViewById(R.id.SearchMore);
 		logout = (TextView) findViewById(R.id.Logout);
+		document_view = (View) findViewById(R.id.Documents_view);
+		
+		if(pref.getUserType() == 2) {
+			documents.setVisibility(View.VISIBLE);
+			document_view.setVisibility(View.VISIBLE);
+		}
 		
 		myAcc.setOnClickListener(this);
 		notiSetting.setOnClickListener(this);
@@ -97,6 +104,10 @@ public class MoreActivity extends BaseFragmentActivity implements OnClickListene
 		}
 		else if (v.getId() == search.getId()) {
 			Intent intent = new Intent(context, SearchActivity.class);
+			startActivity(intent);
+		}
+		else if (v.getId() == myAcc.getId()) {
+			Intent intent = new Intent(context, AboutActivity.class);
 			startActivity(intent);
 		}
 	}//onClick

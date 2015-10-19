@@ -3,6 +3,7 @@ package com.novitee.knightfrankacution;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -10,6 +11,7 @@ import com.novitee.knightfrankacution.base.BaseFragmentActivity;
 import com.novitee.knightfrankacution.model.Photo;
 import com.novitee.knightfrankacution.model.Property;
 import com.novitee.knightfrankacution.util.CommonConstants;
+import com.novitee.knightfrankacution.util.Preferences;
 import com.squareup.picasso.Picasso;
 
 import android.os.AsyncTask;
@@ -27,7 +29,9 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -45,11 +49,11 @@ public class PropertyListActivity extends BaseFragmentActivity {
 	ImageView titleImage;
 	
 	FragmentTransaction fragmentTran;
+	ArrayList<String> searchList;
 	ArrayList<Property> propertyList;
-	List<Photo> imageList;
 	List<String> imageNameList;
 	String title = null;
-	
+
 	ListView listProperty;
 	ProgressBar refresh;
 	ProgressBar loading;
@@ -60,6 +64,8 @@ public class PropertyListActivity extends BaseFragmentActivity {
 	int shortlist_position;
 	CustomList customList;
 	Property property;
+	int pageCount = 1;
+	int end_flag; //check more properties exist or not
 	
 	//Share
 	boolean share_flag = false;
@@ -67,7 +73,6 @@ public class PropertyListActivity extends BaseFragmentActivity {
 	int share_count = 0;
 	View row;
 	
-	@SuppressWarnings("unchecked")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -78,19 +83,21 @@ public class PropertyListActivity extends BaseFragmentActivity {
 		refresh = (ProgressBar) findViewById(R.id.filter_list_refresh);
 		loading = (ProgressBar) findViewById(R.id.filter_list_loading);
 		shareView = (TextView) findViewById(R.id.filter_share_view);
-		
-		imageNameList = (ArrayList<String>) getIntent().getStringArrayListExtra("imageList");
-		propertyList = (ArrayList<Property>) getIntent().getSerializableExtra("pList");
-		title = getIntent().getStringExtra("title");
+
+		imageNameList = new ArrayList<String>();
+		propertyList = new ArrayList<Property>();
+		searchList = (ArrayList<String>) getIntent().getStringArrayListExtra("SearchList");
+		title = getIntent().getStringExtra("Title");
 		
 		setTitleBarAndFooter();
 		
-		if(propertyList.size() > 0) {
-			customList = new CustomList(context, R.layout.property_listview_layout, propertyList);
-			listProperty.setAdapter(customList);
+		customList = new CustomList(context, R.layout.property_listview_layout, propertyList);
+		
+		if(connectionManager.isConnected()) {
+			new Search().execute();
 		}
-		else  {
-			Toast.makeText(context, "There is no property", Toast.LENGTH_LONG).show();
+		else {
+			Toast.makeText(context, "No Internet Connection", Toast.LENGTH_SHORT).show();
 		}
 
 		listProperty.setOnItemClickListener(new OnItemClickListener() {
@@ -327,7 +334,7 @@ public class PropertyListActivity extends BaseFragmentActivity {
 		protected Void doInBackground(Void... params) {
 			// TODO Auto-generated method stub
 			try {
-				jObj = api.saveShortlist(pref.getSessionToken(), shortlist_property.getProperty_id());
+				jObj = api.saveShortlist(Preferences.getInstance(context).getSessionToken(), shortlist_property.getProperty_id());
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -368,7 +375,7 @@ public class PropertyListActivity extends BaseFragmentActivity {
 		
 	}//saveShortlist
 	
-public class deleteShortlist extends AsyncTask<Void, Void, Void> {
+	public class deleteShortlist extends AsyncTask<Void, Void, Void> {
 		
 		JSONObject jObj;
 		ProgressDialog pDialog;
@@ -386,7 +393,7 @@ public class deleteShortlist extends AsyncTask<Void, Void, Void> {
 		protected Void doInBackground(Void... params) {
 			// TODO Auto-generated method stub
 			try {
-				jObj = api.deleteShortlist(pref.getSessionToken(), propertyList.get(shortlist_position).getProperty_id());
+				jObj = api.deleteShortlist(Preferences.getInstance(context).getSessionToken(), propertyList.get(shortlist_position).getProperty_id());
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -463,7 +470,7 @@ public class deleteShortlist extends AsyncTask<Void, Void, Void> {
 	}
 	
 	private void removeShare() {
-		titleText.setText("Project Listings");
+		titleText.setText(title);
 		titleText2.setVisibility(View.GONE);
 		titleImage.setVisibility(View.VISIBLE);
 		titleImage.setBackgroundResource(R.drawable.share_circle);
@@ -480,5 +487,109 @@ public class deleteShortlist extends AsyncTask<Void, Void, Void> {
 		
 		customList.notifyDataSetChanged();
 	}
+	
+	private class Search extends AsyncTask<Void, Void, Void> {
+		JSONObject jObj;
+
+		@Override
+		protected Void doInBackground(Void... params) {
+			// TODO Auto-generated method stub
+			try {
+				jObj = api.Search(pref.getSessionToken(), searchList.get(0), searchList.get(1), searchList.get(2), searchList.get(3), searchList.get(4), searchList.get(5), searchList.get(6), searchList.get(7), searchList.get(8), pageCount); //"1" for page_count
+				
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return null;
+		}
+		
+		@Override
+		protected void onPostExecute(Void result) {
+			// TODO Auto-generated method stub
+			super.onPostExecute(result);
+			if(loading.isShown()) {
+				loading.setVisibility(View.GONE);
+				listProperty.setVisibility(View.VISIBLE);
+			}
+
+			try {
+				int json_responseCode = jObj.getInt("statusCode");
+				int json_status = jObj.getInt("status");
+				
+				if(json_status == 1 && json_responseCode == 200){
+					Property property;
+					JSONArray jArray = jObj.getJSONArray("property");
+					
+					propertyList.clear();
+					Photo photo;
+					List<Photo> list = new ArrayList<Photo>();
+					
+					for (int i = 0; i < jArray.length(); i++) {
+						JSONObject json = jArray.getJSONObject(i);
+						property = new Property(json);
+						propertyList.add(property);
+
+						if(property.getPhoto().size() > 0) {
+							list = property.getPhoto();
+							photo = list.get(0);
+							imageNameList.add(photo.getName());
+						}
+						else {
+							imageNameList.add("");
+						}
+					}
+					
+					if(propertyList.size() <= 0 && pageCount == 0) {
+						Toast.makeText(context, "There is no property", Toast.LENGTH_LONG).show();
+					}
+					else  {
+						refresh.setVisibility(View.GONE);
+						if(listProperty.getAdapter() == null) {
+							listProperty.setAdapter(customList);
+						}
+						else { //after load more properties
+							customList.notifyDataSetChanged();
+						}
+					}
+					
+					listProperty.setOnScrollListener(new OnScrollListener() {
+						
+						@Override
+						public void onScrollStateChanged(AbsListView view, int scrollState) {
+							// TODO Auto-generated method stub
+						}
+						
+						@Override
+						public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+							// TODO Auto-generated method stub  
+							
+							if(end_flag == 1) {
+								if (listProperty.getLastVisiblePosition() == listProperty.getAdapter().getCount() -1 &&
+									listProperty.getChildAt(listProperty.getChildCount() - 1).getBottom() <= listProperty.getHeight())
+								{
+									refresh.setVisibility(View.VISIBLE);
+					            	pageCount++;
+					            	new Search().execute();
+								}
+				            }
+						}
+					});
+					
+				}
+				else if(json_status == 2 && json_responseCode == 401) {
+					String message = jObj.getString("message");
+					Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+				}
+				else {
+					Toast.makeText(context, "Something went wrong", Toast.LENGTH_SHORT).show();
+				}
+				
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}//onPostExecute
+	}//Search
 
 }

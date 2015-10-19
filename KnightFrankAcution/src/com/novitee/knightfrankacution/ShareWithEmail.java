@@ -39,7 +39,7 @@ public class ShareWithEmail {
 		Intent i = new Intent(Intent.ACTION_SEND);
 		i.setData(Uri.parse("mailto:"));
 	    i.setType("text/plain");
-//	    i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"suthwethwetun@gmail.com"});
+	    i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"suthwethwetun@gmail.com"});
 //		i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"tranminh.thy@novitee.com"});
 //		i.putExtra(Intent.EXTRA_CC, new String[]{"suthwethwetun@gmail.com"});
 		i.putExtra(Intent.EXTRA_SUBJECT, "KnightFrank Auction Property Share");

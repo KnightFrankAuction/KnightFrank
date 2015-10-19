@@ -13,6 +13,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
@@ -68,6 +69,7 @@ public class SignUpActivity extends BaseFragmentActivity {
 	String company = "";
 	String type = "";
 	String userType = "3";
+	String terms_url;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -230,6 +232,17 @@ public class SignUpActivity extends BaseFragmentActivity {
 				onBackPressed();
 			}
 		});
+		
+		txtTerms.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Uri uri = Uri.parse(terms_url);
+				Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uri);
+				startActivity(launchBrowser);
+			}
+		});
 	}//onCreate
 	
 	@Override
@@ -357,7 +370,8 @@ public class SignUpActivity extends BaseFragmentActivity {
 				String message = jObj.getString("message");
 				
 				if(status == 1 && responseCode == 200){
-					txtTerms.setText(message);
+//					txtTerms.setText(message);
+					terms_url = message;
 				}
 				else if(status == 2 && responseCode == 401) {
 					Toast.makeText(context, message, Toast.LENGTH_SHORT).show();

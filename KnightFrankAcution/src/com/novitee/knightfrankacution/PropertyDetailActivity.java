@@ -3,15 +3,19 @@ package com.novitee.knightfrankacution;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView.OnSliderClickListener;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.novitee.knightfrankacution.base.BaseFragmentActivity;
 import com.novitee.knightfrankacution.model.Photo;
@@ -67,7 +71,7 @@ public class PropertyDetailActivity extends BaseFragmentActivity {
 	TextView highlight;
 	TextView contact;
 	TextView ceaNo;
-	TextView companyName;
+//	TextView companyName;
 	ImageView makeCall;
 	ImageView sendEmail;
 	SliderLayout detailSlider;
@@ -111,7 +115,7 @@ public class PropertyDetailActivity extends BaseFragmentActivity {
 		highlight = (TextView) findViewById(R.id.highlight);
 		contact = (TextView) findViewById(R.id.contact);
 		ceaNo = (TextView) findViewById(R.id.cea_no);
-		companyName = (TextView) findViewById(R.id.company_name);
+//		companyName = (TextView) findViewById(R.id.company_name);
 		makeCall = (ImageView) findViewById(R.id.detail_phone);
 		sendEmail = (ImageView) findViewById(R.id.detail_email);
 		facilitiesLayout = (GridLayout) findViewById(R.id.facilities);
@@ -149,6 +153,23 @@ public class PropertyDetailActivity extends BaseFragmentActivity {
 				}
 			}
 		});//makeCall
+		
+		sendEmail.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent i = new Intent(Intent.ACTION_SEND);
+				i.setData(Uri.parse("mailto:"));
+			    i.setType("message/rfc822");
+			    i.putExtra(Intent.EXTRA_EMAIL  , new String[]{property.getEmail()});
+			    try {
+				    context.startActivity(Intent.createChooser(i, "Send mail..."));
+				} catch (android.content.ActivityNotFoundException ex) {
+				    Toast.makeText(context, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+				}
+			}
+		});
 		
 	}//onCreate
 	
@@ -217,20 +238,11 @@ public class PropertyDetailActivity extends BaseFragmentActivity {
 			ceaNo.setVisibility(View.GONE);
 		}
 
-		if(property.getCompany_name().length() > 0) {
+		/*if(property.getCompany_name().length() > 0) {
 			companyName.setText(property.getCompany_name());
 		} else {
 			companyName.setVisibility(View.GONE);
-		}
-		
-		photoList.clear();
-		photoList = property.getPhoto();
-		
-		if(!property.getVideo().equals("")) {
-			Photo photo = new Photo(CommonConstants.VIDEO_IMAGE);
-			photoList.add(photo);
-			video_flag = 1;
-		}
+		}*/
 		
 		String starbuy_flag = property.getStarbuy_flag();
 		
@@ -288,14 +300,34 @@ public class PropertyDetailActivity extends BaseFragmentActivity {
 				addTextViewFeature("Balcony");
 			}
 		}
+		
+		photoList.clear();
+		photoList = property.getPhoto();
+		
+		if(!property.getVideo().equals("")) {
+			Photo photo = new Photo(CommonConstants.VIDEO_IMAGE);
+			photoList.add(photo);
+			video_flag = 1;
+		}
 
 		//add Image to slider
-		if(photoList.size() == 0 && !property.getVideo().equals("")) {
+		if(photoList.size() == 1 && !property.getVideo().equals("")) {
 			default_image.setScaleType(ScaleType.FIT_XY);
-			String url = property.getVideo();
-			Picasso.with(context).load(url).into(default_image);
+			String url = CommonConstants.HOST + photoList.get(0).getName();
+            Picasso.with(context).load(url).into(default_image);
+
+            default_image.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					Uri uri = Uri.parse(property.getVideo());
+					Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uri);
+					startActivity(launchBrowser);
+				}
+			});
 		}
-		else if(photoList.size() == 1) {
+		else if(photoList.size() == 1 && property.getVideo().equals("")) {
 			default_image.setScaleType(ScaleType.FIT_XY);
 			String url = CommonConstants.HOST + photoList.get(0).getName();
             Picasso.with(context).load(url).into(default_image);
@@ -409,7 +441,7 @@ public class PropertyDetailActivity extends BaseFragmentActivity {
 		}
 	}//locationFromPostCode
 	
-	public void setLocationMarker(double latitude, double longitude) {
+	public void setLocationMarker(final double latitude, final double longitude) {
 		// create marker
     	MarkerOptions marker = new MarkerOptions().position(new LatLng(latitude, longitude)).title("Hello Maps");
     	 
@@ -418,6 +450,17 @@ public class PropertyDetailActivity extends BaseFragmentActivity {
     	 
     	// adding marker
     	googleMap.addMarker(marker);
+    	googleMap.animateCamera( CameraUpdateFactory.newLatLngZoom(new LatLng(latitude,longitude), 12.0f));
+    	googleMap.setOnMarkerClickListener(new OnMarkerClickListener() {
+
+    		@Override
+    		public boolean onMarkerClick(Marker arg0) {
+	    		String uri = String.format(Locale.ENGLISH, "geo:%f,%f", latitude, longitude);
+	    		Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+	    		context.startActivity(intent);
+	    		return true;
+    		}
+    	});
     	
     	/*fromAsset(String assetName) – Loading from assets folder
     	fromBitmap (Bitmap image) – Loading bitmap image
@@ -466,7 +509,6 @@ public class PropertyDetailActivity extends BaseFragmentActivity {
 		body = body + "Postal Code "+ property.getTenure() +"\n\n\n";
 		
 		body = body + "This email is generated via KnightFrank Auction App \n\n";
-		
 			
 		Intent emailIntent = new Intent();
 	    emailIntent.setAction(Intent.ACTION_SEND);
@@ -479,16 +521,20 @@ public class PropertyDetailActivity extends BaseFragmentActivity {
 	    Intent sendIntent = new Intent(Intent.ACTION_SEND);     
 	    sendIntent.setType("text/plain");
 	    
+//	    FacebookShareContentFragment shareContent = new FacebookShareContentFragment();
+//		shareContent.share(PropertyDetailActivity.this);
+	    
 	    Intent openInChooser = Intent.createChooser(emailIntent, "Share");
 	    List<ResolveInfo> resInfo = pm.queryIntentActivities(sendIntent, 0);
-	    List<LabeledIntent> intentList = new ArrayList<LabeledIntent>();        
+	    List<LabeledIntent> intentList = new ArrayList<LabeledIntent>();   
+	    
 	    for (int i = 0; i < resInfo.size(); i++) {
 	        // Extract the label, append it, and repackage it in a LabeledIntent
 	        ResolveInfo ri = resInfo.get(i);
 	        String packageName = ri.activityInfo.packageName;
 	        if(packageName.contains("android.email")) {
 	            emailIntent.setPackage(packageName);
-	        } else if(packageName.contains("mms") || packageName.contains("android.gm")||packageName.contains("whatsapp")||packageName.contains("com.tencent.mm")) {
+	        } else if(packageName.contains("mms") || packageName.contains("android.gm")||packageName.contains("whatsapp")||packageName.contains("com.tencent.mm") || packageName.contains("facebook")) {
 	            Intent intent = new Intent();
 	            intent.setComponent(new ComponentName(packageName, ri.activityInfo.name));
 	            intent.setAction(Intent.ACTION_SEND);
@@ -504,6 +550,10 @@ public class PropertyDetailActivity extends BaseFragmentActivity {
 	                intent.putExtra(Intent.EXTRA_TEXT, body);		                   
 	            } else if (packageName.contains("com.tencent.mm")) {
 	                intent.putExtra(Intent.EXTRA_TEXT, body);		                   
+	            }
+	            else if (packageName.contains("facebook")) {
+	            	intent.setPackage(packageName);
+	                intent.putExtra(Intent.EXTRA_TEXT, "http://www.knightfrank.com.sg");	
 	            }
 
 	            intentList.add(new LabeledIntent(intent, packageName, ri.loadLabel(pm), ri.icon));

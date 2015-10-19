@@ -4,6 +4,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.novitee.knightfrankacution.base.BaseFragmentActivity;
+import com.novitee.knightfrankacution.model.Pdf;
+import com.novitee.knightfrankacution.util.CommonConstants;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -151,11 +153,14 @@ public class DocumentsActivity extends BaseFragmentActivity implements OnClickLi
 				int json_status = jObj.getInt("status");
 				
 				if(json_status == 1 && json_responseCode == 200){
-//					String pdf_link = CommonConstants.HOST + jObj.getString("simple_pdf");
-					String pdf_link = "http://128.199.142.149:8282/document/SpecimentExample.pdf";
+					String pdf_link = CommonConstants.HOST + jObj.getString("simple_pdf");
+					Pdf pdf = new Pdf();
+					pdf.setPdf_link(pdf_link);
+					pdf.setPdf_name("Sample PDF");
 					
 					Intent i = new Intent(context, PDFActivity.class);
-					i.putExtra("PDFName", pdf_link);
+					i.putExtra("PDF", pdf);
+					i.putExtra("Email Title", "Knight Frank Auction Sample PDF");
 					startActivity(i);
 
 				}

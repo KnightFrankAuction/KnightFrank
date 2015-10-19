@@ -22,6 +22,7 @@ import org.apache.http.entity.mime.MultipartEntity;
 import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -178,10 +179,14 @@ public class JSONParser {
 		HttpPost httpost = new HttpPost(url);
 		try {
 			MultipartEntity multipartEntity = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE);
-//			multipartEntity.addPart("file", new FileBody(new File(path)));
 			
 			for(int i=0; i<signList.size(); i++) {
-				multipartEntity.addPart(signList.get(i).getName(), new FileBody(new File(signList.get(i).getValue())));
+				if(signList.get(i).getValue().equals("")) {
+					params.add(new BasicNameValuePair(signList.get(i).getName(), ""));
+				}
+				else {
+					multipartEntity.addPart(signList.get(i).getName(), new FileBody(new File(signList.get(i).getValue())));
+				}
 			}
 			
 			for (int i = 0; i < params.size(); i++) {

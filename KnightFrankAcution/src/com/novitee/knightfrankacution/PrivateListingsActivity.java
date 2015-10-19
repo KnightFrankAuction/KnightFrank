@@ -2,14 +2,12 @@ package com.novitee.knightfrankacution;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.novitee.knightfrankacution.adapter.ExpandableListAdapter;
-import com.novitee.knightfrankacution.model.Photo;
 import com.novitee.knightfrankacution.model.Property;
 
 import android.os.AsyncTask;
@@ -65,56 +63,6 @@ public class PrivateListingsActivity extends AdvertisementsActivity {
 		listPro = new ArrayList<Property>();
 		listImage = new ArrayList<String>();
 		
-		/***************** testing ********************/
-		
-		/*//add header values
-		categoryList.add("Residential");
-		categoryList.add("Commercial");
-		categoryList.add("Industrial");
-		categoryList.add("Others");
-		
-		//add child values
-		childList.add("Landed");
-		childList.add("Condo / Apartment");
-		childList.add("HDB");
-
-		childHolderList.add(childList);
-		
-		//add child values
-//		childList.clear();
-		childList = new ArrayList<String>();
-		childList.add("C1");
-		childList.add("C2");
-		childList.add("C3");
-		childList.add("C4");
-		
-		childHolderList.add(childList);
-		
-		//add child values
-//		childList.clear();
-		childList = new ArrayList<String>();
-		childList.add("I1");
-		childList.add("I2");
-		
-		childHolderList.add(childList);
-		
-		//for empty list
-//		childList.clear();
-		childList = new ArrayList<String>();
-		childHolderList.add(childList);
-		
-		subCategoryList.put(categoryList.get(0), childHolderList.get(0));
-		subCategoryList.put(categoryList.get(1), childHolderList.get(1));
-		subCategoryList.put(categoryList.get(2), childHolderList.get(2));
-		subCategoryList.put(categoryList.get(3), childHolderList.get(3));*/
-		
-		/***************** testing end ********************/
-		
-		//declare adapter
-		/*adapter = new ExpandableListAdapter(this, categoryList, subCategoryList);
-		
-		expandableList.setAdapter(adapter);*/
-		
 		if (connectionManager.isConnected()) {
 			new GetPrivateListing().execute();
 		}
@@ -131,13 +79,24 @@ public class PrivateListingsActivity extends AdvertisementsActivity {
 					stChild = "Condo";
 				}
 				
-				if(connectionManager.isConnected()) {
-					new Search().execute();
-				}
-				else {
-					Toast.makeText(context, "No Internet Connection", Toast.LENGTH_SHORT).show();
+				ArrayList<String> searchList = new ArrayList<String>();
+				for (int i = 0; i < 9; i++) {
+					if(i == 0) {
+						searchList.add("");
+					}
+					else if(i == 2) {
+						searchList.add(stChild);
+					}
+					else {
+						searchList.add("Any");
+					}
 				}
 				
+				Intent i = new Intent(context, PropertyListActivity.class);
+				i.putExtra("Title", stChild);
+				i.putExtra("SearchList", searchList);
+				startActivity(i);
+
 				return false;
 			}
 		});
@@ -257,7 +216,7 @@ public class PrivateListingsActivity extends AdvertisementsActivity {
 						//add value to holder list
 						childHolderList.add(childList);
 						
-						//add list to expandble adapter
+						//add list to expandable adapter
 						subCategoryList.put(categoryList.get(i), childHolderList.get(i));
 					}
 					
@@ -278,87 +237,5 @@ public class PrivateListingsActivity extends AdvertisementsActivity {
 			}
 		}
 	}//GetPrivateListing
-	
-	private class Search extends AsyncTask<Void, Void, Void> {
-		JSONObject jObj;
-		ProgressDialog pDialog;
-		
-		@Override
-		protected void onPreExecute() {
-			super.onPreExecute();
-			pDialog = new ProgressDialog(PrivateListingsActivity.this);
-            pDialog.setMessage("Please wait....");
-            pDialog.setCancelable(false);
-            pDialog.show();
-		}
-
-		@Override
-		protected Void doInBackground(Void... params) {
-			// TODO Auto-generated method stub
-			try {
-				jObj = api.Search(pref.getSessionToken(), "", "Any", stChild, "Any", "Any", "Any", "Any", "Any", "Any", "1");//"1" for page_count
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return null;
-		}
-		
-		@Override
-		protected void onPostExecute(Void result) {
-			// TODO Auto-generated method stub
-			super.onPostExecute(result);
-			if(pDialog.isShowing()){
-				pDialog.dismiss();
-			}
-
-			try {
-				int json_responseCode = jObj.getInt("statusCode");
-				int json_status = jObj.getInt("status");
-				
-				if(json_status == 1 && json_responseCode == 200){
-					Property property;
-					JSONArray jArray = jObj.getJSONArray("property");
-					
-					listPro.clear();
-					Photo photo;
-					List<Photo> list = new ArrayList<Photo>();
-					
-					for (int i = 0; i < jArray.length(); i++) {
-						JSONObject json = jArray.getJSONObject(i);
-						property = new Property(json);
-						listPro.add(property);
-
-						if(property.getPhoto().size() > 0) {
-							list = property.getPhoto();
-							photo = list.get(0);
-							listImage.add(photo.getName());
-						}
-						else {
-							listImage.add("");
-						}
-					}
-
-					Intent intent = new Intent(context, PropertyListActivity.class);
-					intent.putExtra("pList", listPro);
-					intent.putExtra("imageList", listImage);
-					intent.putExtra("AuctionDate", stChild);
-					startActivity(intent);
-					
-				}
-				else if(json_status == 2 && json_responseCode == 401) {
-					String message = jObj.getString("message");
-					Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
-				}
-				else {
-					Toast.makeText(context, "Something went wrong", Toast.LENGTH_SHORT).show();
-				}
-				
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}//onPostExecute
-	}//Search
 
 }

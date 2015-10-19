@@ -126,6 +126,7 @@ public class ChangePasswordActivity extends BaseActivity {
 				int status = jObj.getInt("status");				
 				
 				if(status == 1 && responseCode == 200){
+					pref.setPassword(newPassword.getText().toString());
 					Intent intent = new Intent(context, AboutActivity.class);
 					startActivity(intent);
 

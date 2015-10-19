@@ -71,7 +71,7 @@ public class AGTAuctionActivity extends BaseFragmentActivity implements OnClickL
 
 	//for signature
 	CanvasView canvasView;
-	String stSoName, stClientName, stIndemintyName;
+	String stSoName = "", stClientName = "", stIndemintyName = "";
 	ImageView imgSign;
 	String signName = null, todayDate = "";
 	List<NameValuePair> signList;
@@ -466,18 +466,6 @@ public class AGTAuctionActivity extends BaseFragmentActivity implements OnClickL
 		protected Void doInBackground(Void... params) {
 			// TODO Auto-generated method stub
 			try {
-				/*jObj = api.agtAuction(
-									pref.getSessionToken(), editCorrespondanceDate.getText().toString(), editPostalCode.getText().toString(), editAddress1.getText().toString(), editAddress2.getText().toString(), 
-									editBuildingName.getText().toString(), displayPartnerAgent, editDpaName.getText().toString(), editDpaIc.getText().toString(), editDpaAgency.getText().toString(), 
-									editAuctionDate.getText().toString(), editAuctionVanue.getText().toString(), editAuctionTime.getText().toString(), displayComissionFee, txtDcfInfo.getText().toString(), 
-									displayServiceFee, txtDsfInfo.getText().toString(), displayForfeiture, txtDfInfo.getText().toString(), displaySoleRights, 
-									txtDsrInfo.getText().toString(), "", editAgentName.getText().toString(), editAgentPosition.getText().toString(), editAgentCEA.getText().toString(), 
-									editAgentEmail.getText().toString(), editAgentDID.getText().toString(), editAgentHP.getText().toString(), txtInfoName.getText().toString(), displayReservePrice, 
-									editReservePrice.getText().toString(), displaySolicitors, editDsAttn.getText().toString(), editDsPostal.getText().toString(), editDsAddress1.getText().toString(), 
-									editDsAddress2.getText().toString(), editDsBuildingName.getText().toString(), editDsContact.getText().toString(), txtClientName.getText().toString(), editClientIc.getText().toString(), 
-									"", editMailingPostal.getText().toString(), editMailingAddress1.getText().toString(), editMailingAddress2.getText().toString(), editMailingBuildingName.getText().toString(), 
-									editMailingContact.getText().toString(), editMailingEmail.getText().toString(), editMailingDate.getText().toString(), txtIndemintyName.getText().toString(), "", 
-									editIndemintyOnBehalf.getText().toString());*/
 				
 				jObj = api.agtAuction(
 						pref.getSessionToken(), editCorrespondanceDate.getText().toString(), editPostalCode.getText().toString(), editAddress1.getText().toString(), editAddress2.getText().toString(), 

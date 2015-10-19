@@ -67,8 +67,6 @@ public class ShortListActivity extends AdvertisementsActivity {
 		
 		showAD();
 		setTitleBarAndFooter();
-//		FooterFragment.shortlist.setImageResource(R.drawable.shortlist_icon_pink);
-//		footer_frg.shortlist.setImageResource(R.drawable.shortlist_icon_pink);
 		
 		listShortlist = (ListView) findViewById(R.id.shortlist_list);
 		refresh = (ProgressBar) findViewById(R.id.shortlist_refresh);
@@ -268,97 +266,101 @@ public class ShortListActivity extends AdvertisementsActivity {
             TextView txtStatus = (TextView) row.findViewById(R.id.txt_unavailable);
             
             property = propertyList.get(position);
-            if(!property.getStatus().equals("Active")) {
-            	txtStatus.setVisibility(View.VISIBLE);
-            }
-            
-            if(property.getBuilding_name().length() > 0) {
-            	buildingName.setText(property.getBuilding_name());
-            } else {
-            	buildingName.setVisibility(View.GONE);
-            }
+            if(property.getShortlist_flag().equals("1")) {
 
-            if(property.getBuilding_name().length() > 0) {
-            	price.setText(property.getPrice());
-            } else {
-            	price.setVisibility(View.GONE);
-            }
-
-            if(property.getBuilding_name().length() > 0) {
-            	district.setText(property.getDistrict());
-            } else {
-            	district.setVisibility(View.GONE);
-            }
-
-            if(property.getBuilding_name().length() > 0) {
-            	auctionType.setText(property.getAuction_type());
-            } else {
-            	auctionType.setVisibility(View.GONE);
-            }
-
-            if(property.getBuilding_name().length() > 0) {
-            	buildingType.setText(property.getBuilding_type());
-            } else {
-            	buildingType.setVisibility(View.GONE);
-            }
-
-            if(property.getBuilding_name().length() > 0) {
-            	floor_area.setText(property.getFloor_area() + " sqft");
-            } else {
-            	floor_area.setVisibility(View.GONE);
-            }
-
-            if(property.getBuilding_name().length() > 0) {
-            	bed_bath.setText(property.getBedroom() + " bedroom, " + property.getBath() + " bathroom");
-            } else {
-            	bed_bath.setVisibility(View.GONE);
-            }
-
-            if(property.getBuilding_name().length() > 0) {
-            	tenure.setText(property.getTenure());
-            } else {
-            	tenure.setVisibility(View.GONE);
-            }
-
-            if(property.getBuilding_name().length() > 0) {
-            	psf.setText("$"+ property.getPsf() + " psft");
-            } else {
-            	psf.setVisibility(View.GONE);
-            }
-
-            String image_name = photoList.get(position).getName();
-            if(image_name.length() > 0) {
-            	String url = CommonConstants.HOST + image_name;
-                Picasso.with(context).load(url).into(propertyImage);
-            }
-            
-            String shortlist_flag = property.getShortlist_flag();
-            
-            if(shortlist_flag.equals("1")) {
-            	shortlist.setImageResource(R.drawable.shortlist_check);
-    		}
-            
-            shortlistLayout.setOnClickListener(new OnClickListener() {
-				
-				@Override
-				public void onClick(View v) {
-					// TODO Auto-generated method stub
-					View parentRow = (View) v.getParent();
-					LinearLayout linearRow = (LinearLayout) parentRow.getParent();
-					LinearLayout linearRow1 = (LinearLayout) linearRow.getParent();
-					ListView listView = (ListView) linearRow1.getParent();
-					shortlist_position = listView.getPositionForView(parentRow);
-					shortlist_property = propertyList.get(shortlist_position);
-					shortlist = (ImageView) linearRow.findViewById(R.id.listview_shortlist);
+	            if(!property.getStatus().equals("Active")) {
+	            	txtStatus.setVisibility(View.VISIBLE);
+	            }
+	            
+	            if(property.getBuilding_name().length() > 0) {
+	            	buildingName.setText(property.getBuilding_name());
+	            } else {
+	            	buildingName.setVisibility(View.GONE);
+	            }
+	
+	            if(property.getBuilding_name().length() > 0) {
+	            	price.setText(property.getPrice());
+	            } else {
+	            	price.setVisibility(View.GONE);
+	            }
+	
+	            if(property.getBuilding_name().length() > 0) {
+	            	district.setText(property.getDistrict());
+	            } else {
+	            	district.setVisibility(View.GONE);
+	            }
+	
+	            if(property.getBuilding_name().length() > 0) {
+	            	auctionType.setText(property.getAuction_type());
+	            } else {
+	            	auctionType.setVisibility(View.GONE);
+	            }
+	
+	            if(property.getBuilding_name().length() > 0) {
+	            	buildingType.setText(property.getBuilding_type());
+	            } else {
+	            	buildingType.setVisibility(View.GONE);
+	            }
+	
+	            if(property.getBuilding_name().length() > 0) {
+	            	floor_area.setText(property.getFloor_area() + " sqft");
+	            } else {
+	            	floor_area.setVisibility(View.GONE);
+	            }
+	
+	            if(property.getBuilding_name().length() > 0) {
+	            	bed_bath.setText(property.getBedroom() + " bedroom, " + property.getBath() + " bathroom");
+	            } else {
+	            	bed_bath.setVisibility(View.GONE);
+	            }
+	
+	            if(property.getBuilding_name().length() > 0) {
+	            	tenure.setText(property.getTenure());
+	            } else {
+	            	tenure.setVisibility(View.GONE);
+	            }
+	
+	            if(property.getBuilding_name().length() > 0) {
+	            	psf.setText("$"+ property.getPsf() + " psft");
+	            } else {
+	            	psf.setVisibility(View.GONE);
+	            }
+	
+	            String image_name = photoList.get(position).getName();
+	            if(image_name.length() > 0) {
+	            	String url = CommonConstants.HOST + image_name;
+	                Picasso.with(context).load(url).into(propertyImage);
+	            }
+	            
+	            String shortlist_flag = property.getShortlist_flag();
+	            
+	            if(shortlist_flag.equals("1")) {
+	            	shortlist.setImageResource(R.drawable.shortlist_check);
+	    		}
+	            
+	            shortlistLayout.setOnClickListener(new OnClickListener() {
 					
-					if(shortlist_property.getShortlist_flag().equals("1")) {
-						new deleteShortlist().execute();
+					@Override
+					public void onClick(View v) {
+						// TODO Auto-generated method stub
+						View parentRow = (View) v.getParent();
+						LinearLayout linearRow = (LinearLayout) parentRow.getParent();
+						LinearLayout linearRow1 = (LinearLayout) linearRow.getParent();
+						ListView listView = (ListView) linearRow1.getParent();
+						shortlist_position = listView.getPositionForView(parentRow);
+						shortlist_property = propertyList.get(shortlist_position);
+						shortlist = (ImageView) linearRow.findViewById(R.id.listview_shortlist);
+						
+						if(shortlist_property.getShortlist_flag().equals("1")) {
+							new deleteShortlist().execute();
+						}
+						else {
+							new saveShortlist().execute();
+						}
 					}
-					else {
-						new saveShortlist().execute();
-					}
-				}
-			});
+				});
+	            
+            }//shortlist_flag
 
             return(row);
         }

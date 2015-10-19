@@ -3,14 +3,12 @@ package com.novitee.knightfrankacution;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.novitee.knightfrankacution.base.BaseFragmentActivity;
-import com.novitee.knightfrankacution.model.Photo;
 import com.novitee.knightfrankacution.model.Property;
 
 import android.app.DatePickerDialog;
@@ -86,7 +84,7 @@ public class SearchActivity extends BaseFragmentActivity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				building_name = buildingName.getText().toString();
+				/*building_name = buildingName.getText().toString();
 				listing_type = spListing.getSelectedItem().toString();
 				building_type = spBuilding.getSelectedItem().toString();
 				type_of_sale = spTypeOfSale.getSelectedItem().toString();
@@ -94,14 +92,30 @@ public class SearchActivity extends BaseFragmentActivity {
 				bathroom = spBathroom.getSelectedItem().toString();
 				min_size = spMinSize.getSelectedItem().toString();
 				max_price = spMaxPrice.getSelectedItem().toString();
-				listed_on = listed_date.getText().toString();
+				listed_on = listed_date.getText().toString();*/
 				
-				if(connectionManager.isConnected()) {
+				ArrayList<String> searchList = new ArrayList<String>();
+				searchList.add(buildingName.getText().toString());
+				searchList.add(spListing.getSelectedItem().toString());
+				searchList.add(spBuilding.getSelectedItem().toString());
+				searchList.add(spTypeOfSale.getSelectedItem().toString());
+				searchList.add(spBedroom.getSelectedItem().toString());
+				searchList.add(spBathroom.getSelectedItem().toString());
+				searchList.add(spMinSize.getSelectedItem().toString());
+				searchList.add(spMaxPrice.getSelectedItem().toString());
+				searchList.add(listed_date.getText().toString());
+				
+				
+				Intent i = new Intent(context, PropertyListActivity.class);
+				i.putExtra("SearchList", searchList);
+				startActivity(i);
+				
+				/*if(connectionManager.isConnected()) {
 					new Search().execute();
 				}
 				else {
 					Toast.makeText(context, "No Internet Connection", Toast.LENGTH_SHORT).show();
-				}
+				}*/
 			}
 		});//titleText2.setOnClickListener
 		
@@ -168,7 +182,7 @@ public class SearchActivity extends BaseFragmentActivity {
 		});
 	}//setTitleBarAndFooter
 	
-	private class Search extends AsyncTask<Void, Void, Void> {
+	/*private class Search extends AsyncTask<Void, Void, Void> {
 		JSONObject jObj;
 		ProgressDialog pDialog;
 		
@@ -228,8 +242,8 @@ public class SearchActivity extends BaseFragmentActivity {
 						}
 					}
 
-//					Intent intent = new Intent(context, PropertyListActivity.class);
-					Intent intent = new Intent(context, AuctionPropertyListActivity.class);
+					Intent intent = new Intent(context, PropertyListActivity.class);
+//					Intent intent = new Intent(context, AuctionPropertyListActivity.class);
 					intent.putExtra("pList", listPro);
 					intent.putExtra("imageList", listImage);
 					startActivity(intent);
@@ -249,7 +263,7 @@ public class SearchActivity extends BaseFragmentActivity {
 			}
 		}//onPostExecute
 	}//Search
-	
+*/	
 	private class GetSpinnerData extends AsyncTask<Void, Void, Void> {
 		JSONObject jObj;
 		ProgressDialog pDialog;

@@ -8,9 +8,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.novitee.knightfrankacution.base.BaseFragmentActivity;
-import com.novitee.knightfrankacution.model.Photo;
 import com.novitee.knightfrankacution.model.Property;
-import com.novitee.knightfrankacution.util.Preferences;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -135,16 +133,54 @@ public class FilterActivity extends BaseFragmentActivity {
 					}
 				}
 				
-				if(connectionManager.isConnected()) {
+				ArrayList<String> filterList = new ArrayList<String>();
+				filterList.add(rdString);
+				filterList.add(district_value);
+				filterList.add(min_size);
+				filterList.add(max_size);
+				filterList.add(min_value);
+				filterList.add(max_value);
+				filterList.add(sqft_sort);
+				filterList.add(psf_sort);
+				
+				Intent intent = new Intent(context, FilterListActivity.class);
+				intent.putExtra("FilterList", filterList);
+				startActivity(intent);
+				
+				/*if(connectionManager.isConnected()) {
 					new Filter().execute();
 				}
 				else {
 					Toast.makeText(context, "No Internet Connection", Toast.LENGTH_SHORT).show();
-				}
+				}*/
 			}
 		});//titleText2.setOnClickListener
 		
 	}//onCreate
+	
+	public void setTitleBarAndFooter() {
+		//title bar
+		titleText = (TextView) findViewById(R.id.title_text);
+		titleText2 = (TextView) findViewById(R.id.title_text2);
+		titleImage = (ImageView) findViewById(R.id.title_image);
+		titleText.setText("Filter");
+		titleText2.setText("Apply");
+		titleImage.setVisibility(View.GONE);
+		
+		fragmentTran = getSupportFragmentManager().beginTransaction();
+		fragmentTran.replace(R.id.filter_footer, new FooterFragment());
+		fragmentTran.commit();
+		
+		ImageView titleBack = (ImageView) findViewById(R.id.title_back);
+		titleBack.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				onBackPressed();
+			}
+		});
+	}//setTitleBarAndFooter
 	
 	public class GetDistrict extends AsyncTask<Void, Void, Void> {
 		JSONObject jObj;
@@ -209,7 +245,7 @@ public class FilterActivity extends BaseFragmentActivity {
 		
 	}//GetDistrict
 	
-	public class Filter extends AsyncTask<Void, Void, Void> {
+	/*public class Filter extends AsyncTask<Void, Void, Void> {
 		JSONObject jObj;
 		ProgressDialog pDialog;
 		
@@ -295,30 +331,7 @@ public class FilterActivity extends BaseFragmentActivity {
 		}//onPostExecute
 		
 	}//Filter
-
-	public void setTitleBarAndFooter() {
-		//title bar
-		titleText = (TextView) findViewById(R.id.title_text);
-		titleText2 = (TextView) findViewById(R.id.title_text2);
-		titleImage = (ImageView) findViewById(R.id.title_image);
-		titleText.setText("Filter");
-		titleText2.setText("Apply");
-		titleImage.setVisibility(View.GONE);
-		
-		fragmentTran = getSupportFragmentManager().beginTransaction();
-		fragmentTran.replace(R.id.filter_footer, new FooterFragment());
-		fragmentTran.commit();
-		
-		ImageView titleBack = (ImageView) findViewById(R.id.title_back);
-		titleBack.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				onBackPressed();
-			}
-		});
-	}//setTitleBarAndFooter
+*/
 	
 	private void setDistrictSpinner() {
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, R.layout.kf_single_textview_layout, stDistrict);

@@ -56,7 +56,7 @@ public class OfferToPurchaseActivity extends BaseFragmentActivity implements OnC
 	//Signature
 	Button btnPurchaser1Sign, btnPurchaser2Sign, btnSalePersonSign, btnSoOwner1Sign, btnSoPurchaser1Sign;
 	ImageView imgPurchaser1Sign, imgPurchaser2Sign, imgSalePersonSign, imgSoOwner1Sign, imgSoPurchaser1Sign;
-	String stPurchaser1Sign, stPurchaser2Sign, stSalePersonSign, stSoOwner1Sign, stSoPurchaser1Sign;
+	String stPurchaser1Sign = "", stPurchaser2Sign = "", stSalePersonSign = "", stSoOwner1Sign = "", stSoPurchaser1Sign = "";
 	
 	//datePicker
 	Calendar myCalendar = Calendar.getInstance();

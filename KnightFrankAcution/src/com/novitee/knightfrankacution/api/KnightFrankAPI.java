@@ -142,7 +142,7 @@ public class KnightFrankAPI {
 		return new JSONParser().getJSONFromUrl(DISTRICT, params, CommonConstants.POST);
 	}
 	
-	public JSONObject filter(String filter, String district, String min_size, String max_size, String min_value, String max_value, String sqft, String psf, String session_token) throws JSONException {
+	public JSONObject filter(String session_token, String filter, String district, String min_size, String max_size, String min_value, String max_value, String sqft, String psf, int page_count) throws JSONException {
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
 		params.add(new BasicNameValuePair("building_type", filter));
 		params.add(new BasicNameValuePair("district", district));
@@ -153,6 +153,7 @@ public class KnightFrankAPI {
 		params.add(new BasicNameValuePair("sqft_sort", sqft));
 		params.add(new BasicNameValuePair("psf_sort", psf));
 		params.add(new BasicNameValuePair("session_token", session_token));
+		params.add(new BasicNameValuePair("page_count", String.valueOf(page_count)));
 		return new JSONParser().getJSONFromUrl(FILTER, params, CommonConstants.POST);
 	}
 	
@@ -233,7 +234,7 @@ public class KnightFrankAPI {
 		return new JSONParser().getJSONFromUrl(SEARCH, null, CommonConstants.GET);
 	}
 	
-	public JSONObject Search(String session_token, String building_name, String listing_type, String building_type, String type_of_sale, String bedroom, String bathroom, String min_size, String max_price, String listed_on, String page_count) throws JSONException {
+	public JSONObject Search(String session_token, String building_name, String listing_type, String building_type, String type_of_sale, String bedroom, String bathroom, String min_size, String max_price, String listed_on, int page_count) throws JSONException {
 		SEARCH = SEARCH.replace("{session_token}", session_token);
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
 		params.add(new BasicNameValuePair("building_name", building_name));
@@ -245,7 +246,7 @@ public class KnightFrankAPI {
 		params.add(new BasicNameValuePair("min_size", min_size));
 		params.add(new BasicNameValuePair("max_price", max_price));
 		params.add(new BasicNameValuePair("created_date", listed_on));
-		params.add(new BasicNameValuePair("page_count", page_count));
+		params.add(new BasicNameValuePair("page_count", String.valueOf(page_count)));
 		return new JSONParser().getJSONFromUrl(SEARCH, params, CommonConstants.POST);
 	}
 	
@@ -771,9 +772,9 @@ public class KnightFrankAPI {
 		return new JSONParser().getJSONFromUrl(SPLASH, params, CommonConstants.POST);
 	}
 	
-	public JSONObject forgetPassword(String session_token) throws JSONException {
+	public JSONObject forgetPassword(String email) throws JSONException {
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
-		params.add(new BasicNameValuePair("session_token", session_token));
+		params.add(new BasicNameValuePair("email", email));
 		return new JSONParser().getJSONFromUrl(FORGET_PASSWORD, params, CommonConstants.POST);
 	}
 	

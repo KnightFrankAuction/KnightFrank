@@ -2,10 +2,10 @@ package com.novitee.knightfrankacution;
 
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.media.RingtoneManager;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 
@@ -26,39 +26,59 @@ public class NotificationReceiver extends BroadcastReceiver {
 		
 	}//onReceive
 	
-	public void showNotification(Context context,Bundle msg){
-    	Intent intent = null;
-		NotificationManager notiManager = (NotificationManager) 
-				context.getSystemService(Context.NOTIFICATION_SERVICE);
-		/*NotificationCompat.Builder notiBuilder = new NotificationCompat.Builder(context)
-												.setContentTitle("title")
-												.setContentText("message")
-												.setAutoCancel(true)
-												.setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
-*/
-		NotificationCompat.Builder notiBuilder = new NotificationCompat.Builder(context)
-											.setContentTitle(msg.getString("title"))
-											.setContentText(msg.getString("message"))
-											.setAutoCancel(true)
-											.setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
-		if(msg.getString("type").equalsIgnoreCase("UpdateShortlist")){
-//			notiBuilder.setSmallIcon(R.drawable.ic_wheel);
-			intent = new Intent(context,ShortListActivity.class);
+	public void showNotification(Context context,Bundle msg){		
+		NotificationCompat.Builder mBuilder =
+									        new NotificationCompat.Builder(context)
+									        .setSmallIcon(R.drawable.kf_noti_icon)
+									        .setContentTitle(msg.getString("title"))
+									        .setContentText(msg.getString("subject"))
+									        .setAutoCancel(true);
+		
+		Intent resultIntent = null;
+		// The stack builder object will contain an artificial back stack for the
+		// started Activity.
+		// This ensures that navigating backward from the Activity leads out of
+		// your application to the Home screen.
+		TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
+		
+		if(msg.getString("type").equalsIgnoreCase("NewListing")){ 
+			// Creates an explicit intent for an Activity in your app
+			resultIntent = new Intent(context, ShortListActivity.class);
+			
+			// Adds the back stack for the Intent (but not the Intent itself)
+			stackBuilder.addParentStack(ShortListActivity.class);
 		}
-		/*else if(msg.getString("type").equalsIgnoreCase("competency_wheel")){
-			notiBuilder.setSmallIcon(R.drawable.ic_wheel);
-			intent = new Intent(context,WheelActivity.class);
-		}*/
+		else if(msg.getString("type").equalsIgnoreCase("UpdateShortlist")){ 
+			resultIntent = new Intent(context, ShortListActivity.class);
+			stackBuilder.addParentStack(ShortListActivity.class);
+		}
+		else if(msg.getString("type").equalsIgnoreCase("Starbuys")){ 
+			resultIntent = new Intent(context, StarbuysActivity.class);
+			stackBuilder.addParentStack(StarbuysActivity.class);
+		}
+		else if(msg.getString("type").equalsIgnoreCase("News")){ 
+			resultIntent = new Intent(context, NewsActivity.class);
+			stackBuilder.addParentStack(NewsActivity.class);
+		}
+		else if(msg.getString("type").equalsIgnoreCase("AuctionRemainder")){ 
+			resultIntent = new Intent(context, AuctionListingsActivity.class);
+			stackBuilder.addParentStack(AuctionListingsActivity.class);
+		}
+		else if(msg.getString("type").equalsIgnoreCase("NewAuctions")){ 
+			resultIntent = new Intent(context, ShortListActivity.class);
+			stackBuilder.addParentStack(ShortListActivity.class);
+		}
 		
-		intent.setFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
-		PendingIntent pendingIntent = PendingIntent.getActivity(context, 
-																  0, 
-																  intent, 
-																  PendingIntent.FLAG_CANCEL_CURRENT);
-		notiBuilder.setContentIntent(pendingIntent);
+		// Adds the Intent that starts the Activity to the top of the stack
+		stackBuilder.addNextIntent(resultIntent);
+
+		PendingIntent resultPendingIntent =stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
 		
-		notiManager.notify(NOTIFICATION_ID , 
-		notiBuilder.build());
+		mBuilder.setContentIntent(resultPendingIntent);
+		NotificationManager mNotificationManager =
+		    (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+		// NOTIFICATION_ID allows you to update the notification later on.
+		mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());
 	}
 
 }

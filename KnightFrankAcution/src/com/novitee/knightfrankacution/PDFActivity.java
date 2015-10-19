@@ -32,7 +32,7 @@ public class PDFActivity extends BaseActivity {
 	Context context = this; 
 
 	WebView pdfView;
-	Button btnDraft, btnComplete;
+	Button btnComplete;
 	
 	Pdf pdf;
 	String pdf_title;
@@ -48,7 +48,6 @@ public class PDFActivity extends BaseActivity {
 		setContentView(R.layout.activity_pdf);
 		
 		pdfView = (WebView) findViewById(R.id.pdf_webview);
-		btnDraft = (Button) findViewById(R.id.pdf_draft);
 		btnComplete = (Button) findViewById(R.id.pdf_complete);
 		
 		pdf = (Pdf) getIntent().getSerializableExtra("PDF");
@@ -57,10 +56,9 @@ public class PDFActivity extends BaseActivity {
 		
 		//show pdf view with google plugin
 		pdfView.getSettings().setJavaScriptEnabled(true);
-		pdfView.getSettings().setAllowFileAccess(true);
+		pdfView.getSettings().setAllowFileAccess(true);	
 		String url = "https://docs.google.com/gview?embedded=true&url=" + pdf.getPdf_link();
 		pdfView.loadUrl(url);
-//	    setContentView(pdfView);
 		
 		btnComplete.setOnClickListener(new OnClickListener() {
 			
@@ -140,15 +138,18 @@ public class PDFActivity extends BaseActivity {
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 	    if(requestCode == REQUEST_CODE_MAIL){
-	        if(resultCode == 0){
+	    	
+	        if(resultCode == 0){//email sent
 	           send_status = "1";
 
-	        } else {
+	        } else {//email cancelled
 	        	send_status = "0";
-//	            Toast.makeText(context, "Email cancelled", Toast.LENGTH_LONG).show();
 	        }
 	        
-	        new sendStatus().execute();
+	        if(api_link != null) {
+	        	new sendStatus().execute();
+	        }
+	        
 	    }
 	    super.onActivityResult(requestCode, resultCode, data);
 	}//onActivityResult

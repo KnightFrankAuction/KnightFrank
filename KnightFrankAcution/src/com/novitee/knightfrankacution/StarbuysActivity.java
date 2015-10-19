@@ -15,6 +15,7 @@ import com.novitee.knightfrankacution.util.Preferences;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.FragmentTransaction;
@@ -29,6 +30,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
+@SuppressLint("SimpleDateFormat")
 public class StarbuysActivity extends AdvertisementsActivity {
 	Context context = this;
 	
@@ -197,7 +199,7 @@ public class StarbuysActivity extends AdvertisementsActivity {
 		protected Void doInBackground(Void... params) {
 			// TODO Auto-generated method stub
 			try {
-				jObj = api.getStarbuysDate(Preferences.getInstance(context).getSessionToken(), "September 2015");
+				jObj = api.getStarbuysDate(Preferences.getInstance(context).getSessionToken(), currentMonth);
 				
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block

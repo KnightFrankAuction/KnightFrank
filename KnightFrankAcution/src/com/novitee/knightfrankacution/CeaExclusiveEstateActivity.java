@@ -59,7 +59,7 @@ public class CeaExclusiveEstateActivity extends BaseFragmentActivity implements 
 	Button btnSeller1Sign, btnSeller2Sign, btnSeller3Sign, btnSeller4Sign, btnInterpreter1Sign, btnInterpreter2Sign, btnInterpreter3Sign, btnInterpreter4Sign, btnSAgentSign;
 	ImageView imgSeller1Sign, imgSeller2Sign, imgSeller3Sign, imgSeller4Sign, imgInterpreter1Sign, imgInterpreter2Sign, imgInterpreter3Sign, imgInterpreter4Sign, imgSAgentSign;
 	EditText editInterpreter1Name, editInterpreter2Name, editInterpreter3Name, editInterpreter4Name, editInterpreter1Ic, editInterpreter2Ic, editInterpreter3Ic, editInterpreter4Ic;
-	String stSeller1Sign, stSeller2Sign, stSeller3Sign, stSeller4Sign, stInterpreter1Sign, stInterpreter2Sign, stInterpreter3Sign, stInterpreter4Sign, stSAgentSign; 
+	String stSeller1Sign = "", stSeller2Sign = "", stSeller3Sign = "", stSeller4Sign = "", stInterpreter1Sign = "", stInterpreter2Sign = "", stInterpreter3Sign = "", stInterpreter4Sign = "", stSAgentSign = ""; 
 	EditText editSAgentPostal, editSAgentAddress1, editSAgentAddress2, editSAgentBuilding; 
 	TextView txtSAgentName, txtSAgentIc, txtSAgentCea, txtSAgentTel;
 	Button btnSubmit;

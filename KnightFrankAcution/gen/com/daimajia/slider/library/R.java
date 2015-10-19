@@ -42,8 +42,8 @@ public final class R {
 		public static final int activity_vertical_margin = 0x7f040001;
 	}
 	public static final class drawable {
-		public static final int ic_launcher = 0x7f02003e;
-		public static final int indicator_corner_bg = 0x7f020043;
+		public static final int ic_launcher = 0x7f02003f;
+		public static final int indicator_corner_bg = 0x7f020044;
 	}
 	public static final class id {
 		public static final int Accordion = 0x7f070018;
@@ -62,20 +62,20 @@ public final class R {
 		public static final int ZoomIn = 0x7f070024;
 		public static final int ZoomOut = 0x7f070026;
 		public static final int ZoomOutSlide = 0x7f070025;
-		public static final int action_settings = 0x7f070355;
-		public static final int daimajia_indicator_wrapper = 0x7f070301;
-		public static final int daimajia_slider_image = 0x7f070332;
-		public static final int daimajia_slider_viewpager = 0x7f070340;
-		public static final int default_bottom_left_indicator = 0x7f070343;
-		public static final int default_bottom_right_indicator = 0x7f070342;
-		public static final int default_center_bottom_indicator = 0x7f070341;
-		public static final int default_center_top_indicator = 0x7f070344;
-		public static final int default_center_top_left_indicator = 0x7f070346;
-		public static final int default_center_top_right_indicator = 0x7f070345;
-		public static final int description = 0x7f070335;
-		public static final int description_layout = 0x7f070334;
+		public static final int action_settings = 0x7f070354;
+		public static final int daimajia_indicator_wrapper = 0x7f070300;
+		public static final int daimajia_slider_image = 0x7f070331;
+		public static final int daimajia_slider_viewpager = 0x7f07033f;
+		public static final int default_bottom_left_indicator = 0x7f070342;
+		public static final int default_bottom_right_indicator = 0x7f070341;
+		public static final int default_center_bottom_indicator = 0x7f070340;
+		public static final int default_center_top_indicator = 0x7f070343;
+		public static final int default_center_top_left_indicator = 0x7f070345;
+		public static final int default_center_top_right_indicator = 0x7f070344;
+		public static final int description = 0x7f070334;
+		public static final int description_layout = 0x7f070333;
 		public static final int invisible = 0x7f070016;
-		public static final int loading_bar = 0x7f070333;
+		public static final int loading_bar = 0x7f070332;
 		public static final int oval = 0x7f070027;
 		public static final int rect = 0x7f070028;
 		public static final int visible = 0x7f070015;

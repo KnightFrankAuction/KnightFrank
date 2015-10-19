@@ -30,6 +30,7 @@ public class AdvertisementsActivity extends BaseFragmentActivity {
 	
 	ImageView load;
 	ImageView close;
+	ImageView adImage;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -89,7 +90,9 @@ public class AdvertisementsActivity extends BaseFragmentActivity {
 			super.onPostExecute(result);
 			
 			for (int j = 0; j < ad_list.size(); j++) {		
-				Picasso.with(AdvertisementsActivity.this).load(ad_list.get(j)).into(load);
+				Picasso.with(AdvertisementsActivity.this)
+						.load(ad_list.get(j))
+						.into(load);
 			}
 		}
 		
@@ -108,10 +111,11 @@ public class AdvertisementsActivity extends BaseFragmentActivity {
 			dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 			dialog.setContentView(R.layout.activity_advertisements);
 			
+			adImage = (ImageView) dialog.findViewById(R.id.ad_image);
+			
 			Picasso.with(AdvertisementsActivity.this)
 			.load(ad_url)
-			.error(R.drawable.ic_launcher)
-			.into((ImageView) dialog.findViewById(R.id.ad_image));
+			.into(adImage);
 			
 			close = (ImageView) dialog.findViewById(R.id.close_ad);
 			close.setOnClickListener(new OnClickListener() {
@@ -133,4 +137,5 @@ public class AdvertisementsActivity extends BaseFragmentActivity {
 		int num = rand.nextInt(range);
 		return num;
 	}
+
 }

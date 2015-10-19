@@ -126,6 +126,7 @@
                  android:layout_width="match_parent"
                  android:layout_height="50dp"
                  android:layout_margin="10dp"
+                 android:drawableRight="@drawable/calendar_icon"
                  android:focusable="false"/>
              
              <TextView 
@@ -139,6 +140,7 @@
                  android:layout_width="match_parent"
                  android:layout_height="50dp"
                  android:layout_margin="10dp"
+                 android:drawableRight="@drawable/calendar_icon"
                  android:focusable="false"/>
              
              <TextView 
@@ -227,6 +229,7 @@
                  android:layout_width="match_parent"
                  android:layout_height="50dp"
                  android:layout_margin="10dp"
+                 android:drawableRight="@drawable/calendar_icon"
                  android:focusable="false"/>
              
              <TextView 

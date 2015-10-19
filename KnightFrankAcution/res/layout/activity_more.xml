@@ -56,12 +56,14 @@
          android:layout_below="@+id/NotificationSettings_view"
          style="@style/FilterTextviewStyle"
          android:drawableLeft="@drawable/document_gray"
+         android:visibility="gone"
          android:text="Documents"/>
      
      <View 
          android:id="@+id/Documents_view"
          android:layout_width="match_parent"
          android:layout_height="1dp"
+         android:visibility="gone"
          android:layout_below="@+id/Documents"
          android:background="@color/gray"
          android:layout_marginLeft="10dp"

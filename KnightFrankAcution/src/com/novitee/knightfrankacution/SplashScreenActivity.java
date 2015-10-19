@@ -105,7 +105,7 @@ public class SplashScreenActivity extends BaseActivity {
                 public void run() {
                     try {
                         int logoTimer = 0;
-                        while (logoTimer < 3000) {
+                        while (logoTimer < 5000) {
                             sleep(100);
                             logoTimer = logoTimer + 100;
 
@@ -366,7 +366,7 @@ public class SplashScreenActivity extends BaseActivity {
 	            if(json_status == 1 && json_responseCode == 200){
 	            	//get Logo
 	            	String logo_url = CommonConstants.HOST + json.getString("white_logo");
-	    			Picasso.with(context).load(logo_url).into(imgLogo);
+	    			Picasso.with(context).load(logo_url).placeholder(R.drawable.kfwhite).into(imgLogo);
 	            }
 	            else if(json_status == 2 && json_responseCode == 401) {
 	                String message = json.getString("message");
